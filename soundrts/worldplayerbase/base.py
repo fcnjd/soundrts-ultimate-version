@@ -108,6 +108,7 @@ class Player:
     has_been_defeated = False
     faction = "human_faction"
     memory_duration = 3 * 60 * 1000  # 3 minutes of world time
+    display_memory_duration = memory_duration
 
     # === Round 3: 类级 (跨所有玩家共享) 视野缓存 ===
     # 改为 {player_id -> {cache_key -> data}} 二级结构,
