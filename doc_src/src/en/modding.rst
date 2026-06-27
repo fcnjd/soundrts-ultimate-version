@@ -96,15 +96,34 @@ When the limit is active, a unit type which reaches the limit cannot be trained,
 built, summoned, raised, resurrected, or added by a trigger (add_unit).
 Conversion is unaffected though.
 
-is_ballistic
-============
+mdg_projectile / rdg_projectile
+=================================
 
-New in SoundRTS 1.2 alpha 9.
-Modified in SoundRTS 1.2 alpha 10.
+New in SoundRTS 1.3.8.2. Low-ground vs high-ground restriction added in 1.3.9.1.
+Replaces the deprecated ``is_ballistic``.
 
-`is_ballistic 1`
+``mdg_projectile 0|1``
 
-The unit have a range bonus if the altitude of the target is lower.
+``rdg_projectile 0|1``
+
+The default value is 0. When set to 1, the corresponding attack type is treated as a
+projectile:
+
+- On high ground, the unit gains extra range when attacking targets at lower altitude
+  (+1 square per height level)
+- Non-projectile units cannot attack **ground** targets on high ground from below,
+  regardless of range
+
+Migration: mods that used ``is_ballistic 1`` should use ``rdg_projectile 1`` (ranged) or
+``mdg_projectile 1`` (melee projectiles such as catapults); each attack type is configured
+separately.
+
+Ranged projectile example::
+
+    def archer
+    rdg 3
+    rdg_range 4
+    rdg_projectile 1
 
 is_teleportable
 ===============
@@ -371,6 +390,7 @@ Main melee/ranged properties:
 - ``mdg_vs`` / ``rdg_vs``: bonus vs specific unit types
 - ``mdf`` / ``rdf``: defense
 - ``mdg_range`` / ``rdg_range``, ``mdg_cd`` / ``rdg_cd``, ``mdg_ready`` / ``rdg_ready``
+- ``mdg_projectile`` / ``rdg_projectile``: projectile flag (high-ground range bonus, low vs high ground rules)
 - ``mdg_splash`` / ``rdg_splash``, ``mdg_radius`` / ``rdg_radius``, ``mdg_splash_decay``
 - ``mdg_targets`` / ``rdg_targets``: ``ground``, ``air``, ``unit``, ``building``, or a type name
 - ``mdg_crit`` / ``rdg_crit``, ``mdg_crit_rate`` / ``rdg_crit_rate``, ``crit_vs``

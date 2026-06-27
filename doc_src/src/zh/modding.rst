@@ -95,15 +95,28 @@ SoundRTS 1.2 alpha 10 新增。
 当限制生效时，达到上限的单位类型将无法被训练、建造、召唤、扶起、复活或由触发器（add_unit）添加。
 不过转化（conversion）不受影响。
 
-is_ballistic
-============
+mdg_projectile / rdg_projectile
+=================================
 
-SoundRTS 1.2 alpha 9 新增。
-SoundRTS 1.2 alpha 10 修改。
+SoundRTS 1.3.8.2 新增。SoundRTS 1.3.9.1 补充低击高限制。取代已废弃的 ``is_ballistic``。
 
-`is_ballistic 1`
+``mdg_projectile 0|1``
 
-如果目标的海拔较低，该单位将获得射程加成。
+``rdg_projectile 0|1``
+
+默认值为 0。设为 1 时，对应攻击类型视为投射物：
+
+- 单位位于高地时，攻击海拔较低的目标可获得额外射程（每 1 级高度差 +1 格射程）
+- 非投射物单位不能从低处攻击高地上的 ground 目标，无论射程多远
+
+迁移说明：原先使用 ``is_ballistic 1`` 的 mod 应改为 ``rdg_projectile 1`` (远程) 或 ``mdg_projectile 1`` (近战投射物，如投石)；两种攻击可分别配置。
+
+远程投射物示例::
+
+    def archer
+    rdg 3
+    rdg_range 4
+    rdg_projectile 1
 
 is_teleportable
 ===============
@@ -368,6 +381,7 @@ Combat system (since 1.4)
 - ``mdg_vs`` / ``rdg_vs``：针对特定单位类型的加成
 - ``mdf`` / ``rdf``：防御
 - ``mdg_range`` / ``rdg_range``、``mdg_cd`` / ``rdg_cd``、``mdg_ready`` / ``rdg_ready``
+- ``mdg_projectile`` / ``rdg_projectile``：投射物标志（高地射程加成、低击高规则）
 - ``mdg_splash`` / ``rdg_splash``、``mdg_radius`` / ``rdg_radius``、``mdg_splash_decay``
 - ``mdg_targets`` / ``rdg_targets``：``ground``、``air``、``unit``、``building`` 或类型名
 - ``mdg_crit`` / ``rdg_crit``、``mdg_crit_rate`` / ``rdg_crit_rate``、``crit_vs``
