@@ -261,13 +261,76 @@ starting_squares
 
 The starting units and buildings will be created in these squares.
 
+``starting_squares`` only fixes **which squares each spawn slot uses**; by default it does **not** fix **which joining human gets which slot** (see random_starts_ and player_start_).
+
+.. _random_starts:
+
+random_starts
+.............
+
+``random_starts 1`` (default): spawn slots are **shuffled** among human clients at game start. Unit positions inside each slot stay the same, but slot assignment is random.
+
+``random_starts 0``: slots are assigned in order to clients 0, 1, 2…; the first joiner always gets the first slot.
+
+.. _player_start:
+
 player_start (since 1.4.2.8)
 ............................
 
-Fix player N to a specific square (overrides random assignment)::
+Pin **player N** (1-based, same as ``trigger playerN``) to a slot/square. Pinned players never participate in ``random_starts`` shuffling; others still follow ``random_starts``.
+
+**Simple form** — change the square only, keep that slot's existing resources and units::
+
+    starting_squares a1 c1 e1
+    starting_units townhall peasant
+    player_start 1 b1
+
+**Full form** — equivalent to pinning a full ``player`` line to player N::
+
+    player_start 1 5 10 a1 townhall peasant
+
+Coordinates and aliases are also supported::
 
     player_start 1 2,3
     player_start 2 5,1
+
+.. _spawn_semantics:
+
+Spawn semantics: player vs player_start
+'''''''''''''''''''''''''''''''''''''''''
+
+Both can place units/buildings on specific squares (e.g. ``a1``), but they do not mean the same kind of "fixed spawn":
+
+- ``player`` / ``starting_squares``: define **spawn slots** and their contents. Square coordinates are fixed, but with ``random_starts 1`` which human gets which slot is shuffled.
+- ``player_start``: pins **player N** to slot N (and can change that slot's square), regardless of ``random_starts``.
+
+Common patterns:
+
+**Different per-player setups, and player 1 must always start bottom-left** :
+
+    random_starts 1
+    player 5 10 a1 townhall peasant
+    player 5 10 h1 townhall peasant
+    player_start 1 a1
+    player_start 2 h1
+
+**player lines only, fixed by join order** (no player_start needed) :
+
+    random_starts 0
+    player 5 10 a1 townhall peasant
+    player 5 10 h1 townhall peasant
+
+**Shared starting setup, only some players pinned** :
+
+    starting_squares a1 c1 e1 g1
+    starting_units townhall peasant
+    player_start 1 a1
+    player_start 3 e1
+
+Common pitfalls:
+
+- In ``player 5 10 …``, the first two numbers are **resource amounts** (gold/wood), not a player index or coordinates.
+- To pin "which joiner gets which corner", use ``player_start`` or ``random_starts 0``; ``starting_squares`` / ``player`` alone is not enough.
 
 Case 2: different resources depending on the player
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -281,6 +344,8 @@ This command can be repeated several times in a multiplayer map.
 
 "player 5 10 -townhall a1 townhall peasant c1 footman"
 means: "a player will start with 5 gold, 10 wood, won't be allowed to build a town hall, will have a townhall and a peasant at A1, a footman at C1.
+
+Each ``player`` line appends one spawn slot in map order; ``a1``, ``c1``, etc. are square coordinates. To pin a slot to **player N**, use player_start_ or set random_starts 0 (see spawn_semantics_ above).
 
 
 Types list

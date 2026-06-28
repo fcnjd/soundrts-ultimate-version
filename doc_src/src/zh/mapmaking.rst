@@ -256,13 +256,84 @@ starting_squares
 
 初始单位和建筑将在这些格子中创建。
 
+``starting_squares`` 只固定**每个出生槽位**里的单位落在哪些格子；默认情况下并**不**固定“第几个加入的真人玩家拿哪个槽位”（见 random_starts_ 与 player_start_）。
+
+.. _random_starts:
+
+random_starts
+.............
+
+random_starts 1（默认）表示：开局时多个出生槽位会在真人玩家之间随机洗牌；槽位里的单位位置不变，但哪个玩家拿到哪个槽位不固定。
+
+random_starts 0 表示：按槽位顺序分配给第 1、2、3… 个加入的 client，第 1 个加入的人固定拿第 1 个槽位。
+
+.. _player_start:
+
 player_start（自 1.4.2.8 起）
 .............................
 
-将玩家 N 固定到指定格子（覆盖随机分配）::
+将**第 N 个玩家**（与 ``trigger playerN`` 一致，1-based）固定到指定槽位/格子；被钉的玩家不论 ``random_starts`` 是否开启都不参与洗牌，未指定的玩家仍按 ``random_starts`` 规则分配。
+
+**简单式**：只改格子，保留该槽位已有的资源与单位列表。
+
+::
+
+    starting_squares a1 c1 e1
+    starting_units townhall peasant
+    player_start 1 b1
+
+**完整式**：等价于把一条 player 行固定给玩家 N。
+
+::
+
+    player_start 1 5 10 a1 townhall peasant
+
+也支持坐标形式与别名。
+
+::
 
     player_start 1 2,3
     player_start 2 5,1
+
+.. _spawn_semantics:
+
+player 与 player_start 的出生点语义
+''''''''''''''''''''''''''''''''''''''''
+
+两者都能把单位/建筑生成在指定格子（如 ``a1``），但“固定”的含义不同：
+
+- ``player`` / ``starting_squares``：定义**出生槽位**及其内容；单位坐标固定，但哪个真人玩家拿哪个槽位在 ``random_starts 1`` 时会被随机分配。
+- ``player_start``：把**第 N 个玩家**钉到第 N 个槽位（并可改该槽位的格子），无视 ``random_starts`` 洗牌。
+
+常见写法：
+
+**多人地图，每人不同资源，且要固定“玩家 1 在左下角”** :
+
+    random_starts 1
+    player 5 10 a1 townhall peasant
+    player 5 10 h1 townhall peasant
+    player_start 1 a1
+    player_start 2 h1
+
+第二套写法：只用 player 行，按加入顺序固定槽位（无需 player_start）。
+
+::
+
+    random_starts 0
+    player 5 10 a1 townhall peasant
+    player 5 10 h1 townhall peasant
+
+**统一开局，只固定部分玩家位置** :
+
+    starting_squares a1 c1 e1 g1
+    starting_units townhall peasant
+    player_start 1 a1
+    player_start 3 e1
+
+易混淆点：
+
+- ``player 5 10`` 开头两个数字是**资源数量**（金/木），不是玩家编号，也不是坐标。
+- 要钉“第几个玩家拿哪个角”，需 ``player_start`` 或 ``random_starts 0``；仅写 ``starting_squares`` / ``player`` 不够。
 
 情形 2：不同玩家拥有不同资源
 ''''''''''''''''''''''''''''
@@ -276,6 +347,8 @@ player
 
 "player 5 10 -townhall a1 townhall peasant c1 footman"
 表示："某玩家以 5 黄金、10 木材开局，不允许建造市政厅，在 A1 有一座市政厅和一个农民、在 C1 有一个步兵。"
+
+每条 ``player`` 行按出现顺序追加为一个出生槽位；``a1``、``c1`` 等才是方格坐标。若需把某个槽位固定给“第 N 个玩家”，请配合 player_start_ 或设置 random_starts 0（见上文 spawn_semantics_）。
 
 
 类型列表
