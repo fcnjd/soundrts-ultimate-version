@@ -41,7 +41,7 @@ Level 1 — Ten-minute start
 ---------------------------
 
 
-Goal: select a peasant, mine gold, build a farm.
+Goal: select a peasant, mine gold, build a farm and a house.
 
 
 .. list-table::
@@ -64,7 +64,7 @@ Goal: select a peasant, mine gold, build a farm.
 
 
 
-Resources: Z gold · X wood · C food.
+Resources: Z gold · X wood · Shift+Z food · C population.
 
 Movement: arrow keys, Page Up/Down between interesting squares, Space to follow selection.
 
@@ -78,7 +78,7 @@ Level 2 — Core RTS loop
 ------------------------
 
 
-- Economy: peasants → farms (food cap) → buildings → army
+- Economy: peasants → houses (population cap) and farms (food) → buildings → army
 - Rally point: select town hall → Tab to gold mine → Backspace
 - Groups: Shift+6–9 to save, 6–9 to recall
 - Scouting: defense mode flees from stronger enemies

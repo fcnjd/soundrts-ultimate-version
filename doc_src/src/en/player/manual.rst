@@ -32,7 +32,7 @@ If you press "Page down" again, you will be again in "A1". It means that only 2 
 
 Another way of moving in the map is to use the Arrow Keys. This way you can fly over the unknown squares to give the order to go to an unknown square.
 
-The objective of this map is to build 1 farm and 1 barracks. Only the peasant can build. But he needs gold and wood, and a free space (a meadow). To know how much gold, wood, food you have, press Z, X and C.
+The objective of this map is to build 1 farm and 1 barracks. Only the peasant can build. But he needs gold and wood, and a free space (a meadow). To know how much gold, wood, and food you have, press Z, X, and Shift+Z. Press C for population.
 
 Let's order the peasant to gather gold. First, to control him, press Q until you hear "peasant 1, awaiting your orders!". Then, press A until you select "exploit" ; then press Tab until you select the gold mine ; then press Enter to confirm. The peasant will start gathering gold.
 
@@ -134,7 +134,7 @@ Examining the situation
 
 To check the controlled unit (or the controlled group), press Space. Moreover, you will move to the square occupied by the unit (or the group leader).
 
-To know how much gold you have, press Z. Press X for wood, press C for food.
+To know how much gold you have, press Z. Press X for wood, Shift+Z for food, and C for population.
 
 To know the health of the current unit press V.
 
@@ -324,10 +324,21 @@ Play a game with the map that you wish to download. Just before the game starts,
 5. Game elements
 ------------------
 
-Food
-^^^^^
+Population
+^^^^^^^^^^
 
-The training of a new unit can only happen if the player have enough food rations. If some farms are destroyed or new units are obtained without training, and the food rations become insufficient, the current units will be kept without any problem. No further training will be allowed though.
+Training new units requires population and cannot exceed your population cap. Houses increase the cap; each house provides additional population. Press C to check used and maximum population (for example, "5 on 8 population").
+
+If houses are destroyed, or new units are obtained without training and used population exceeds the cap, existing units are kept but no further training is allowed until population is available again.
+
+Food
+^^^^
+
+Many units (for example knights) cost food to train. Food comes from farms, and peasants can also gather it from orchards and hunted animals.
+
+Farms automatically cultivate after being built and store food inside the building. Peasants can gather that food and bring it to the town hall or another warehouse that stores food. When a farm runs out of food, it automatically replants (costs wood).
+
+Press Shift+Z to check how much food you have.
 
 Tech upgrades
 ^^^^^^^^^^^^^^

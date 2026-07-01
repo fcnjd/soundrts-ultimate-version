@@ -1,5 +1,5 @@
 def peasant
-desc The peasant is important but fragile. The peasant collects gold or wood, builds and repairs buildings. Many peasants can help building or repairing a building to go faster. When a peasant can build a new type of building, this new option is added at the end of the list.\nThe peasant can fight, and can join a total attack with the command Control + Alt + S.
+desc The peasant is important but fragile. The peasant collects gold, wood, or food, builds and repairs buildings. Peasants gather food from farms, orchards, and hunted animals, and bring it to warehouses. Many peasants can help building or repairing a building to go faster. When a peasant can build a new type of building, this new option is added at the end of the list.\nThe peasant can fight, and can join a total attack with the command Control + Alt + S.
 
 def footman
 desc The footman fights with his sword. He must be close to the target to hit it.
@@ -27,7 +27,7 @@ name flying machine
 desc This new version of the flying machine have the ability to transport units and to detect invisible units but cannot defend itself. Transported units can't attack from a flying machine. If the transport is destroyed, the units inside are destroyed too.\nTo load units:\n- Method 1: control the unit(s) to carry, target the flying machine and press backspace.\n- Method 2: control the flying machine(s), target the unit to carry and press backspace.\n- Method 3: control the flying machine(s), target the square where the units are, select in the menu "load all the units from...", and press Enter.\nTo unload units: control the flying machine(s), select the "unload" action in the menu, target the destination and press Enter.
 
 def knight
-desc The knight fights with his sword and moves fast.
+desc The knight fights with his sword and moves fast. Training a knight costs gold and food, and uses 2 population.
 
 def horse_speed
 name horse speed upgrade
@@ -134,7 +134,10 @@ name
 desc
 
 def farm
-desc Farms provide food rations.
+desc Farms grow food. When built, a farm automatically cultivates; stored food is depleted as peasants gather it and bring it to a town hall or other warehouse. When the farm runs out of food, it replants automatically (costs wood). Peasants can also gather food from orchards and hunted animals.
+
+def house
+desc Houses increase your population limit. Each house provides population for training units. Press C to check your current and maximum population.
 
 def lumbermill
 name lumber mill
@@ -142,7 +145,7 @@ desc The lumber mill can store wood. If a lumber mill is nearer than the townhal
 
 def scouttower
 name scout tower
-desc The scout tower can't defend itself, but it can quickly evolve to a guard tower (requires a sawmill) or a cannon tower (requires a blacksmith). In the early game, the scout tower is sometimes built "just in case" of a rushed attack, with a smaller investment than the cost of a fully equipped tower. A tower doesn't require food and can be built anywhere (not only on a meadow).
+desc The scout tower can't defend itself, but it can quickly evolve to a guard tower (requires a sawmill) or a cannon tower (requires a blacksmith). In the early game, the scout tower is sometimes built "just in case" of a rushed attack, with a smaller investment than the cost of a fully equipped tower. A tower doesn't require population and can be built anywhere (not only on a meadow).
 
 def guardtower
 name guard tower
