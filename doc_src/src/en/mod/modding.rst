@@ -324,6 +324,52 @@ Allowed values for the related properties:
 * effect_target: self, ask, random
 * effect_range: square, nearby, anywhere
 
+harm_target (since 1.4.4.6)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Single-target damage. Two forms:
+
+* **Fixed true damage** (bypasses armor): ``effect harm_target <value>``
+* **Combat pipeline** (armor, crit, splash, etc.): ``effect harm_target mdg`` or ``effect harm_target rdg``
+
+Non-zero combat stats on the skill override the caster. See ``skill_lipi`` / ``skill_lipi_mdg`` in ``mods/wuxia/rules.txt``.
+
+Use ``harm_target_type`` to filter targets (enemies only by default). See `Skills guide <../../zh/mod/skills-and-effects.htm>`_.
+
+harm_area (since 1.4.4.6)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Area damage:
+
+* **Fixed true damage**: ``effect harm_area <damage> <radius>``
+* **Combat pipeline**: ``effect harm_area mdg <radius>`` or ``effect harm_area rdg <radius>``
+
+Radius may be omitted (uses the skill's ``effect_radius``). Examples: ``skill_heng_sao``, ``skill_heng_sao_mdg`` (wuxia mod).
+
+burst (since 1.4.4.6)
+^^^^^^^^^^^^^^^^^^^^^
+
+Skill combo hits (**not** the same as unit ``damage_seq`` burst attacks; see `burst-attacks.htm <../player/burst-attacks.htm>`_)::
+
+    effect burst mdg <count> (interval <sec>) (window <sec>)
+    effect burst rdg <count> (delays <t1> <t2> …)
+
+Damage uses the skill or caster ``mdg`` / ``rdg``. Example: ``skill_jifengci`` (wuxia mod).
+
+push (since 1.4.4.6)
+^^^^^^^^^^^^^^^^^^^^
+
+``effect push <distance>`` — knocks an enemy back and finds a walkable square. Example: ``skill_moli_dan`` (wuxia mod).
+
+buffs / debuffs (via skills)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``effect buffs <buff> …`` / ``effect debuffs <debuff> …``
+
+Applies buffs or debuffs to the target (``debuffs`` only on enemies). There is no ``effect reflect``; use ``reflect_percent`` on the buff and apply with ``effect buffs`` (wuxia ``b_douzhuan``).
+
+Full reference: `Skills guide <../../zh/mod/skills-and-effects.htm>`_.
+
 teleportation
 ^^^^^^^^^^^^^^
 
@@ -516,6 +562,9 @@ Buffs and debuffs (since 1.3.9.8, extended in 1.4.1.7)
 Attach to attacks with ``buffs`` / ``debuffs``, or via skills with ``effect buffs`` /
 ``effect debuffs``.
 
+``reflect_percent`` (integer percent) on a buff enables damage reflection; apply with
+``effect buffs``. There is no ``effect reflect``. Example: ``b_douzhuan`` in ``mods/wuxia/rules.txt``.
+
 Multi-stat buff example::
 
     def HealEnhancementBuff
@@ -548,11 +597,14 @@ Define skills with ``class skill`` instead of ``class ability``::
     mana_cost 50
     cost 10 0
     time_cost 30
-    effect harm 5
+    effect harm_target 60
     effect_target ask
     effect_range 12
+    cooldown 10
 
 ``can_use_tech`` applies to upgrades; ``can_use_skill`` applies to skills.
+
+Since 1.4.4.6: ``harm_target``, ``harm_area``, ``burst``, ``push``, ``effect buffs`` / ``debuffs``, etc. Demo mod: ``mods/wuxia/rules.txt``. See `Skills guide <../../zh/mod/skills-and-effects.htm>`_.
 
 Effects (class effect, since 1.4.1.7)
 --------------------------------------

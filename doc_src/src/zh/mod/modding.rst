@@ -315,6 +315,52 @@ deploy
 * effect_target：self、ask、random
 * effect_range：square、nearby、anywhere
 
+harm_target（since 1.4.4.6）
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+单体伤害。两种语法：
+
+* **固定真实伤害**（绕过护甲）：``effect harm_target <数值>``
+* **战斗管线伤害**（护甲、暴击、溅射等）：``effect harm_target mdg`` 或 ``effect harm_target rdg``
+
+技能上的非零 ``mdg`` / ``rdg`` 等战斗属性会覆盖施法者。示例见 ``mods/wuxia/rules.txt`` 的 ``skill_lipi`` / ``skill_lipi_mdg``。
+
+可用 ``harm_target_type`` 过滤目标（默认仅敌人）；详见 `技能专篇 <skills-and-effects.htm>`_。
+
+harm_area（since 1.4.4.6）
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+范围伤害：
+
+* **固定真实伤害**：``effect harm_area <伤害> <半径>``
+* **战斗管线**：``effect harm_area mdg <半径>`` 或 ``effect harm_area rdg <半径>``
+
+半径可省略，此时使用技能的 ``effect_radius``。示例：``skill_heng_sao``、``skill_heng_sao_mdg``（wuxia mod）。
+
+burst（since 1.4.4.6）
+^^^^^^^^^^^^^^^^^^^^^^^
+
+技能连击（**不同于**单位 ``damage_seq`` 连发攻击，见 `burst-attacks.htm <../player/burst-attacks.htm>`_）::
+
+    effect burst mdg <次数> (interval <秒>) (window <秒>)
+    effect burst rdg <次数> (delays <t1> <t2> …)
+
+伤害取自技能或施法者的 ``mdg`` / ``rdg``。示例：``skill_jifengci``（wuxia mod）。
+
+push（since 1.4.4.6）
+^^^^^^^^^^^^^^^^^^^^^
+
+``effect push <距离>`` — 击退敌方目标并寻找可站立格。示例：``skill_moli_dan``（wuxia mod）。
+
+buffs / debuffs（技能施加）
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``effect buffs <buff名> …`` / ``effect debuffs <debuff名> …``
+
+对目标施加增益或减益（``debuffs`` 仅对敌人）。伤害反弹无独立 ``effect reflect``，须在 buff 上写 ``reflect_percent`` 再用 ``effect buffs`` 施加（wuxia ``b_douzhuan``）。
+
+完整说明见 `技能专篇 <skills-and-effects.htm>`_。
+
 teleportation
 ^^^^^^^^^^^^^^
 
@@ -500,6 +546,8 @@ Buffs and debuffs (since 1.3.9.8, extended in 1.4.1.7)
 
 通过 ``buffs`` / ``debuffs`` 附加到攻击上，或通过技能的 ``effect buffs`` / ``effect debuffs`` 附加。
 
+``reflect_percent``（整数百分比）可在 buff 上配置伤害反弹，由技能 ``effect buffs`` 施加；无独立 ``effect reflect``。示例：``mods/wuxia/rules.txt`` 的 ``b_douzhuan``。
+
 多属性增益示例::
 
     def HealEnhancementBuff
@@ -533,11 +581,14 @@ Skills (class skill)
     mana_cost 50
     cost 10 0
     time_cost 30
-    effect harm 5
+    effect harm_target 60
     effect_target ask
     effect_range 12
+    cooldown 10
 
 ``can_use_tech`` 用于升级；``can_use_skill`` 用于技能。
+
+1.4.4.6 起支持 ``harm_target``、``harm_area``、``burst``、``push``、``effect buffs`` / ``debuffs`` 等通用效果；官方演示见 ``mods/wuxia/rules.txt``。详见 `技能 / 治疗 / 效果 <skills-and-effects.htm>`_。
 
 Effects (class effect, since 1.4.1.7)
 --------------------------------------

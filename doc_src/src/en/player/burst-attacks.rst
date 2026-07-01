@@ -6,6 +6,10 @@ Since SoundRTS 1.3.8.2 (enhanced in 1.4.3.6), units can perform burst / sequence
 
 Official reference: ``mod/modding.rst`` (Combat system → ``damage_seq``).
 
+.. note::
+
+   **Not the same as skill ``effect burst``:** This page covers **unit normal attacks** via ``damage_seq`` (e.g. repeating crossbow). Skill combo hits use ``effect burst mdg|rdg …`` on ``class skill``, cast manually or auto-triggered, with different syntax and placement. See the Skills guide (`../mod/skills-and-effects.htm`_, section "进阶" / Advanced).
+
 
 ----
 

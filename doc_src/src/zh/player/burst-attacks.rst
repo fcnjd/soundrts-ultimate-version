@@ -6,6 +6,10 @@
 
 官方参考：``mod/modding.rst`` （Combat system → ``damage_seq``）。
 
+.. note::
+
+   **与技能 ``effect burst`` 的区别**：本文讲的是 **单位普通攻击** 上的 ``damage_seq``（如诸葛弩手连弩）。主动技能的连击是 ``class skill`` 的 ``effect burst mdg|rdg …``，由玩家或自动触发释放，语法与配置位置均不同。详见 `技能专篇 <../mod/skills-and-effects.htm>`_ 的「进阶」一节。
+
 
 ----
 
