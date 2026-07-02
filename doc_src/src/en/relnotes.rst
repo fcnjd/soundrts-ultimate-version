@@ -4,6 +4,12 @@ Release notes
 
 .. contents::
 
+1.4.4.9
+--------
+
+Fixed a bug where the minimum effective charge distance was not working.
+
+Updated the documentation.
 
 1.4.4.8
 --------
