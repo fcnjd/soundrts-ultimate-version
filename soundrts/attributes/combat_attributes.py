@@ -51,6 +51,14 @@ class CombatAttributes:
         if hasattr(u.model, "charge_rdg_dist") and u.model.charge_rdg_dist > 0:
             charge_rdg_dist_text = nb2msg_float(u.model.charge_rdg_dist / 1000)  # 转换为格子单位
             attrs.append(("", mp.CHARGE_RDG_DIST, charge_rdg_dist_text))
+
+        if hasattr(u.model, "charge_mdg_min_dist") and u.model.charge_mdg_min_dist > 0:
+            charge_mdg_min_dist_text = nb2msg_float(u.model.charge_mdg_min_dist / 1000)
+            attrs.append(("", mp.CHARGE_MDG_MIN_DIST, charge_mdg_min_dist_text))
+
+        if hasattr(u.model, "charge_rdg_min_dist") and u.model.charge_rdg_min_dist > 0:
+            charge_rdg_min_dist_text = nb2msg_float(u.model.charge_rdg_min_dist / 1000)
+            attrs.append(("", mp.CHARGE_RDG_MIN_DIST, charge_rdg_min_dist_text))
         
         # 冲锋溅射
         self.main_interface._add_bonus_attribute(attrs, u, "charge_mdg_splash", "", mp.CHARGE_MDG_SPLASH, True)

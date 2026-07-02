@@ -366,9 +366,9 @@ def test_minimal_damage_rolled_back_to_single_field():
 
 def test_minimal_damage_minimal_mdg_minimal_rdg_all_keys_present():
     src = _source("soundrts", "definitions.py")
-    assert '"minimal_mdg"' in src
-    assert '"minimal_rdg"' in src
     assert '"minimal_damage"' in src
+    assert '"minimal_mdg"' not in src
+    assert '"minimal_rdg"' not in src
 
 
 # =============================================================================

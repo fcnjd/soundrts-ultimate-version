@@ -700,8 +700,6 @@ _precision_properties = {
     "rdg_cover",
     "mdg_dodge",
     "rdg_dodge",
-    "minimal_mdg",
-    "minimal_rdg",
     "minimal_damage",
     "mdg_minimal_damage",
     "rdg_minimal_damage",
@@ -720,8 +718,6 @@ _precision_properties = {
     "charge_rdg_splash_decay_min",
         "mdg_delay",
         "rdg_delay",
-        "mdg_blic",
-        "rdg_blic",
     "decay",
     "corpse_decay",
     "qty",
@@ -800,28 +796,6 @@ class Rules(_Definitions):
         "ground_form",  # 飞行建筑落地后的地面形态（如 flying_barracks → barracks）
         "requires_deposit",  # 必须建在指定矿床类型上（如气矿 geyser）
         "summon_requires_build_field",  # 召唤技能：目标格需有指定建造场（如 creep）
-    }
-
-    # 列表类属性
-    string_list_properties = {
-        "storable_resource_types",  # 添加这个新的属性集合
-        "mdg_targets",
-        "rdg_targets",
-        "mdg_cover_on_terrain",
-        "rdg_cover_on_terrain"
-        "mdg_dodge_on_terrain",
-        "rdg_dodge_on_terrain"
-        "allow_units_attack",  # 允许攻击的单位列表
-        "can_gather",          # 已废弃，见 can_gather_deposit / can_gather_building
-        "can_gather_deposit",  # 可开采的矿床（deposit）类型列表
-        "can_gather_building", # 可开采的建筑类型列表（如 farm）
-        "can_change_to",       # 单位可以变形为的单位类型列表
-        "mdg_prop",            # 近战属性影响
-        "rdg_prop",            # 远程属性影响
-        "mdg_prop_vs",         # 针对特定单位的近战属性影响
-        "rdg_prop_vs",         # 针对特定单位的远程属性影响
-        # 新增：阵营默认初始单位列表（按地图starting_units相同的扁平表述）
-        "starting_units",
     }
 
     # vs属性集合
@@ -1208,7 +1182,6 @@ class Rules(_Definitions):
         "universal_notification",
         "presence",
         "provides_survival",
-        "is_ballistic",
         "is_teleportable",
         "is_a_gate",
         "is_buildable_on_exits_only",
@@ -1243,7 +1216,6 @@ class Rules(_Definitions):
         "level_up_reset_xp",  # 1 = 升级后当前经验清零（默认 0：保留累计经验）
         "allow_attack_inside", # 允许攻击载具内部目标
         "capture_hp_threshold",  # 可被夺取的血量阈值(百分比,0表示不可夺取)
-        "capture_cooldown",      # 夺取冷却时间(毫秒)
         "yield_on_defeat",       # 战败投降(不死亡)，用于比武收服剧情
         "reflect_percent",  # buff：反弹所受伤害比例（0-100）
         "mdg_projectile",  # 近战攻击是否为投射物
@@ -1300,8 +1272,7 @@ class Rules(_Definitions):
     }
     precision_properties = _precision_properties_extended
     int_list_properties = {
-        "rewards_resource", # 击杀奖励的资源数量，[资源1数量, 资源2数量]
-        "resource_rewards",  # 物品资源奖励，[资源1数量, 资源2数量]
+        "resource_rewards",  # 物品/单位击杀奖励，[资源1数量, 资源2数量]
         "xp_thresholds",
     }
     precision_list_properties = {"cost", "storage_bonus", "production_cost"}
@@ -1330,10 +1301,6 @@ class Rules(_Definitions):
         "accepted_items",      # NPC可接受的物品类型列表（type_name，支持is_a；空=接收任意）
         "accept_from",         # 仅接收来自这些关系的给予者：self/ally/neutral/enemy（空=不限）
         "accept_givers",       # 仅接收这些单位类型交来的物品（type_name，支持is_a；空=不限）
-        "mdg_prop",            # 近战属性影响
-        "rdg_prop",            # 远程属性影响
-        "mdg_prop_vs",         # 针对特定单位的近战属性影响
-        "rdg_prop_vs",         # 针对特定单位的远程属性影响
     }
 
     def parse_resource_list(self, resource_list):

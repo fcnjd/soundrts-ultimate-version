@@ -817,6 +817,8 @@ class Creature(CreatureAttributes, CreatureMovement, CreatureAttack, CreatureSta
     rdg_minimal_range = 0
     charge_mdg_dist = 0
     charge_rdg_dist = 0
+    charge_mdg_min_dist = 0
+    charge_rdg_min_dist = 0
     mdg_projectile = 0  # 近战攻击是否为投射物
     rdg_projectile = 0  # 远程攻击是否为投射物
     mdg_targets = ["ground"]
@@ -1081,6 +1083,8 @@ class Creature(CreatureAttributes, CreatureMovement, CreatureAttack, CreatureSta
         self.charge_rdg_cd = type(self).charge_rdg_cd
         self.charge_mdg_dist = type(self).charge_mdg_dist
         self.charge_rdg_dist = type(self).charge_rdg_dist
+        self.charge_mdg_min_dist = type(self).charge_mdg_min_dist
+        self.charge_rdg_min_dist = type(self).charge_rdg_min_dist
         self.charge_mdg_next_time = 0  # 初始可立即使用
         self.charge_rdg_next_time = 0  # 初始可立即使用
         # 初始化冲锋溅射相关属性

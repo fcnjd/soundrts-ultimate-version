@@ -7,7 +7,7 @@ global_count_limit 1
 campaign_carryover 1
 ;revival_time 15
 ;revival_time_per_level 2
-；xp_thresholds 40 90 160 250 360 490 640 810 1000
+;xp_thresholds 40 90 160 250 360 490 640 810 1000
 ;level 1
 ;xp 0
 ;level_up_heal_full 0
@@ -129,6 +129,7 @@ mdg_bonus 3
 charge_mdg 2
 charge_mdg_cd 10
 charge_mdg_dist 15
+charge_mdg_min_dist 3
 
 def melee
 class weapon

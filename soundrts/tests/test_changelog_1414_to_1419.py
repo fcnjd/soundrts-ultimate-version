@@ -325,7 +325,7 @@ def test_harm_heal_regen_attrs_registered_in_precision_properties():
     src = _source("soundrts", "definitions.py")
     # 全部都在 precision_properties 列表
     s = src.index('"mdg_cd",')
-    e = src.index('"minimal_mdg",', s)
+    e = src.index('"minimal_damage",', s)
     block = src[s:e]
     for key in (
         '"heal_cd"', '"harm_cd"', '"heal_ready"', '"harm_ready"',

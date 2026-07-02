@@ -154,12 +154,10 @@ def test_worker_get_gather_time_applies_extraction_time_correction():
 
 def test_resource_rewards_int_list_registered():
     """1.3.8.7 引入击杀奖励；至 1.4.1.3 字段统一为 `resource_rewards`（与 item 共用）。
-    `rewards_resource`（旧拼写）保留在 `int_list_properties` 仅为解析兼容，但运行时不再读取
-    （现代 mod 应改用 `resource_rewards`）。"""
+    旧拼写 `rewards_resource` 已移除注册，mod 应改用 `resource_rewards`。"""
     src = _source("soundrts", "definitions.py")
     assert '"resource_rewards"' in src
-    # 旧拼写仍登记（解析时不报错）
-    assert '"rewards_resource"' in src
+    assert '"rewards_resource"' not in src
 
 
 def test_resource_rewards_default_on_creature():

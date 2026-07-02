@@ -476,6 +476,7 @@ Example (campaign knight)::
     charge_mdg 2
     charge_mdg_cd 10
     charge_mdg_dist 15
+    charge_mdg_min_dist 3
     charge_mdg_splash 1
     charge_mdg_radius 1
     charge_mdg_splash_decay_min 0.5
