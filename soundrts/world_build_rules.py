@@ -1154,6 +1154,7 @@ def _bridge_passage_allowed(a, b):
     if getattr(a, "is_water", False) and getattr(b, "is_water", False):
         if square_has_construction_scaffold(a) or square_has_construction_scaffold(b):
             return False
+        return _bridge_square_active(a) and _bridge_square_active(b)
     return True
 
 
@@ -1306,6 +1307,9 @@ def refresh_bridge_terrain(square):
         del square._bridge_terrain_saved
     if terrain_name or saved is not None:
         _sync_bridge_passages(square)
+        if saved is not None and not terrain_name:
+            for neighbor in square.strict_neighbors:
+                _sync_bridge_passages(neighbor)
         if world is not None:
             invalidate_world_regions(world)
             if hasattr(world, "_create_graphs"):

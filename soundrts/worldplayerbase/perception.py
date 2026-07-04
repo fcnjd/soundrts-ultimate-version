@@ -776,7 +776,11 @@ class PerceptionMixin:
             
         # 处理联盟观察到的对象 - 使用联盟视野缓存
         if alliance_key in self.__class__._allied_vision_cache and 'observed_objects' in self.__class__._allied_vision_cache[alliance_key]:
-            self.perception.update(self.__class__._allied_vision_cache[alliance_key]['observed_objects'])
+            cached_observed = {
+                o for o in self.__class__._allied_vision_cache[alliance_key]['observed_objects']
+                if getattr(o, "place", None) is not None
+            }
+            self.perception.update(cached_observed)
         else:
             # 处理观察到的对象 - 使用字典推导优化
             observed_objects_to_add = set()
@@ -1267,11 +1271,16 @@ class PerceptionMixin:
         # 直接用集合差集判断消失单位（开销很低），保证每帧都正确记忆。
         disappeared_units = previous_perception - self.perception
         if disappeared_units:
+            own_unit_ids = {u.id for u in self.units}
             # 过滤出需要记忆的单位
             units_to_memorize = {
                 o for o in disappeared_units
                 if not (o.is_invisible or o.is_cloaked) and o.place is not None
                 and o not in forgotten_initial_models
+                and not (
+                    getattr(o, "player", None) is self
+                    and getattr(o, "id", None) not in own_unit_ids
+                )
             }
 
             # 批量记忆

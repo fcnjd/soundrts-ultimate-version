@@ -127,8 +127,8 @@ def is_visible(interface, o):
             return True
         return False
             
-    # 检查单位是否在当前区域
-    if not o.is_in(interface.place) or not o.title:
+    # 检查单位是否在当前区域（用 short_title：雾中记忆对象 title 含战云但 short_title 为空时不应 Tab 选中）
+    if not o.is_in(interface.place) or not o.short_title:
         return False
         
     if interface.immersion:

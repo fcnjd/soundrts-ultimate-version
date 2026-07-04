@@ -505,6 +505,66 @@ def test_land_to_single_bridge_still_uses_path_exit():
     assert link.other_side.type_name == "path"
 
 
+def test_bridge_destruction_clears_exits_and_objects():
+    world, player = _world_from_map(
+        _mini_map(
+            "terrain plain a1 a2 a3",
+            "terrain plain b1 b3",
+            "terrain river b2",
+        )
+    )
+    river = _sq(world, "b2")
+    land = _sq(world, "b1")
+    site = _make_water_scaffold(player, river, land)
+    while site in player.units and site.timer > 0:
+        site.be_built(None)
+
+    bridge = next(
+        o for o in river.objects if getattr(o, "type_name", None) == "wooden_bridge"
+    )
+    assert any(e.other_side.place is river for e in land.exits)
+
+    bridge.hp = 0
+    bridge.die()
+
+    assert is_pure_water_square(river)
+    assert river.exits == []
+    assert not any(getattr(o, "is_an_exit", False) for o in river.objects)
+    assert not any(e.other_side.place is river for e in land.exits)
+
+
+def test_adjacent_bridge_destruction_clears_destroyed_cell():
+    world, player = _world_from_map(
+        _mini_map(
+            "terrain plain a1 b1 c1",
+            "terrain river a2 b2 c2",
+            "terrain plain a3 b3 c3",
+        )
+    )
+    river1 = _sq(world, "b2")
+    river2 = _sq(world, "c2")
+    site1 = _make_water_scaffold(player, river1, _sq(world, "b1"))
+    while site1 in player.units and site1.timer > 0:
+        site1.be_built(None)
+    site2 = _make_water_scaffold(player, river2, _sq(world, "c1"))
+    while site2 in player.units and site2.timer > 0:
+        site2.be_built(None)
+
+    bridge1 = next(
+        o for o in river1.objects if getattr(o, "type_name", None) == "wooden_bridge"
+    )
+    assert any(e.other_side.place is river2 for e in river1.exits)
+
+    bridge1.hp = 0
+    bridge1.die()
+
+    assert is_pure_water_square(river1)
+    assert river1.exits == []
+    assert not any(getattr(o, "is_an_exit", False) for o in river1.objects)
+    assert getattr(river2, "_bridge_terrain_voice", None) == "bridge_deck"
+    assert any(e.other_side.place is river2 for e in _sq(world, "c1").exits)
+
+
 def test_building_site_silent_without_active_builder():
     world, player = _world_from_map(
         _mini_map(

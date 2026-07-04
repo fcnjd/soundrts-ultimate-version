@@ -177,7 +177,9 @@ class DamageEffectsMixin(DamageCalculationMixin):
             from ..skill_combat import resolve_combat_attacker
 
             attacker = resolve_combat_attacker(attacker)
-            self.player.observe(attacker)
+            # 自伤/自杀时不 observe 自身，避免 observed_objects 把已删单位加回感知。
+            if attacker is not self:
+                self.player.observe(attacker)
             self.last_attacker = attacker
 
             # 通知友军单位（仅当攻击者存在时）

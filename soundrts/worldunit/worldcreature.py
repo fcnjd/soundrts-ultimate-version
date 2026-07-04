@@ -439,6 +439,10 @@ class Creature(CreatureAttributes, CreatureMovement, CreatureAttack, CreatureSta
                 if hasattr(attacker.player, 'record_unit_killed'):
                     attacker.player.record_unit_killed(self)
 
+        if self.player is not None:
+            self.player.observed_objects.pop(self, None)
+            self.player.perception.discard(self)
+
         self.delete()
 
         if hunt_info is not None and attacker is not None:
