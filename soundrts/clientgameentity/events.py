@@ -25,34 +25,7 @@ class EntityViewEvents:
     def on_death(self):
         """处理单位死亡的音效"""
         self.launch_event_style("death")
-        
-        # 获取地形信息
-        terrain_type = None
-        # 检查place是否是Inside类型以防止AttributeError
-        if hasattr(self.place, "type_name"):
-            place_type = self.place.type_name
-            if place_type:
-                # 获取地形的ground属性
-                terrain = style.get(place_type, "ground")
-                if terrain and len(terrain) > 0:
-                    terrain_type = terrain[0]
-        # 如果place没有type_name属性（例如是Inside类型），尝试从outside获取
-        elif hasattr(self.place, "outside") and hasattr(self.place.outside, "type_name"):
-            place_type = self.place.outside.type_name
-            if place_type:
-                terrain = style.get(place_type, "ground")
-                if terrain and len(terrain) > 0:
-                    terrain_type = terrain[0]
-        
-        # 首先检查是否有特定地形的倒地音效
-        terrain_falling_sound = None
-        if terrain_type:
-            terrain_attr = "falling_on_" + terrain_type
-            if style.has(self.type_name, terrain_attr):
-                terrain_falling_sound = self.get_style(terrain_attr)
-        
-        # 如果没有特定地形音效，则使用通用倒地音效
-        falling_sound = terrain_falling_sound or self.get_style("falling")
+        falling_sound = self._get_falling_sound()
         
         if falling_sound:
             falling_delay = 0

@@ -10,7 +10,7 @@ Overview
 --------
 
 
-All terrain is declared in ``rules.txt`` as ``class terrain``; ``style.txt`` uses the same ``def`` names for voice, footsteps, and colors.
+All terrain is declared in ``rules.txt`` as ``class terrain``; ``style.txt`` uses the same ``def`` names for voice, ``ground``, and colors. Unit ``move_on_<key>`` / ``falling_on_<key>`` match terrain type names or ``ground`` categories — see ``modding.htm`` (Combat sound system).
 
 **The engine no longer assigns a default terrain to every square.** A square’s terrain comes only from:
 

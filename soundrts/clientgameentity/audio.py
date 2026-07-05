@@ -34,12 +34,39 @@ class EntityViewAudio:
             return bridge_voice
         return getattr(place, "type_name", None)
 
+    def _terrain_sound_keys(self):
+        """Return terrain keys for falling_on_* / move_on_* (name, then ground type)."""
+        place = self._client_audio_place()
+        if place is None:
+            return []
+        terrain_name = None
+        if hasattr(place, "type_name_at"):
+            terrain_name = place.type_name_at(self.x, self.y)
+        if not terrain_name:
+            terrain_name = self._place_terrain_voice()
+        if not terrain_name:
+            terrain_name = getattr(place, "type_name", None)
+        keys = []
+        if terrain_name:
+            keys.append(terrain_name)
+            ground = style.get(terrain_name, "ground", warn_if_not_found=False)
+            if ground and ground[0] and ground[0] not in keys:
+                keys.append(ground[0])
+        return keys
+
+    def _get_terrain_style(self, prefix):
+        for key in self._terrain_sound_keys():
+            attr = prefix + key
+            if style.has(self.type_name, attr):
+                return style.get(self.type_name, attr)
+        return None
+
+    def _get_falling_sound(self):
+        st = self._get_terrain_style("falling_on_")
+        return st if st else self.get_style("falling")
+
     def _terrain_footstep(self):
-        t = self._place_terrain_voice()
-        if t:
-            g = style.get(t, "ground")
-            if g and style.has(self.type_name, "move_on_%s" % g[0]):
-                return style.get(self.type_name, "move_on_%s" % g[0])
+        return self._get_terrain_style("move_on_")
 
     def footstepnoise(self):
         # assert: "only immobile objects must be taken into account"
@@ -53,23 +80,32 @@ class EntityViewAudio:
             for m in self.place.objects:
                 if getattr(m, "speed", 0):
                     continue
-                g = style.get(m.type_name, "ground")
-                if g and style.has(self.type_name, "move_on_%s" % g[0]):
-                    try:
-                        k = float(g[1])
-                    except IndexError:
-                        k = 1.0
-                    try:
-                        o = self.interface.dobjets[m.id]
-                    except KeyError:  # probably caused by the world client updates
-                        continue
-                    try:
-                        d = distance(o.x, o.y, self.x, self.y) / k
-                    except ZeroDivisionError:
-                        continue
-                    if d < d_min:
-                        result = style.get(self.type_name, "move_on_%s" % g[0])
-                        d_min = d
+                keys = [m.type_name]
+                g = style.get(m.type_name, "ground", warn_if_not_found=False)
+                if g and g[0] and g[0] not in keys:
+                    keys.append(g[0])
+                move_on = None
+                for key in keys:
+                    if style.has(self.type_name, "move_on_%s" % key):
+                        move_on = style.get(self.type_name, "move_on_%s" % key)
+                        break
+                if not move_on:
+                    continue
+                try:
+                    k = float(g[1]) if g else 1.0
+                except (IndexError, TypeError):
+                    k = 1.0
+                try:
+                    o = self.interface.dobjets[m.id]
+                except KeyError:  # probably caused by the world client updates
+                    continue
+                try:
+                    d = distance(o.x, o.y, self.x, self.y) / k
+                except ZeroDivisionError:
+                    continue
+                if d < d_min:
+                    result = move_on
+                    d_min = d
         return result
 
     def footstep(self):

@@ -47,6 +47,12 @@ See ``mod/building-land-terrain.rst``, ``mod/randommap.rst``, ``mod/modding.rst`
 - Negative damage modifiers weaken attacks; positive ``*_cd_on_terrain`` lengthens cooldown.
 - Docs: ``mod/building-land-terrain.rst``; tests: ``test_combat_terrain_modifiers.py``.
 
+**Terrain footsteps and falling sounds**
+
+- ``move_on_<key>`` / ``falling_on_<key>`` now accept **terrain type names** (e.g. ``ocean``) and ``style.txt`` ``ground`` categories (e.g. ``water``, ``grass``); the type name is tried first.
+- Fix: on terrains without ``ground`` (e.g. ``ocean``), ``falling_on_ocean`` previously never matched and only the generic ``falling`` played.
+- Docs: ``mod/modding.rst`` (Combat sound system); tests: ``test_falling_terrain_sound.py``.
+
 1.4.4.9
 --------
 

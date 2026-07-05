@@ -1390,6 +1390,38 @@ Replaces the old attack sounds::
     disappear
     weapon_switched
     death / falling / falling_delay / falling_on_<terrain>
+    move / move_on_<terrain>
+
+**Terrain footsteps and falling sounds (since 1.3.9.1; terrain type names since 1.4.5.0)**
+
+In ``def unit`` (or a specific unit) in ``style.txt``:
+
+- ``move`` — default footstep sounds
+- ``move_on_<key>`` — footsteps that depend on terrain
+- ``falling`` — generic body-fall sound after death
+- ``falling_delay <seconds>`` — wait after ``death`` before ``falling``; omit or ``0`` for immediate play
+- ``falling_on_<key>`` — terrain-specific fall sound
+
+``<key>`` resolution (same for ``move_on_`` and ``falling_on_``):
+
+1. **Terrain type name** — the ``rules.txt`` / ``style.txt`` def on the unit's square (e.g. ``ocean``, ``plain``, ``mountain``). With sub-cell terrain, the type at the unit's coordinates is used.
+2. **``ground`` category** — the ``ground`` value on that terrain's ``style.txt`` def (e.g. ``creek`` with ``ground water`` matches ``move_on_water`` / ``falling_on_water``).
+
+The terrain type name is tried before ``ground``. ``falling_on_ocean`` works on ``ocean`` even when that def has no ``ground`` line; on ``creek``, ``falling_on_creek`` wins over ``falling_on_water`` when both exist.
+
+Example::
+
+    def unit
+    move 1052 1053
+    move_on_ocean 1088 1348
+    move_on_water 1088 1348
+    move_on_grass 1053 1054
+    falling 80051
+    falling_delay 1
+    falling_on_ocean fallwater
+    falling_on_water splash
+
+Only **ground** units use square terrain for ``move_on_``; otherwise ``move`` is used. Nearby immobile objects (buildings, trees, etc.) can also supply ``move_on_<object type>`` or ``move_on_<ground>`` when closer.
 
 Burst units fire ``launch_mdg`` / ``launch_rdg`` once per shot in a ``damage_seq``
 burst. You can list several sound IDs on the same line so each shot picks from them.

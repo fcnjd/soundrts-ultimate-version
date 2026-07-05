@@ -1489,6 +1489,38 @@ Combat sound system (since 1.3.8.2; 1.4.4.6 renamed matk/ratk to mdg/rdg)
     disappear
     weapon_switched
     death / falling / falling_delay / falling_on_<terrain>
+    move / move_on_<terrain>
+
+**脚步声与倒地音效（自 1.3.9.1 起；1.4.5.0 起 ``move_on_`` / ``falling_on_`` 支持地形类型名）**
+
+在 ``def unit``（或具体单位）的 ``style.txt`` 中可写：
+
+- ``move`` — 默认脚步声
+- ``move_on_<键>`` — 按地形变化的脚步声
+- ``falling`` — 死亡后的倒地音效（通用）
+- ``falling_delay <秒>`` — 先播 ``death``，延迟后再播 ``falling``；省略或为 0 则立即播放
+- ``falling_on_<键>`` — 按地形变化的倒地音效
+
+``<键>`` 的匹配顺序（``move_on_`` 与 ``falling_on_`` 相同）：
+
+1. **地形类型名** — 单位所在格的 ``rules.txt`` / ``style.txt`` 定义名（如 ``ocean``、``plain``、``mountain``）。若地图启用子格地形，使用单位坐标处的子格类型。
+2. **ground 类别** — 该地形在 ``style.txt`` 上的 ``ground`` 值（如 ``creek`` 的 ``ground water`` → 匹配 ``move_on_water`` / ``falling_on_water``）。
+
+地形类型名优先于 ``ground``。例如 ``ocean`` 没有 ``ground`` 时仍可用 ``falling_on_ocean``；``creek`` 上若同时写了 ``falling_on_creek`` 与 ``falling_on_water``，优先播放前者。
+
+示例::
+
+    def unit
+    move 1052 1053
+    move_on_ocean 1088 1348
+    move_on_water 1088 1348
+    move_on_grass 1053 1054
+    falling 80051
+    falling_delay 1
+    falling_on_ocean fallwater
+    falling_on_water splash
+
+仅 **地面单位** 使用所在格的地形脚步声；无匹配时回退到 ``move``。若格内静止物体（建筑、树木等）更近，也会尝试 ``move_on_<物体类型名>``，再尝试其 ``ground`` 类别。
 
 配置了 ``damage_seq`` 连发的单位，每一发都会触发 ``launch_mdg`` / ``launch_rdg``。可在同一行
 写多个音效 ID，使各发从中选取。

@@ -46,6 +46,12 @@
 - 负值削弱伤害；``*_cd_on_terrain`` 正值表示冷却更长。
 - 文档：``mod/building-land-terrain.rst``；测试：``test_combat_terrain_modifiers.py``。
 
+**地形脚步声与倒地音效**
+
+- ``move_on_<键>`` / ``falling_on_<键>`` 现支持**地形类型名**（如 ``ocean``）与 ``style.txt`` 的 ``ground`` 类别（如 ``water``、``grass``）；优先匹配地形名。
+- 修复：不带 ``ground`` 的地形（如 ``ocean``）上 ``falling_on_ocean`` 以前无效，只会播放通用 ``falling``。
+- 文档：``mod/modding.rst`` 战斗音效章节；测试：``test_falling_terrain_sound.py``。
+
 1.4.4.9
 --------
 

@@ -40,7 +40,7 @@
    class terrain
    is_high_ground 1
 
-**style.txt：** 同名 ``def``（``lake``、``plain`` 等，配置 ``title``、脚步声、颜色）
+**style.txt：** 同名 ``def``（``lake``、``plain`` 等，配置 ``title``、``ground``、颜色）。单位上的 ``move_on_<键>`` / ``falling_on_<键>`` 可匹配地形类型名或 ``ground`` 类别，详见 ``modding.htm`` 战斗音效章节。
 
 **地图：**
 

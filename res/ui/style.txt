@@ -480,8 +480,6 @@ complete_msg $1 124
 launch_attack
 casting 1010
 death if_me 1310 else 1309 1051
-falling_delay 1
-falling 80051
 alert 1078 ; horn
 production 1327 ; research, train or upgrade_to
 win_fight if_me 1326 else 1325
@@ -519,6 +517,9 @@ move_on_wood 1067 1350
 move_on_mud 1087 1349
 move_on_water 1088 1348
 move_on_snow 1346 1347
+falling_delay 1
+falling 80051
+falling_on_water fallwater
 
 def resource_deposit
 is_a thing
@@ -599,27 +600,32 @@ def river
 title 4346
 noise loop 1065
 color blue4
+ground water
 
 def creek
 title 5697
 noise loop 1065
 ground water
 color blue4
+ground water
 
 def lake
 title 4345
 noise loop 1342
 color blue4
+ground water
 
 def sea
 title 4344
 noise loop 1342
 color blue
+ground water
 
 def ocean
 title 4351
 noise loop 1089
 color blue
+ground water
 
 def mountain
 title 4347
@@ -878,6 +884,7 @@ mdg_hit_lv_1 1302
 rdg_dodge 1040
 move 1303 1304
 shouts 1854
+falling_on_water fallwater2
 keyboard soldier3
 shortcut k
 
