@@ -128,3 +128,27 @@ def test_open_container_visibility_from_neighbors():
     assert container_visible_from_place(wall, a1)
     assert container_visible_from_place(wall, b1)
     assert inside_unit_visible_from_place(archer, b1)
+
+
+def test_attack_inside_chance_not_leaked_from_wall_to_other_buildings():
+    """rules.txt 中仅 wall 定义 attack_inside_chance 时，其他建筑不应继承该值。"""
+    import warnings
+    from pathlib import Path
+
+    from soundrts.definitions import Rules, _get_base_classes
+
+    saved_argv = __import__("sys").argv
+    try:
+        __import__("sys").argv = ["test"]
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            r = Rules()
+            r.load(
+                Path("res/rules.txt").read_text(encoding="utf-8"),
+                base_classes=_get_base_classes(),
+            )
+        assert r.unit_class("wall").attack_inside_chance == 40
+        for name in ("gate", "scouttower", "guardtower", "cannontower"):
+            assert getattr(r.unit_class(name), "attack_inside_chance", 0) == 0
+    finally:
+        __import__("sys").argv = saved_argv

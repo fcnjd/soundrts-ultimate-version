@@ -266,13 +266,13 @@ class CreatureAttributes(Entity):
         else:
             cls.heal_target_type = heal_targets_val.replace(";", "").strip().split()
 
-        # 解析是否允许攻击内部目标
+        # 解析是否允许攻击内部目标（写入 d，避免污染共享基类）
         if "allow_attack_inside" in d:
-            cls.allow_attack_inside = int(d["allow_attack_inside"]) == 1
+            d["allow_attack_inside"] = int(d["allow_attack_inside"]) == 1
 
-        # 解析容器被外部攻击时乘客被命中的几率（0-100）
+        # 解析容器被外部攻击时乘客被命中的几率（0-100，写入 d，避免污染共享基类）
         if "attack_inside_chance" in d:
-            cls.attack_inside_chance = max(0, min(100, int(d["attack_inside_chance"])))
+            d["attack_inside_chance"] = max(0, min(100, int(d["attack_inside_chance"])))
 
         # 注意：can_gather属性已移至Worker.interpret方法中处理，避免影响其他单位类型
 
