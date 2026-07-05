@@ -943,6 +943,7 @@
 4975 Alliance formed
 4976 water is impassable
 4977 land is impassable
+4978 unfinished, impassable
 4980 Current Phase
 4981 Dark Age
 4982 Feudal Age
