@@ -269,6 +269,79 @@ def _bridge_layer_voice(square):
     return getattr(square, "_bridge_terrain_voice", None)
 
 
+def _bridge_voice_from_objects(objects):
+    from ..world_build_rules import (
+        _bridge_terrain_providers,
+        bridge_terrain_type,
+        is_scaffold_water_build_target,
+    )
+
+    providers = list(_bridge_terrain_providers(objects or ()))
+    if providers:
+        return providers[0]
+    for obj in objects or ():
+        if is_scaffold_water_build_target(obj):
+            name = bridge_terrain_type(getattr(obj, "type", obj))
+            if name:
+                return name
+    return None
+
+
+def _building_site_land_voices(objects):
+    """Voices from building_land remembered on active BuildingSite construction."""
+    voices = []
+    for obj in objects or ():
+        if getattr(obj, "type_name", None) != "buildingsite":
+            continue
+        land = getattr(obj, "building_land", None)
+        if land is None:
+            continue
+        tn = getattr(land, "type_name", None)
+        if not tn:
+            continue
+        for entry in square_terrain_entries_for_type(tn):
+            name = entry.get("name")
+            if name and name not in voices:
+                voices.append(name)
+    return voices
+
+
+def overlay_voices_for_square(square, x=None, y=None):
+    """Ordered overlay terrain voices for footstep/falling (excludes base map terrain).
+
+    Priority: scaffold → bridge → square_terrain feature → building_land →
+    construction-site remembered building_land.
+    """
+    objects = getattr(square, "objects", None)
+    if objects is None:
+        objects = ()
+    voices = []
+
+    def _add(voice):
+        if voice and voice not in voices:
+            voices.append(voice)
+
+    _add(getattr(square, "_scaffold_terrain_voice", None))
+    bridge_voice = _bridge_layer_voice(square)
+    if bridge_voice:
+        _add(bridge_voice)
+    else:
+        _add(_bridge_voice_from_objects(objects))
+
+    if not getattr(square, "fixed_terrain", False):
+        winner = winning_terrain_entry(objects)
+        if winner:
+            _add(winner.get("name"))
+        bl_entry = winning_building_land_terrain_entry(objects)
+        if bl_entry:
+            _add(bl_entry.get("name"))
+
+    for name in _building_site_land_voices(objects):
+        _add(name)
+
+    return voices
+
+
 def resolve_square_layers(square, x=None, y=None):
     """Return voice layers and gameplay type_name for a square.
 
@@ -282,6 +355,7 @@ def resolve_square_layers(square, x=None, y=None):
             name = square.type_name
         bridge_voice = getattr(square, "_bridge_terrain_voice", None)
         feature = bridge_voice or name or None
+        overlay_voices = overlay_voices_for_square(square, x, y)
         return {
             "static_voices": [],
             "dynamic_voice": None,
@@ -289,6 +363,7 @@ def resolve_square_layers(square, x=None, y=None):
             "high_ground_voice": _high_ground_voice(square, x, y),
             "type_name": bridge_voice or name or "",
             "building_land_voice": None,
+            "overlay_voices": overlay_voices,
         }
     winner = winning_terrain_entry(square.objects)
     feature = winner["name"] if winner else None
@@ -299,6 +374,7 @@ def resolve_square_layers(square, x=None, y=None):
     blt = bl_entry["name"] if bl_entry else None
     type_name = feature or ""
     building_land_voice = blt if blt and blt != feature else None
+    overlay_voices = overlay_voices_for_square(square, x, y)
     return {
         "static_voices": [],
         "dynamic_voice": None,
@@ -306,6 +382,7 @@ def resolve_square_layers(square, x=None, y=None):
         "high_ground_voice": _high_ground_voice(square, x, y),
         "type_name": type_name,
         "building_land_voice": building_land_voice,
+        "overlay_voices": overlay_voices,
     }
 
 

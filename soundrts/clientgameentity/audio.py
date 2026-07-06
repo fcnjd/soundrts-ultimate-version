@@ -22,16 +22,70 @@ class EntityViewAudio:
     _buff_noises = None
     previous_hp = None
 
+    def _iter_building_land_sources(self, place):
+        for obj in getattr(place, "objects", ()) or ():
+            if getattr(obj, "type_name", None) == "buildingsite":
+                land = getattr(obj, "building_land", None)
+                if land is not None:
+                    yield land
+            if getattr(obj, "is_a_building_land", False) and not getattr(
+                obj, "is_an_exit", False
+            ):
+                yield obj
+
+    def _building_land_ground_keys(self, place, voice_name):
+        from ..lib.square_terrain_rules import square_terrain_entries_for_type
+
+        keys = []
+        for obj in self._iter_building_land_sources(place):
+            tn = getattr(obj, "type_name", None)
+            if not tn:
+                continue
+            for ent in square_terrain_entries_for_type(tn):
+                if ent.get("name") != voice_name:
+                    continue
+                ground = style.get(tn, "ground", warn_if_not_found=False)
+                if ground and ground[0] and ground[0] not in keys:
+                    keys.append(ground[0])
+        return keys
+
+    def _terrain_voice_to_sound_keys(self, voice_name, place=None):
+        keys = []
+        if not voice_name:
+            return keys
+        keys.append(voice_name)
+        ground = style.get(voice_name, "ground", warn_if_not_found=False)
+        if ground and ground[0] and ground[0] not in keys:
+            keys.append(ground[0])
+        elif place is not None:
+            for gk in self._building_land_ground_keys(place, voice_name):
+                if gk not in keys:
+                    keys.append(gk)
+        return keys
+
+    def _overlay_terrain_voices(self, place):
+        """覆盖层地形（桥面、脚手架、草皮/建筑用地、森林等）优先于底图。"""
+        if place is None:
+            return []
+        from ..lib.square_terrain_rules import resolve_square_layers
+
+        try:
+            layers = resolve_square_layers(place, self.x, self.y)
+        except AttributeError:
+            return []
+        return list(layers.get("overlay_voices") or ())
+
     def _place_terrain_voice(self):
         place = self.place
         if place is None:
             return None
-        scaffold_voice = getattr(place, "_scaffold_terrain_voice", None)
-        if scaffold_voice:
-            return scaffold_voice
-        bridge_voice = getattr(place, "_bridge_terrain_voice", None)
-        if bridge_voice:
-            return bridge_voice
+        overlays = self._overlay_terrain_voices(place)
+        if overlays:
+            return overlays[0]
+        if hasattr(place, "type_name_at"):
+            name = place.type_name_at(self.x, self.y)
+            if name:
+                return name
         return getattr(place, "type_name", None)
 
     def _terrain_sound_keys(self):
@@ -39,20 +93,19 @@ class EntityViewAudio:
         place = self._client_audio_place()
         if place is None:
             return []
+        keys = []
+        for voice in self._overlay_terrain_voices(place):
+            for key in self._terrain_voice_to_sound_keys(voice, place):
+                if key not in keys:
+                    keys.append(key)
+        if keys:
+            return keys
         terrain_name = None
         if hasattr(place, "type_name_at"):
             terrain_name = place.type_name_at(self.x, self.y)
         if not terrain_name:
-            terrain_name = self._place_terrain_voice()
-        if not terrain_name:
             terrain_name = getattr(place, "type_name", None)
-        keys = []
-        if terrain_name:
-            keys.append(terrain_name)
-            ground = style.get(terrain_name, "ground", warn_if_not_found=False)
-            if ground and ground[0] and ground[0] not in keys:
-                keys.append(ground[0])
-        return keys
+        return self._terrain_voice_to_sound_keys(terrain_name, place)
 
     def _get_terrain_style(self, prefix):
         for key in self._terrain_sound_keys():
