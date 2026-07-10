@@ -1,0 +1,1447 @@
+; coding: utf-8
+
+0	không có gì!
+1	Bạn đang ở
+3	Phía trước bạn
+4	Phía sau bạn
+5	Bạn muốn làm gì?
+23	và
+38	Bạn có
+39	/
+40	cấp
+54	tại
+55	mét
+59	người chơi
+60	bạn
+61	đã giết
+65	phút
+66	giây
+67	bắc
+68	nam
+69	đông
+70	tây
+71	đông bắc
+72	tây bắc
+73	đông nam
+74	tây nam
+79	trong một bãi cỏ được cây bao quanh
+80	rừng
+81	mỏ vàng
+82	tòa thị chính
+83	nông trại
+84	một lối đi
+85	nông dân
+86	bộ binh
+87	cung thủ
+88	kẻ địch
+89	đồng minh
+99	doanh trại
+100	đi
+101	xây
+102	khai thác
+103	tuần tra
+104	chế độ
+105	được!
+106	dừng
+107	tại
+108	đến
+110	tấn công
+111	phòng thủ
+112	giữ vị trí
+113	ẩn nấp
+114	tấn công
+115	đến
+116	về phía đông
+117	về phía tây
+118	sửa chữa
+119	trên
+120	chiến đấu
+121	chống lại
+122	một bãi cỏ
+123	tuyển mộ
+124	sẵn sàng!
+125	tập kết
+126	hoàn thành
+127	hủy
+128	công trình
+129	yêu cầu
+130	đơn vị
+131	vàng
+132	gỗ
+133	dân số
+134	chứa
+135	không đủ
+136	như trên!
+137	lương thực
+138	Bạn đang điều khiển
+139	một nhóm
+142	sản xuất tạm dừng
+143	hàng đợi đã đầy
+144	đã cạn
+145	đã bị tiêu diệt
+146	đã mất
+147	sản lượng
+148	xưởng cưa
+149	Chiến thắng!
+150	Thất bại
+151	1
+152	báo động
+153	một cây cầu
+154	mở
+155	bạn đã đạt cấp
+156	ở trung tâm
+2008	nhấn F5 để nghe lại
+2010	nhấn
+2011	để
+2012	Tab
+2013	chọn
+2014	Enter
+2015	xác nhận
+2016	A và Q
+2017	ra lệnh
+2018	Z và S
+2019	điều khiển đơn vị khác
+2020	X hoặc W
+2021	xem tài nguyên
+2022	1, 2 hoặc 3
+2023	điều khiển một nhóm
+2024	0
+2025	điều khiển một đơn vị
+2026	Backspace
+2027	ra lệnh thông thường cho mục tiêu đã chọn
+2028	F5 và F6
+2029	lịch sử
+2030	Alt
+2031	ngắt lời thoại
+2032	Escape
+2033	hủy
+2034	Shift
+2035	mục tiêu trước
+2036	mở menu
+2037	phím mũi tên
+2038	di chuyển trên bản đồ
+2039	Control
+2040	bỏ qua chướng ngại
+2041	Page Down
+2042	đi tới ô thú vị tiếp theo
+2043	phím cách
+2044	đi tới ô của đơn vị đang điều khiển và theo dõi đơn vị đó
+2045	điều khiển đơn vị địa phương tiếp theo
+2046	chọn mục tiêu tiếp theo
+2047	chọn lệnh tiếp theo
+2048	điều khiển mọi đơn vị cùng loại và cùng ô với đơn vị hiện tại
+2049	xác nhận lệnh hiện tại
+2050	ra lệnh phổ biến nhất cho mục tiêu hiện tại
+2051	nghe bạn còn bao nhiêu vàng, gỗ và lương thực
+2052	nghe máu của đơn vị hiện tại
+2053	điều khiển một nửa đơn vị cùng loại trong cùng ô với đơn vị hiện tại
+2054	chỉ điều khiển 1 đơn vị
+2055	q
+2056	điều khiển mọi binh sĩ trong ô hiện tại
+2057	điều khiển mọi nông dân trong ô hiện tại
+2058	điều khiển công trình tiếp theo
+2059	điều khiển nông dân tiếp theo
+3000	0
+3001	1
+3002	2
+3003	3
+3004	4
+3005	5
+3006	6
+3007	7
+3008	8
+3009	9
+3010	10
+3011	11
+3012	12
+3013	13
+3014	14
+3015	15
+3016	16
+3017	17
+3018	18
+3019	19
+3020	20
+3021	21
+3022	22
+3023	23
+3024	24
+3025	25
+3026	26
+3027	27
+3028	28
+3029	29
+3030	30
+3031	31
+3040	40
+3041	41
+3050	50
+3051	51
+3060	60
+3061	61
+3070	70
+3071	71
+3080	80
+3090	90
+3100	trăm
+3101	nghìn
+3102	triệu
+4000	trò chơi
+4001	Internet
+4002	cục bộ
+4004	đang xử lý
+4005	thất bại
+4006	thành công!
+4007	vui lòng chọn
+4008	vui lòng gửi góp ý tới jlpo@free.fr
+4009	Thoát
+4010	Menu
+4011	tiếp tục
+4012	lỗi phiên bản
+4014	trò chơi chiến thuật
+4015	chương
+4016	chơi đơn
+4017	bản đồ
+4018	chơi mạng
+4019	tham gia
+4020	mục tiêu: 
+4021	chống lại đợt tấn công của kẻ địch
+4022	đã sản xuất
+4023	đã sản xuất
+4024	đã tiêu thụ
+4025	công trình
+4026	điểm số
+4028	nhấn F1 để xem trợ giúp
+4029	menu chính
+4030	vui lòng chọn
+4031	chơi đơn,
+4032	chơi trên máy tính của bạn
+4033	chơi mạng,
+4034	chơi trên Internet
+4035	máy chủ,
+4036	khởi chạy máy chủ trên máy bạn để tổ chức chơi mạng
+4037	tùy chọn,
+4038	thay đổi các thông số
+4041	thoát,
+4042	thoát chương trình này
+4043	loại máy chủ nào?
+4044	máy chủ đơn giản
+4045	chỉ bạn mới có thể tạo ván chơi
+4046	máy chủ công cộng
+4047	khách có thể tạo ván chơi
+4048	hủy
+4049	Máy chủ của bạn có lẽ không đăng ký được với metaserver. Vui lòng kiểm tra kết nối Internet.
+4051	tạm biệt
+4052	nhấn Tab để chọn. nhấn Enter để xác nhận.
+4053	chấp nhận lời mời từ
+4054	tham gia lại ván chơi
+4055	bắt đầu ván chơi trên
+4056	chào mừng
+4057	lỗi: có quá nhiều ván chơi
+4058	mời
+4059	bắt đầu
+4060	hủy ván chơi này
+4061	rời ván chơi này
+4062	ván chơi sẽ bắt đầu sau 5 giây
+4063	ván chơi sẽ bắt đầu khi người tổ chức sẵn sàng
+4064	nhấn Enter để xác nhận
+4066	nhấn Tab nhiều lần để duyệt từng đối tượng nhìn thấy
+4067	nhấn Tab để chọn mục tiêu rồi nhấn Enter để xác nhận
+4070	hủy ván chơi
+4071	tiếp tục ván chơi
+4072	Không thể liên hệ metaserver. Vui lòng kiểm tra kết nối Internet.
+4073	máy chủ do
+4074	cho
+4075	hủy
+4076	quay lại menu trước
+4077	Hiện không có máy chủ nào đăng ký trên metaserver. Vui lòng thử lại sau.
+4078	máy chủ trên
+4079	dùng phiên bản tương thích. Vui lòng chọn một máy chủ.
+4080	lỗi: máy chủ không thể khởi động
+4081	lỗi: không thể kết nối máy chủ. Máy chủ đã đóng, hoặc bị tường lửa, hoặc nằm sau bộ định tuyến.
+4082	lỗi: nhận dữ liệu bất thường từ máy chủ. Đây không phải máy chủ SoundRTS
+4083	lỗi: kết nối bị máy chủ từ chối. Đây không phải máy chủ SoundRTS
+4084	hoặc tên đăng nhập của bạn bị từ chối
+4085	lỗi khi kết nối tới máy chủ
+4086	menu tùy chọn
+4087	Đổi tên đăng nhập
+4096	lưu,
+4097	lưu thay đổi rồi quay về menu chính
+4098	hủy,
+4099	quay về menu chính mà không lưu thay đổi
+4101	một cửa sổ mới sẽ mở
+4102	kết nối đã bị ngắt
+4103	đặt tốc độ trò chơi chậm
+4104	đặt tốc độ trò chơi bình thường
+4105	đặt tốc độ trò chơi nhanh
+4112	lưu ván chơi
+4113	khôi phục ván đã lưu
+4114	chơi với máy trên bản đồ
+4115	máy đấu máy
+4118	quay lại menu trước
+4119	chọn máy chủ trong danh sách
+4120	nhập địa chỉ I P của máy chủ
+4121	máy chủ riêng
+4122	Máy chủ sẽ không được thêm vào danh sách.
+4200	sản lượng gỗ đã được cải thiện
+4201	máy bắn đá
+4202	đang chờ lệnh của bạn
+4203	của
+4204	không thể xây ở đó
+4205	bạn không đang điều khiển đơn vị nào
+4206	hiển thị đã bật
+4207	hiển thị đã tắt
+4208	không rõ
+4209	trong sương mù chiến tranh
+4210	F10 để mở menu
+4211	chế độ ngôi thứ nhất
+4212	chế độ bản đồ
+4213	lò rèn
+4214	nâng cấp
+4215	kiếm
+4216	mũi tên
+4217	giáp bộ binh
+4218	giáp cung thủ
+4219	đến
+4220	pháo đài
+4221	lâu đài
+4222	chuồng ngựa
+4223	menu của
+4224	vừa thay đổi.
+4225	hiệp sĩ
+4226	xưởng
+4227	hang rồng
+4228	tháp pháp sư
+4229	pháp sư
+4230	máy bay
+4231	rồng
+4232	lỗi máy chủ
+4233	tầm bắn cung
+4234	đã có phiên bản mới hơn của chương trình trên Internet
+4235	nhập tên đăng nhập mới
+4236	chỉ dùng chữ và số
+4237	tên đăng nhập không hợp lệ
+4238	đã giữ tên đăng nhập hiện tại
+4239	tên đăng nhập mới
+4240	vừa đăng nhập
+4241	vừa tham gia
+4242	người chơi trên
+4243	mời bạn
+4244	Không đủ người chơi để bắt đầu. Tối thiểu là
+4245	tên đăng nhập hiện tại
+4246	đã đạt giới hạn dân số
+4247	điểm mana trên
+4248	nghiên cứu
+4249	siêu chữa trị
+4250	dịch chuyển
+4251	đến
+4252	không đủ mana
+4253	phần trăm âm lượng
+4254	tốc độ ngựa
+4255	đặt điểm tập kết cho đơn vị mới
+4256	đã thu thập
+4257	máy hung hăng
+4258	máy phòng thủ
+4259	vừa đăng xuất
+4260	trên máy chủ của
+4261	vừa thoát ván chơi
+4262	gói âm thanh tùy chọn
+4263	đã bật
+4264	đã tắt
+4265	chế độ gian lận
+4266	chơi lại
+4267	chiến dịch
+4268	mục tiêu mới
+4269	mục tiêu hoàn thành
+4270	nhiệm vụ hoàn thành
+4271	chương
+4272	mở đầu
+4273	kết thúc
+4274	cải đạo
+4275	tháp trinh sát
+4276	tháp canh
+4277	tháp pháo
+4278	chất lên
+4279	chất tất cả từ
+4280	dỡ xuống
+4281	dỡ tất cả tới
+4282	vào trong
+4283	cung thủ bóng tối
+5000	a
+5001	b
+5002	c
+5003	d
+5004	e
+5005	f
+5006	g
+5007	h
+5008	i
+5009	j
+5010	k
+5011	l
+5012	m
+5013	n
+5014	o
+5015	p
+5016	q
+5017	r
+5018	s
+5019	t
+5020	u
+5021	v
+5022	w
+5023	x
+5024	y
+5025	z
+5026	chấm
+4284	di chuyển
+4285	tới liên minh
+4286	đồng minh
+4287	nói
+4288	nhập tin nhắn của bạn
+4289	tàng hình
+4290	máy dò
+4291	ngụy trang
+4292	triệu hồi
+4293	hồi sinh xác chết
+4294	phục sinh
+4295	zombie
+4296	bộ xương
+4297	tu sĩ
+4298	đền thờ
+4299	thị giác thánh
+4300	trừ tà
+4301	nhân loại
+4302	orc
+4303	phù thủy chết
+4304	nghĩa địa
+4305	sương chết
+4306	thiên thạch
+4307	triệu hồi về
+4308	đá
+4309	mỏ đá
+4311	đã bị đánh bại
+4312	Bạn đã bị đánh bại.
+4313	Bạn đang ở chế độ quan sát.
+4314	cao nguyên
+4315	xem lại ván đã ghi
+4316	Nhấn Control Shift F4 để quan sát người chơi khác.
+4317	Nhập một lệnh.
+4318	phóng to
+4319	thay đổi thứ tự tải mod
+4320	thêm một mod vào danh sách
+4321	danh sách trống
+4322	Đang tải
+4323	gói
+4324	menu gói
+4325	cài đặt một gói
+4326	gỡ một gói
+4327	cập nhật một gói
+4328	Đang tải xuống...
+4329	Đang giải nén...
+4330	Không tìm thấy mod:
+4331	tường
+4332	cổng
+4333	chặn
+4334	phe ngẫu nhiên
+4335	Đã đạt giới hạn số lượng
+4336	mở thư mục người dùng
+4337	tài liệu
+4338	tường lớn
+4339	cổng lớn
+4340	Bắt đầu ván công cộng trên
+4341	Mod
+4342	Gói âm thanh
+4343	tốc độ
+4344	biển
+4345	hồ
+4346	sông
+4347	núi
+4348	cầu
+4349	chỗ cạn
+4350	đầm lầy
+4351	đại dương
+4352	đèo núi
+4353	bật tự sửa chữa
+4354	tắt tự sửa chữa
+4355	bật tự thu thập
+4356	tắt tự thu thập
+4357	xưởng đóng tàu
+4358	thuyền
+4359	tàu khu trục
+4360	thiết giáp hạm
+4361	tàu ngầm
+4362	bãi cỏ
+4363	rừng
+4364	rừng rậm
+4365	phản công
+4366	đã bật chế độ phản công
+4367	đã tắt chế độ phản công
+4368	canh gác
+4369	đuổi theo
+4370	chiếm
+4372	nhà vàng
+4373	đang sản xuất
+4375	dừng sản xuất
+4376	cài đặt âm thanh
+4377	cài đặt cân bằng âm thanh
+4378	bật cân bằng âm thanh
+4379	tắt cân bằng âm thanh
+4380	bật hoặc tắt cân bằng âm thanh
+4381	phương pháp cân bằng âm thanh
+4382	đổi phương pháp cân bằng âm thanh
+4383	cân bằng âm thanh đã bật
+4384	cân bằng âm thanh đã tắt
+4385	căn bậc hai
+4386	tuyến tính
+4387	logarit
+4388	không
+4389	thuộc tính
+4390	nhấn chữ cái tương ứng để xem thông tin
+4391	nhấn Escape để thoát
+4392	thoát màn hình thuộc tính
+4393	đã chọn nhiều đơn vị: 
+4394	không có thuộc tính nào
+4395	: 
+4396	sát thương cận chiến
+4397	sát thương tầm xa
+4398	phòng thủ cận chiến
+4399	phòng thủ tầm xa
+4400	hồi chiêu cận chiến
+4401	hồi chiêu tầm xa
+4402	tầm cận chiến
+4403	tầm xa
+4404	chống 
+4405	cộng sát thương cận chiến
+4406	cộng sát thương tầm xa
+4407	máu
+4408	chỉ số
+4409	công nghệ đã nghiên cứu
+4410	thời gian chuẩn bị cận chiến
+4411	thời gian chuẩn bị tầm xa
+4412	tầm tối thiểu cận chiến
+4413	tầm tối thiểu tầm xa
+4414	tỉ lệ trúng cận chiến
+4415	tỉ lệ trúng tầm xa
+4416	tỉ lệ né cận chiến
+4417	tỉ lệ né tầm xa
+4418	sát thương lan cận chiến
+4419	sát thương lan tầm xa
+4420	bán kính lan cận chiến
+4421	bán kính lan tầm xa
+4422	suy giảm lan tối thiểu cận chiến
+4423	suy giảm lan tối thiểu tầm xa
+4424	cộng phòng thủ cận chiến
+4425	cộng phòng thủ tầm xa
+4426	cộng tầm cận chiến
+4427	cộng tầm xa
+4428	cộng tầm tối thiểu cận chiến
+4429	cộng tầm tối thiểu tầm xa
+4430	cộng thời gian chuẩn bị cận chiến
+4431	cộng thời gian chuẩn bị tầm xa
+4432	cộng hồi chiêu cận chiến
+4433	cộng hồi chiêu tầm xa
+4434	cộng tỉ lệ trúng cận chiến
+4435	cộng tỉ lệ trúng tầm xa
+4436	cộng tỉ lệ né cận chiến
+4437	cộng tỉ lệ né tầm xa
+4438	cộng trúng cận chiến theo địa hình
+4439	cộng trúng tầm xa theo địa hình
+4440	cộng né cận chiến theo địa hình
+4441	cộng né tầm xa theo địa hình
+4442	cộng tốc độ
+4443	cộng tốc độ trên các địa hình
+4444	mana
+4445	giảm giá
+4446	tự thám hiểm
+4452	sửa sát thương cận chiến theo địa hình
+4453	sửa sát thương tầm xa theo địa hình
+4454	sửa hồi chiêu cận chiến theo địa hình
+4455	sửa hồi chiêu tầm xa theo địa hình
+4456	sửa sát thương xung kích cận chiến theo địa hình
+4457	sửa sát thương xung kích tầm xa theo địa hình
+4458	sửa hồi chiêu xung kích cận chiến theo địa hình
+4459	sửa hồi chiêu xung kích tầm xa theo địa hình
+4500	phe ta
+4501	phe địch
+4502	tất cả
+4503	công trình
+4504	đơn vị
+4505	yếu tố
+4506	mọi loại
+4507	viện binh
+4508	đổi thành
+4509	còn đang hồi chiêu
+4510	nhặt
+4600	cấp
+4601	điểm kinh nghiệm
+4602	/
+4603	cấp tối đa
+4604	thời gian hồi sinh
+4605	lên cấp
+4606	đã hồi sinh
+4610	hệ số chí mạng cận chiến
+4611	hệ số chí mạng tầm xa
+4612	tỉ lệ chí mạng cận chiến
+4613	tỉ lệ chí mạng tầm xa
+4614	cộng hệ số chí mạng cận chiến
+4615	cộng hệ số chí mạng tầm xa
+4616	cộng tỉ lệ chí mạng cận chiến
+4617	cộng tỉ lệ chí mạng tầm xa
+4618	kháng chí mạng cận chiến
+4619	kháng chí mạng tầm xa
+4620	cộng kháng chí mạng cận chiến
+4621	cộng kháng chí mạng tầm xa
+4622	xuyên giáp cận chiến
+4623	xuyên giáp tầm xa
+4624	tỉ lệ xuyên giáp cận chiến
+4625	tỉ lệ xuyên giáp tầm xa
+4626	cộng xuyên giáp cận chiến
+4627	cộng xuyên giáp tầm xa
+4628	cộng tỉ lệ xuyên giáp cận chiến
+4629	cộng tỉ lệ xuyên giáp tầm xa
+4630	kháng xuyên giáp cận chiến
+4631	kháng xuyên giáp tầm xa
+4632	cộng kháng xuyên giáp cận chiến
+4633	cộng kháng xuyên giáp tầm xa
+4634	nhạc
+4635	bật nhạc
+4636	tắt nhạc
+4637	phần trăm âm lượng
+4650	bắt đầu sản xuất tự động
+4651	bắt đầu sản xuất thủ công
+4655	bắt đầu canh tác tự động
+4656	bắt đầu canh tác thủ công
+4657	canh tác
+4658	đang canh tác
+4659	dừng canh tác
+4660	nhà
+4661	vườn cây
+4700	Xem ván chơi
+4701	Ván đang diễn ra
+4702	Không có ván nào để xem
+4703	Chọn ván để xem
+4704	Đang xem ván chơi
+4705	Dừng xem
+4706	Bạn đang xem
+4707	Người xem đã tham gia
+4708	Người xem đã rời
+4709	Ván đang tiếp tục
+4710	chậm
+4711	không thấy kẻ địch trong tầm nhìn
+4712	đang tấn công
+4713	trung tâm
+4714	tỉ lệ phóng to phải từ 2 đến 20
+4715	nhập tỉ lệ phóng to, ví dụ 3x3 hoặc 4x4
+4716	có thể huấn luyện
+#	hằng số thông báo thuộc tính mới
+4717	sát thương xung kích cận chiến
+4718	cộng sát thương xung kích cận chiến
+4719	sát thương xung kích tầm xa
+4720	cộng sát thương xung kích tầm xa
+4721	hồi chiêu xung kích cận chiến
+4722	hồi chiêu xung kích tầm xa
+4723	khoảng cách xung kích cận chiến
+4724	khoảng cách xung kích tầm xa
+4725	lan xung kích cận chiến
+4726	cộng lan xung kích cận chiến
+4727	lan xung kích tầm xa
+4728	cộng lan xung kích tầm xa
+4729	suy giảm lan xung kích cận chiến tối thiểu
+4730	cộng suy giảm lan xung kích cận chiến
+4731	suy giảm lan xung kích tầm xa tối thiểu
+4732	cộng suy giảm lan xung kích tầm xa
+4733	bán kính lan xung kích cận chiến
+4734	cộng bán kính lan xung kích cận chiến
+4735	bán kính lan xung kích tầm xa
+4736	cộng bán kính lan xung kích tầm xa
+4737	sát thương phản xung kích cận chiến
+4738	sát thương phản xung kích tầm xa
+4739	cộng phản xung kích cận chiến
+4740	cộng phản xung kích tầm xa
+4741	hồi chiêu phản xung kích cận chiến
+4742	hồi chiêu phản xung kích tầm xa
+4743	khoảng cách phản xung kích cận chiến
+4744	khoảng cách phản xung kích tầm xa
+4750	công nghệ có thể dùng
+4751	kỹ năng có thể dùng
+4752	công nghệ có thể nghiên cứu
+4753	có thể nâng cấp thành
+4754	chi phí mana
+4755	hiệu ứng
+4756	phạm vi hiệu ứng
+4757	bán kính hiệu ứng
+4758	áp dụng cộng thêm
+4759	cộng thêm
+4760	mức sát thương
+4761	loại mục tiêu bị hiệu ứng sát thương
+4762	thiên thạch
+4763	vô hạn
+4764	áp dụng
+4765	, kéo dài
+4768	chi phí
+4769	thời gian
+4770	dân số
+4771	yêu cầu
+4772	triệu hồi
+4773	chữa trị
+4774	sát thương
+4775	hồi sinh tối đa
+4776	đơn vị
+4777	hồi sinh xác chết
+4778	, loại:
+4779	cải đạo đơn vị địch
+4780	thời gian hồi chiêu
+4781	điểm máu
+4782	máu tối đa
+4783	sát thương cận chiến
+4784	sát thương tầm xa
+4785	phòng thủ cận chiến
+4786	phòng thủ tầm xa
+4787	tốc độ di chuyển
+4788	tầm nhìn
+4789	tầm cận chiến
+4790	tầm xa
+4791	hồi chiêu cận chiến
+4792	hồi chiêu tầm xa
+4793	mana
+4794	mana tối đa
+4795	thời gian thu thập
+4796	số lượng thu thập
+4797	thời gian sản xuất
+4798	số lượng sản xuất
+4799	chi phí
+4800	chi phí thời gian
+4801	chi phí dân số
+4802	 thuộc tính của:
+4803	không có thuộc tính này
+4804	không có cộng thêm
+4805	phút
+4806	dân số cung cấp
+4807	mức chữa trị
+4808	giây
+4809	có thể xây
+4810	loại đơn vị
+4811	lớp
+4812	công trình
+4813	công nhân
+4814	binh sĩ
+4815	hiệu ứng
+4816	công nghệ
+4817	Tàu có thể sửa và đã cập bến
+4818	có
+4819	không
+4820	tự nổ cận chiến
+4821	tự nổ tầm xa
+4822	phần trăm máu mất khi tự hủy
+4823	hệ số sát thương nổ
+4824	tầm nhìn
+4825	loại mục tiêu cận chiến
+4826	loại mục tiêu tầm xa
+4827	loại tài nguyên có thể thu thập
+4828	thời gian thu thập
+4829	số lượng thu thập
+4830	có khả năng sửa chữa
+4831	mục tiêu mặt đất
+4832	mục tiêu trên không
+4833	mục tiêu công trình
+4834	mục tiêu đơn vị
+4835	tất cả
+4836	loại tài nguyên
+4837	thời gian khai thác
+4838	lượng khai thác
+4839	thời gian tái tạo tài nguyên
+4840	dung lượng tài nguyên tối đa
+4841	dung lượng tài nguyên ban đầu
+4842	loại mỏ
+4843	tên tài nguyên
+4844	loại phụ
+4845	có thể sửa chữa
+4846	có thể chữa trị
+4847	sức chứa vận chuyển
+4848	thể tích vận chuyển
+4849	đơn vị trong container có thể tấn công
+4850	cộng khi chất lên
+4927	cộng cho hành khách
+4928	tỉ lệ đòn đánh từ ngoài trúng đơn vị trong container
+4851	xác chết
+4852	mặt đất
+4853	trên không
+4854	nước
+4855	sản xuất
+4856	không sản xuất
+4857	có phải đơn vị undead
+4858	tài nguyên
+4859	vũ khí hiện tại
+4860	vũ khí khả dụng
+4861	có thể đổi
+4862	đổi vũ khí
+4863	kiếm
+4864	cung
+4865	tên vũ khí
+4866	giáp
+4867	giáp hiện tại
+4868	tên giáp
+4871	giáp
+4872	cận chiến
+4873	vũ khí
+4875	túi đồ
+4876	tên vật phẩm
+4877	thể tích va chạm
+4878	tiêu hao khi nhặt
+4879	có phải chiến lợi phẩm
+4880	phần thưởng tài nguyên
+4881	kỹ năng
+4882	hiệu ứng buff
+4883	vật phẩm
+4885	anh hùng
+4886	kiếm ngắn
+4887	loại tài nguyên có thể sản xuất
+4888	giới thiệu
+4889	Đơn vị công nhân cơ bản, có thể thu thập tài nguyên, xây công trình và sửa tàu. Là nền tảng của mọi nền văn minh.
+4890	Bộ binh cận chiến cơ bản, trang bị kiếm và giáp. Huấn luyện rẻ và là lực lượng chính của quân đội.
+4891	bán kính chữa trị
+4892	bán kính sát thương
+4893	tầm chữa trị
+4894	tầm sát thương
+4895	hồi chiêu chữa trị
+4896	hồi chiêu sát thương
+4897	thời gian chuẩn bị chữa trị
+4898	thời gian chuẩn bị sát thương
+4899	hồi chiêu hồi máu
+4900	thời gian chuẩn bị hồi máu
+4901	hồi chiêu hồi mana
+4902	thời gian chuẩn bị hồi mana
+4903	loại mục tiêu có thể chữa
+4904	mỗi cấp
+4905	tăng trưởng
+4906	hồi máu
+4907	số lượng hiện tại
+4908	số lượng tối đa
+4909	danh mục
+4910	sức chứa túi đồ
+4911	hồi mana
+4912	sát thương cận chiến tối thiểu
+4913	sát thương tầm xa tối thiểu
+4914	bán kính buff
+4915	sát thương tối thiểu
+4916	độ trễ đạn đạo cận chiến
+4917	độ trễ đạn đạo tầm xa
+4918	thời gian trạng thái cận chiến
+4919	thời gian trạng thái tầm xa
+4924	sát thương cưỡng bức
+4925	khoảng cách xung kích cận chiến tối thiểu
+4926	khoảng cách xung kích tầm xa tối thiểu
+4920	Hiệp ước
+4921	Hiệp ước đang có hiệu lực, không được tấn công
+4922	Hiệp ước đã hết, bạn có thể chiến đấu
+4923	không có hiệp ước
+4930	hươu
+4931	cừu
+4932	xác thú
+4933	lợn rừng
+4934	dắt đàn
+4935	đã theo
+4936	kỹ thuật săn bắt
+4950	Chiến dịch hợp tác
+4951	Chiến dịch hợp tác cục bộ
+4952	Chọn chiến dịch hợp tác
+4953	Chọn chương hợp tác
+4954	Đã thiết lập đồng minh cho hợp tác
+4955	Hợp tác với đồng đội để chơi chiến dịch
+4960	ngoại giao
+4961	không có ứng viên
+4962	đồng minh với
+4963	đã hủy đồng minh với
+4964	hai chiều
+4965	một chiều
+4966	xin đồng minh với
+4967	hủy yêu cầu đồng minh với
+4968	yêu cầu đồng minh từ
+4969	đã lập đồng minh với
+4970	đã từ chối đồng minh với
+4971	liên minh đã bị khóa trong ván này
+4972	Đã gửi yêu cầu đồng minh
+4973	Đối phương từ chối đồng minh
+4974	Đối phương rút yêu cầu đồng minh
+4975	Đã lập đồng minh
+4976	đường thủy không thể đi qua
+4977	đất liền không thể đi qua
+4978	chưa xong, không thể đi qua
+4980	Giai đoạn hiện tại
+4981	Thời kỳ Đen tối
+4982	Thời kỳ Phong kiến
+4983	Thời kỳ Lâu đài
+4984	Thời kỳ Đế chế
+4985	có thể tiến tới
+4986	tiếp tục ván chưa xong
+4987	tiếp tục từ chỗ dừng lần trước
+4988	chọn ô lưu để tải
+4989	không tìm thấy bản lưu nào
+4990	ô lưu
+4991	trống
+4992	đã lưu
+4993	đã giữ tiến độ, lần sau có thể tiếp tục ván chưa xong
+4994	nhập tên mới. nhấn Enter để xác nhận, Escape để hủy
+4995	xóa mục này? nhấn Enter để xác nhận, Escape để hủy
+4996	đã xóa
+4997	đã đổi tên
+4998	tên không hợp lệ
+4999	đã hủy
+5027	trung lập
+5028	phát lại
+5029	không trung lập
+5030	mục tiêu tùy chọn
+5031	đã bỏ mục tiêu tùy chọn
+5032	mục tiêu chính
+5033	bản đồ ngẫu nhiên
+5034	mẫu
+5035	tiêu chuẩn
+5036	nhanh
+5037	tranh trung tâm
+5038	phát triển
+5039	kinh tế
+5040	kích thước bản đồ
+5041	nhỏ
+5042	vừa
+5043	lớn
+5044	số người chơi
+5045	người
+5046	sức mạnh quái vật
+5047	yếu
+5048	vừa
+5049	mạnh
+5050	phân bố tài nguyên
+5051	đều
+5052	tập trung
+5053	địa hình
+5054	ngẫu nhiên
+5055	đồng cỏ
+5056	đầm lầy
+5057	núi
+5058	hạt giống
+5059	nhiều đường
+5060	tranh đường
+5061	hạt giống ngẫu nhiên
+5062	hạt giống tùy chọn
+5063	nhập số hạt giống
+5064	đã tạo bản đồ
+5065	chế độ đội
+5066	mỗi người một phe
+5067	hai đội đối đầu
+5068	mặt nước
+5069	không có nước
+5070	hồ
+5071	sông
+5072	báu vật
+5073	không có báu vật
+5074	ít báu vật
+5075	nhiều báu vật
+5076	mã chia sẻ
+5077	nhập mã chia sẻ
+5078	vui lòng nhập mã chia sẻ
+5079	mã chia sẻ không hợp lệ
+5080	xem trước bản đồ
+5081	rương báu
+5082	nỏ liên châu
+5083	động vật
+5084	cung cấp vùng xây dựng
+5085	cần vùng xây dựng
+5086	bán kính vùng xây dựng
+5087	chế độ xây dựng
+5088	hỗ trợ xây dựng
+5089	đặt rồi rời đi
+5090	hy sinh để xây
+5091	tự xây
+5092	hy sinh công nhân
+5093	xây được mọi nơi trên đất
+5094	công trình phụ
+5095	loại công trình chính có thể gắn
+5096	có thể gắn công trình phụ
+5097	giới hạn công trình phụ
+5100	vùng xây dựng tồn tại lâu
+5101	vùng xây dựng lan rộng
+5102	cần đã có dấu trên ô
+5103	mất nguồn thì mất điện
+5104	số ô lan mỗi giây
+5105	cần mỏ
+5106	triển khai hiệu ứng chiến trường
+5107	giàn giáo
+5108	đoạn cầu gỗ
+5109	mặt cầu
+5110	trữ lượng
+5111	mục tiêu cộng giai đoạn
+5112	đơn vị tự nâng cấp
+5115	thịt
+5116	quả
+5117	vật phẩm sản xuất
+5118	sản xuất tự động
+5119	sản xuất thủ công
+5120	canh tác tự động
+5121	canh tác thủ công
+5122	xưởng đúc tiền
+5123	đồng vàng
+5113	ngoại trừ
+5114	mọi mục tiêu khác ngoài
+5190	tóm tắt nhiệm vụ
+5191	mục tiêu chính
+5192	mục tiêu phụ
+5193	độ khó
+5194	tiêu chuẩn
+5195	trung bình
+5196	khó
+5197	chưa mở
+5198	đã hoàn thành
+5199	tóm tắt chiến dịch
+5200	bắt đầu nhiệm vụ
+5201	cần người chơi
+5202	chiến dịch hợp tác trực tuyến
+5203	đã mở nhiệm vụ tiếp theo
+5204	thử lại nhiệm vụ này
+5205	dễ
+5206	cực khó
+5207	độ khó tiêu chuẩn
+5208	sức mạnh kẻ địch
+5209	giao diện chọn đơn vị
+5210	giao diện chọn công trình
+5211	giao diện lệnh
+5212	giao diện kỹ năng
+5213	giao diện trợ giúp và truy vấn
+5214	giao diện ngoại giao
+5215	túi trống
+5216	đổi sơ đồ phím tắt
+5217	sơ đồ phím tắt phân lớp
+5218	sơ đồ phím tắt cổ điển
+5219	đã đổi sơ đồ phím tắt, có hiệu lực ở ván sau
+5220	máy sơ cấp
+5221	máy trung cấp
+5222	máy cao cấp
+5223	máy chuyên gia
+5224	máy ác mộng
+5225	kết quả
+5226	khai thác
+5227	hiệu suất dùng tài nguyên
+5228	đơn vị sống sót
+5229	bảo toàn công trình
+5230	tiêu diệt địch
+5231	phá hủy
+5232	tổng điểm
+5233	xếp hạng
+5234	hạng S, hoàn hảo
+5235	hạng A, xuất sắc
+5236	hạng B, tốt
+5237	hạng C, đạt
+5238	hạng D, tạm được
+5239	hạng E, cần cải thiện
+5240	trên tổng
+5241	cộng
+5242	điểm
+5243	đã đánh bại
+5244	đã mở thành tựu
+5245	nhận được
+5246	huy chương
+5247	nhận được thẻ
+5248	lượt nạp còn lại
+5249	thăng quân hàm lên
+5250	nhận danh hiệu danh dự
+5251	hiệu suất tiết kiệm
+5260	người chơi hợp tác
+5261	ô trống
+5262	đồng đội AI hợp tác
+5263	đặt làm đồng đội AI hợp tác
+5264	đặt ô thành trống
+5265	loại phòng hợp tác
+5266	phòng hợp tác riêng
+5267	phòng hợp tác công cộng
+5280	đổi ánh xạ phím
+5281	phím tắt toàn cục
+5282	phím tắt hiện tại
+5283	vui lòng nhấn phím mới
+5284	Escape để hủy, Backspace để xóa liên kết
+5285	đã lưu phím tắt, có hiệu lực ở ván sau
+5286	ánh xạ phím cho sơ đồ cổ điển sẽ có ở phiên bản sau
+5287	khôi phục phím tắt toàn cục mặc định
+5288	đã khôi phục phím tắt toàn cục mặc định
+5289	phím đã được dùng bởi
+5290	Enter để xác nhận thay thế, Escape để hủy
+5291	chưa gán
+5292	đã đặt thành
+5293	nhấn Enter để đổi lại
+5294	đã kích hoạt
+5295	chưa kích hoạt
+5296	đã khôi phục phím tắt lớp này mặc định
+5297	khôi phục phím tắt lớp này mặc định
+5298	giao diện duyệt bản đồ
+5299	khôi phục phím tắt cổ điển mặc định
+5300	chiến đấu hoàn hảo
+5301	chỉ huy xuất sắc
+5302	trận tốt
+5303	đạt chuẩn trận đầu
+5304	lấy ít thắng nhiều
+5305	bảo toàn hoàn hảo
+5306	thợ săn ác mộng
+5307	sát thủ chuyên gia
+5308	chiến thắng đầu tiên
+5309	hợp đồng viện binh
+5310	thành tựu
+5311	xem thành tựu đã mở và kho vũ khí của mod này
+5312	chưa mở
+5313	đã mở
+5314	mod này chưa định nghĩa thành tựu
+5315	danh sách thành tựu
+5316	kho vũ khí
+5317	xem quân hàm, danh dự, huy chương và thẻ của mod này
+5318	tổng huy chương
+5319	lượt nạp
+5350	quân hàm hiện tại
+5351	cách hàm tiếp theo
+5355	còn cần
+5356	huy chương
+5357	chọn thẻ mang theo cho ô
+5358	ô này không mang
+5359	bắt đầu ván ngay
+5360	không có thẻ nào để mang
+5361	thẻ mang theo đã có hiệu lực
+5362	ô
+5363	ô mang trước trận tăng, hiện là
+5364	cần mang trước khi đấu máy hoặc bản đồ ngẫu nhiên
+5450	có hiệu lực ngay khi ván bắt đầu
+5365	thêm lúc bắt đầu
+5366	xuất hiện gần điểm xuất phát khi bắt đầu ván
+5367	hoàn thành lại
+5368	xem danh sách thành tựu
+5369	xem kho vũ khí
+5370	yêu cầu
+5371	dưới
+5372	ít nhất
+5373	thắng ván này
+5374	hoặc
+5375	xem thành tựu và điều kiện mở của mod này
+5376	trên bản đồ
+5377	lần
+5378	tích lũy
+5379	nhánh
+5380	tiến độ liên phe
+5381	mỗi bên mở ít nhất
+5382	huy chương không ít hơn
+5383	mỗi bên có danh hiệu danh dự
+5384	hoàn thành mốc bản đồ
+5385	thành tựu
+5386	chọn phe cho ván này
+5387	hiệu lực sau
+5388	hiệu ứng thẻ mang theo đã kích hoạt
+5389	xuất hiện gần điểm xuất phát
+5390	nhận thêm
+5393	nhận công nghệ
+5394	thêm sau lần huấn luyện đầu tiên hoàn thành của
+5395	ván này, thêm sau lần huấn luyện đầu tiên hoàn thành của
+5392	. có hiệu lực
+5352	danh hiệu danh dự
+5353	ô mang thẻ trước trận
+5354	cần quân hàm
+5320	thẻ tiếp tế vàng
+5321	thẻ tiếp tế gỗ
+5322	thẻ viện binh bộ binh
+5323	thẻ viện binh kỵ binh
+5324	thẻ viện binh cung thủ
+5325	thẻ viện binh pháp sư
+5326	thẻ viện binh rồng
+5327	thẻ viện binh công thành
+5328	thẻ viện binh không quân
+5329	thẻ kết hợp bộ kỵ
+5330	thẻ kết hợp bộ cung
+5331	thẻ kết hợp cung kỵ
+5332	thẻ quân hỗn hợp
+5333	thẻ viện binh bộ binh trì hoãn
+5334	thẻ vũ khí cận chiến trì hoãn
+5396	thẻ tăng huấn luyện bộ binh
+5340	chưa nhận huy chương hoặc thẻ nào
+5399	đã khôi phục phím tắt cổ điển mặc định
+5397	cấu hình phím tắt của mod hiện tại,
+5400	binh nhì
+5401	binh nhất
+5402	hạ sĩ
+5403	trung sĩ
+5404	thiếu úy
+5405	đại úy
+5406	thiếu tá
+5407	thượng tá
+5408	thiếu tướng
+5409	trung tướng
+5410	thượng tướng
+5411	nguyên soái
+5420	bậc thầy tiết kiệm
+5421	người bảo vệ hoàn hảo
+5422	sát thủ ác mộng
+5423	sát thủ chuyên gia
+5424	chiến thắng đầu tiên
+5425	chế độ chiến thắng
+5426	chinh phục, tiêu diệt mọi người chơi địch
+5427	kinh tế, đạt mục tiêu tài nguyên
+5428	thám hiểm, thăm mọi di tích cổ
+5429	sinh tồn, giữ vững đến hết thời gian
+5430	thăm mọi di tích cổ bằng đơn vị của bạn
+5431	di tích cổ
+5432	doanh trại có thể chiếm
+5433	đã phát hiện di tích
+5434	đã chiếm doanh trại
+5435	tài nguyên tích lũy đạt
+5436	giữ vững trong
+5437	phút
+5451	tiêu diệt mọi người chơi địch
+5452	và giữ tòa thị chính của bạn
+5438	giao một đồng vàng cho thương nhân thành bang
+5439	thương nhân tặng bạn vật tư đáp lễ
+5440	giao thuốc chữa cho thầy thuốc làng
+5441	thầy thuốc gia nhập phe bạn
+5442	cần mở thành tựu trước
+5443	trên bản đồ ngẫu nhiên
+5445	nhà chinh phục ngẫu nhiên
+5446	nhà tài phiệt ngẫu nhiên
+5447	thợ săn di tích
+5448	người sống sót
+5449	bậc thầy bốn chế độ
+5453	chất lên không hợp lệ
+5454	chất lên thất bại
+5455	dỡ xuống không hợp lệ
+5456	dỡ xuống thất bại
+5457	thẻ viện binh bộ binh nhỏ
+5458	thẻ viện binh bộ binh vừa
+5459	thẻ viện binh bộ binh lớn
+5460	thẻ viện binh kỵ binh nhỏ
+5461	thẻ viện binh kỵ binh vừa
+5462	thẻ viện binh kỵ binh lớn
+5463	thẻ viện binh cung thủ nhỏ
+5464	thẻ viện binh cung thủ vừa
+5465	thẻ viện binh cung thủ lớn
+5466	thẻ viện binh pháp sư nhỏ
+5467	thẻ viện binh pháp sư vừa
+5468	thẻ viện binh pháp sư lớn
+5469	thẻ viện binh rồng nhỏ
+5470	thẻ viện binh rồng vừa
+5471	thẻ viện binh rồng lớn
+5472	thẻ viện binh công thành nhỏ
+5473	thẻ viện binh công thành vừa
+5474	thẻ viện binh công thành lớn
+5475	thẻ viện binh không quân nhỏ
+5476	thẻ viện binh không quân vừa
+5477	thẻ viện binh không quân lớn
+5478	thẻ tiếp tế vàng nhỏ
+5479	thẻ tiếp tế vàng vừa
+5480	thẻ tiếp tế vàng lớn
+5481	thẻ tiếp tế gỗ nhỏ
+5482	thẻ tiếp tế gỗ vừa
+5483	thẻ tiếp tế gỗ lớn
+5484	hạng F, kém
+5485	thẻ anh hùng Raynor
+5486	tóm tắt nhiệm vụ
+5487	di tích cổ nằm rải rác khắp bản đồ
+5488	một số di tích có thể giấu bí mật ở ô lân cận
+5489	đối thủ sẽ không chờ bạn, hãy tìm hết di tích trước
+5490	tiếng kim loại vọng sau đá, hãy tìm ô lân cận
+5491	phòng ẩn mang thêm chiến lợi phẩm
+5492	di tích chưa phát hiện
+5493	chỉ còn một di tích chưa tìm thấy
+7736	Raynor, Chúa liên minh
+5398	không có mod
+5500	chọn tất cả địa phương
+5501	chuyển từng đơn vị
+5502	công nhân
+5503	binh sĩ
+5504	công trình
+5505	mọi binh sĩ, chọn tất cả địa phương
+5506	đơn vị địa phương
+5507	công trình chung
+5510	trạng thái tài nguyên 1
+5511	trạng thái tài nguyên 2
+5512	trạng thái tài nguyên 3
+5513	trạng thái dân số
+5514	hủy hoặc vào duyệt bản đồ
+5515	chuyển giao diện đơn vị và công trình
+5516	chuyển giao diện lệnh và kỹ năng
+5517	chuyển túi đồ và trang bị
+5518	vào trợ giúp và truy vấn
+5519	vào giao diện ngoại giao
+5520	màn hình thuộc tính
+5521	túi đồ
+5522	màn hình trang bị
+5523	chọn mục tiêu tiếp theo
+5524	chọn mục tiêu trước
+5525	chọn mục tiêu hữu ích tiếp theo
+5526	chọn mục tiêu hữu ích trước
+5527	đi một ô về phía bắc
+5528	đi một ô về phía nam
+5529	đi một ô về phía tây
+5530	đi một ô về phía đông
+5531	ô đã trinh sát tiếp theo
+5532	ô đã trinh sát trước
+5533	ô xung đột tiếp theo
+5534	ô xung đột trước
+5535	ô chưa biết tiếp theo
+5536	ô chưa biết trước
+5537	ô tài nguyên tiếp theo
+5538	ô tài nguyên trước
+5539	lệnh mặc định
+5540	xác nhận lệnh
+5541	xem xét
+5542	theo góc nhìn đơn vị
+5543	máu đơn vị
+5544	mô tả mục tiêu tiếp theo
+5545	mô tả mục tiêu trước
+5546	đọc danh sách người chơi
+5547	lịch sử mục trước
+5548	lịch sử mục sau
+5549	menu trò chơi
+5550	tăng âm lượng
+5551	giảm âm lượng
+5552	chế độ ngôi thứ nhất
+5553	bảng điều khiển
+5554	bật tắt nhạc
+5555	toàn màn hình
+5556	bật tắt đồng hồ nói
+5557	đổi người chơi
+5558	ra lệnh cho đơn vị
+5559	phím tắt chữ cái lệnh
+5560	chuyển bộ lọc phe
+5561	chuyển bộ lọc loại
+5562	ra lệnh cho công trình
+5563	duyệt lệnh tiếp theo
+5564	lặp lại lệnh trước
+5565	lặp lại lệnh trước ngay
+5566	lệnh
+5567	duyệt kỹ năng tiếp theo
+5568	kỹ năng
+5569	danh sách kỹ năng
+5570	tự động tấn công
+5571	trợ giúp mục tiếp theo
+5572	trợ giúp mục trước
+5573	đọc thời gian
+5574	mở ô nhập chat
+5575	bật tắt metronome
+5576	thoát giao diện trợ giúp
+5577	mỏ tài nguyên 1 tiếp theo
+5578	mỏ tài nguyên 1 trước
+5579	mỏ tài nguyên 2 tiếp theo
+5580	mỏ tài nguyên 2 trước
+5581	mỏ tài nguyên 3 tiếp theo
+5582	mỏ tài nguyên 3 trước
+5583	bãi cỏ tiếp theo
+5584	bãi cỏ trước
+5585	lối đi tiếp theo
+5586	lối đi trước
+5587	bật tắt phóng to
+5588	thoát duyệt bản đồ
+5589	chọn ứng viên đồng minh
+5590	gửi yêu cầu đồng minh
+5591	chấp nhận đồng minh
+5592	từ chối hoặc hủy đồng minh
+5593	thoát giao diện ngoại giao
+5594	hủy lệnh
+5595	độ tinh phóng to
+5596	chọn đơn vị
+5597	tất cả
+5598	một nửa
+5599	một phần ba
+5600	một phần tư
+5601	một phần năm
+5602	hủy nhóm
+5603	nhóm điều khiển 1
+5604	nhóm điều khiển 2
+5605	nhóm điều khiển 3
+5606	nhóm điều khiển 4
+5610	Control
+5611	Shift
+5612	Alt
+5613	lên
+5614	xuống
+5615	trái
+5616	phải
+5617	PageUp
+5618	PageDown
+5619	Home
+5620	End
+5621	Tab
+5622	phím cách
+5623	Enter
+5624	Enter bàn phím số
+5625	Escape
+5626	Backspace
+5627	cộng bàn phím số
+5628	trừ bàn phím số
+5629	dấu bằng
+5630	dấu trừ
+5631	dấu gạch chéo ngược
+5632	dấu chấm phẩy
+5633	dấu huyền
+5634	dấu nháy
+5635	Control trái
+5636	Control phải
+5637	Alt trái
+5638	Alt phải
+5639	Shift trái
+5640	Shift phải
+5641	bật tắt hiển thị
+5642	lưu nhóm
+5643	thêm đơn vị vào nhóm
+5644	bật tắt chế độ gian lận
+5645	giảm độ tinh phóng to
+5646	tăng độ tinh phóng to
+5647	hỏi độ tinh phóng to
+5648	tải lại thông số
+5649	dừng phát lại lịch sử
+5650	tăng âm lượng nhạc
+5651	giảm âm lượng nhạc
+5652	xác nhận kèm xếp hàng
+5653	xác nhận bắt buộc
+5654	xếp hàng lệnh
+5655	phạm vi toàn bản đồ
+5656	chọn tất cả toàn cục
+5657	duyệt lệnh trước
+5658	chỉ lệnh chưa kích hoạt
+5659	chuyển bộ lọc phe ngược
+5660	chuyển bộ lọc loại ngược
+5661	lặp lại ngay và xếp hàng
+5662	mọi binh sĩ
+5663	ứng viên đồng minh trước
+5664	năm ô
+5665	bỏ qua va chạm
+5666	chuyển đơn vị ngược
+5667	chỉ đơn vị đang rảnh
+5668	gồm công trình không có menu
+5669	toàn bản đồ
+5670	công nhân và mọi binh sĩ
+5671	tìm phím tắt
+5672	nhập từ khóa tìm, Escape để hủy
+5673	không tìm thấy phím tắt khớp
+5674	biến thể nâng cao
+5675	xuất cấu hình phím tắt
+5676	nhập cấu hình phím tắt
+5677	đã sao chép vào clipboard
+5678	nhập thành công, có hiệu lực ở ván sau
+5679	nhập thất bại, định dạng không hợp lệ
+5680	nhập gộp
+5681	nhập thay thế
+5682	gõ chữ cái đầu để nhảy nhanh
+5683	phím bí danh
+5684	phím mặc định
+5685	giao diện ngôi thứ nhất
+5686	cấp quá thấp để học kỹ năng này
+5687	đã biết kỹ năng này
+5688	đã học
+5689	nhận hoàn trả tài nguyên khi phá công trình
+5690	vứt bỏ
+5691	đưa cho
+5692	bật tự thám hiểm
+5693	tắt tự thám hiểm
+5694	khu đất xây
+5695	thị trấn
+5696	đồng bằng
+5697	suối
+5698	đất cao
+5699	đồi
+4371	đã bị chiếm
+4511	làm chậm
+4638	sản xuất thủ công
+4654	công trình mỏ vàng
+4662	đồng bằng
+4663	đất trống

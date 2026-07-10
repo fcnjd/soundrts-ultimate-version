@@ -44,8 +44,6 @@ Bug 修复与语音/音频体验改善：
 - **P2 提示层**（10 ~ 16）：升级、形态变化、事件喊杀；优先保留。
 - **实现**：``lib/sound.py`` ``SoundManager.find_a_channel`` 按 priority 抢占低优先级声源；``audio.py`` 脚步声 ``priority=-10``；TTS 保留 channel 0。
 
-- **尝试在GitHub CI上修复Win和Mac的构建，感谢fcnjd的贡献。
-
 1.4.5.0
 --------
 

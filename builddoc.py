@@ -42,7 +42,7 @@ def _publish_rst(lang, dest_pkg):
             rel = relpath(src_path, p)
             htm_rel = splitext(rel)[0] + ".htm"
             _publish_one(src_path, join(dp, htm_rel))
-    if lang in ("en", "pt-BR"):
+    if lang in ("en", "pt-BR", "es", "it"):
         with open(join(p, "stats.inc"), "w", encoding="utf-8") as f:
             f.write(rules2doc.stats)
 
@@ -51,30 +51,42 @@ def build(dest="."):
     DEST = join(dest, "doc")
     os.makedirs(DEST, exist_ok=True)
 
-    for lang in ("es", "it"):
-        p = join(SRC, lang, "htm")
-        dp = join(DEST, lang)
-        os.makedirs(dp, exist_ok=True)
-        if os.path.isdir(p):
-            for n in os.listdir(p):
-                shutil.copyfile(join(p, n), join(dp, n))
-
-    for lang in ("en", "zh"):
-        _publish_rst(lang, DEST)
-
-    pt_br = join(DEST, "pt-BR")
-    os.makedirs(pt_br, exist_ok=True)
-    shutil.copyfile(join(SRC, "en/stats.inc"), join(SRC, "pt-BR/stats.inc"))
-    try:
-        _publish_rst("pt-BR", DEST)
-    except (UnicodeError, SystemMessage):
-        shutil.copyfile(join(DEST, "en/units.htm"), join(pt_br, "units.htm"))
-
-    shutil.copyfile(join(DEST, "en/units.htm"), join(DEST, "it/units.htm"))
-    pt_mod = join(pt_br, "mod")
-    os.makedirs(pt_mod, exist_ok=True)
-    for n in ("mapmaking", "modding", "aimaking"):
-        shutil.copyfile(join(DEST, "en/mod/%s.htm" % n), join(pt_mod, "%s.htm" % n))
+    # Prefer RST sources for all supported languages. Fall back to legacy
+    # doc_src/src/{lang}/htm copies only when no RST tree is present.
+    rst_langs = ("en", "zh", "es", "it", "pt-BR")
+    for lang in rst_langs:
+        lang_src = join(SRC, lang)
+        has_rst = False
+        if os.path.isdir(lang_src):
+            for _root, _dirs, files in os.walk(lang_src):
+                if any(n.endswith(".rst") for n in files):
+                    has_rst = True
+                    break
+        if has_rst:
+            if lang in ("en", "pt-BR", "es", "it"):
+                # Keep units stats include in sync when present in English.
+                en_stats = join(SRC, "en", "stats.inc")
+                lang_stats = join(lang_src, "stats.inc")
+                if lang != "en" and os.path.isfile(en_stats):
+                    shutil.copyfile(en_stats, lang_stats)
+            try:
+                _publish_rst(lang, DEST)
+            except (UnicodeError, SystemMessage):
+                if lang == "pt-BR":
+                    pt_br = join(DEST, "pt-BR")
+                    os.makedirs(pt_br, exist_ok=True)
+                    en_units = join(DEST, "en", "units.htm")
+                    if os.path.isfile(en_units):
+                        shutil.copyfile(en_units, join(pt_br, "units.htm"))
+                else:
+                    raise
+        elif lang in ("es", "it"):
+            p = join(SRC, lang, "htm")
+            dp = join(DEST, lang)
+            os.makedirs(dp, exist_ok=True)
+            if os.path.isdir(p):
+                for n in os.listdir(p):
+                    shutil.copyfile(join(p, n), join(dp, n))
 
 
 if __name__ == "__main__":

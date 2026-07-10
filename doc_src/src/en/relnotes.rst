@@ -45,8 +45,6 @@ Bug fixes and voice/audio UX improvements:
 - **P2 alerts** (10–16): level-up, morph, event shouts; kept when channels are scarce.
 - **Code**: ``lib/sound.py`` ``SoundManager.find_a_channel`` preempts lower-priority sources; ``audio.py`` footsteps at ``priority=-10``; TTS stays on channel 0.
 
-**Attempted to fix the Windows and Mac builds on GitHub CI, thanks to fcnjd for the contribution.
-
 1.4.5.0
 --------
 

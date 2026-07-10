@@ -1,27 +1,20 @@
-﻿; coding: utf-8
-
+﻿;	coding: utf-8
 0	Rien !
 1	Vous vous trouvez
-
 3	Devant vous,
 4	Dairrière vous,
 5	Que faites vous ?
-
 23	et
-
 38	Vous avez
 39	points de vie sur
 40	Niveau
-
 54	a
 55	mètres
-
 59	le joueur
 60	Vous êtes
 61	a tué
-
-65	 minutes
-66	 secondes
+65	minutes
+66	secondes
 67	nord
 68	sud
 69	èst
@@ -81,7 +74,6 @@
 137	rations
 138	Vous dirigez
 139	un groupe
-
 142	production suspendue
 143	file d'attente pleine
 144	épuisé
@@ -97,7 +89,6 @@
 154	ouverte
 155	Vous êtes parvenu au niveau
 156	au centre
-
 2008	Appuyez sur F5 pour réécouter tout ceci
 2010	appuyez sur
 2011	pour
@@ -171,6 +162,14 @@
 3019	19
 3020	20
 3021	21
+3022	22
+3023	23
+3024	24
+3025	25
+3026	26
+3027	27
+3028	28
+3029	29
 3030	30
 3031	31
 3040	40
@@ -179,11 +178,13 @@
 3051	51
 3060	60
 3061	61
+3070	70
 3071	71
+3080	80
+3090	90
 3100	100
 3101	1000
 3102	million
-
 4000	Jeu
 4001	Internet
 4002	local
@@ -209,7 +210,6 @@
 4024	consommé
 4025	bâtiment
 4026	score
-
 4028	Appuyez sur F1 pour obtenir de l'aide.
 4029	Menu principal
 4030	Que souhaitez-vous ?
@@ -221,7 +221,6 @@
 4036	lancer un serveur sur votre ordinateur pour héberger des parties multijoueur
 4037	Options,
 4038	modifier vos paramètres
-
 4041	Quitter,
 4042	quitter ce programme
 4043	Quel type de serveur ?
@@ -245,10 +244,8 @@
 4062	la partie commence dans 5 secondes
 4063	le jeu commencera quand l'organisateur le dira
 4064	appuyez sur entrée pour confirmer
-
 4066	Appuyez plusieurs fois sur Tab pour sélectionner chaque objet visible.
 4067	Appuyez sur Tab pour sélectionner la cible puis sur Entrée pour confirmer la cible.
-
 4070	abandonner la partie
 4071	continuer la partie
 4072	Impossible d'accéder à la liste des serveurs. Vous n'êtes peut-être pas connecté à Internet.
@@ -267,29 +264,24 @@
 4085	erreur durant la connexion au serveur
 4086	menu options
 4087	Modifier votre pseudo.
-
 4096	sauvegarder,
 4097	sauvegarder les modifications et retourner au menu principal
 4098	abandonner,
 4099	retourner au menu principal sans sauvegarder les modifications
-
 4101	Une nouvelle fenêtre va s'ouvrir.
 4102	connexion interrompue
 4103	jeu ralenti
 4104	jeu normal
 4105	jeu accéléré
-
 4112	sauvegarder une partie
 4113	restaurer une partie
 4114	contre l'ordinateur
 4115	ordinateur contre ordinateur
-
 4118	retour
 4119	choisir le serveur dans une liste
 4120	saisir l'adresse I P du serveur
 4121	serveur privé
 4122	Le serveur ne sera pas ajouté à la liste.
-
 4200	La production de bois est améliorée.
 4201	catapulte
 4202	à vos ordres
@@ -314,7 +306,7 @@
 4221	château-fort
 4222	écuries
 4223	Le menu de
-4224	 a changé.
+4224	a changé.
 4225	chevalier
 4226	atelier
 4227	antre des dragons
@@ -374,279 +366,1081 @@
 4281	décharger tout vers
 4282	entrer dans
 4283	archer sombre
-
-5000 a
-5001 b
-5002 c
-5003 d
-5004 e
-5005 f
-5006 g
-5007 h
-5008 i
-5009 j
-5010 k
-5011 l
-5012 m
-5013 n
-5014 o
-5015 p
-5016 q
-5017 r
-5018 s
-5019 t
-5020 u
-5021 v
-5022 w
-5023 x
-5024 y
-5025 z
-
+5000	a
+5001	b
+5002	c
+5003	d
+5004	e
+5005	f
+5006	g
+5007	h
+5008	i
+5009	j
+5010	k
+5011	l
+5012	m
+5013	n
+5014	o
+5015	p
+5016	q
+5017	r
+5018	s
+5019	t
+5020	u
+5021	v
+5022	w
+5023	x
+5024	y
+5025	z
 5026	point
-
-4284 déplacer
-4285 vers alliance
-4286 allié
-4287 dit
-4288 entrez votre message
-
-4289 invisible
-4290 détecteur
-4291 camoufleur
-
-4292 invoquer
-4293 réveiller les morts
-4294 résurrection
-
-4295 zombi
-4296 squelette
-
-4297 prêtre
-4298 temple
-
-4299 vision sacrée
-4300 exorcisme
-
-4301 humain
-4302 orc
-
-4303 nécromancien
-4304 nécropole
-4305 nuage mortel
-4306 météores
-
-4307 rappel
-
-4308 pierre
-4309 carrière
-
-4311 a été vaincu
-4312 Vous avez perdu.
-4313 Vous êtes à présent en mode observateur.
-
-4315 observer une partie enregistrée
-4316 Appuyez sur Control Maj F4 pour observer un autre joueur.
-
-4317 Entrez une commande.
-
-4319 modifier l'ordre de chargement des mods
-4320 ajouter un mod à la liste
-4321 la liste est vide
-4322 Chargement...
-
-4323 paquets
-4324 menu des paquets
-4325 installer un paquet
-4326 désinstaller un paquet
-4327 mettre à jour un paquet
-4328 Téléchargement...
-4329 Extraction...
-4330 Mod introuvable:
-
-4331 mur
-4332 porte
-4333 bloquer
-
-4334 faction aléatoire
-
-4336 ouvrir le dossier utilisateur
-4337 documentation
-
-4338 mur massif
-4339 porte massive
-4340 créer une partie publique avec la carte
-4341 mods
-4342 soundpacks
-4343 vitesse
-
-4344 mer
-4345 lac
-4346 rivière
-4347 montagne
-4348 pont
-4349 gué
-4350 marais
-4351 océan
-4352 col de montagne
-
-4353 activer réparation automatique
-4354 désactiver réparation automatique
-4355 activer exploitation automatique
-4356 désactiver exploitation automatique
-
-4357 chantier naval
-4358 bateau
-4359 destroyer
-4360 cuirassé
-4361 sous-marin
-
-4362 prairies
-4363 forêt
-4364 forêt épaisse
+4284	déplacer
+4285	vers alliance
+4286	allié
+4287	dit
+4288	entrez votre message
+4289	invisible
+4290	détecteur
+4291	camoufleur
+4292	invoquer
+4293	réveiller les morts
+4294	résurrection
+4295	zombi
+4296	squelette
+4297	prêtre
+4298	temple
+4299	vision sacrée
+4300	exorcisme
+4301	humain
+4302	orc
+4303	nécromancien
+4304	nécropole
+4305	nuage mortel
+4306	météores
+4307	rappel
+4308	pierre
+4309	carrière
+4311	a été vaincu
+4312	Vous avez perdu.
+4313	Vous êtes à présent en mode observateur.
+4314	plateau
+4315	observer une partie enregistrée
+4316	Appuyez sur Control Maj F4 pour observer un autre joueur.
+4317	Entrez une commande.
+4318	zoom
+4319	modifier l'ordre de chargement des mods
+4320	ajouter un mod à la liste
+4321	la liste est vide
+4322	Chargement...
+4323	paquets
+4324	menu des paquets
+4325	installer un paquet
+4326	désinstaller un paquet
+4327	mettre à jour un paquet
+4328	Téléchargement...
+4329	Extraction...
+4330	Mod introuvable:
+4331	mur
+4332	porte
+4333	bloquer
+4334	faction aléatoire
+4335	Limite de nombre atteinte
+4336	ouvrir le dossier utilisateur
+4337	documentation
+4338	mur massif
+4339	porte massive
+4340	créer une partie publique avec la carte
+4341	mods
+4342	soundpacks
+4343	vitesse
+4344	mer
+4345	lac
+4346	rivière
+4347	montagne
+4348	pont
+4349	gué
+4350	marais
+4351	océan
+4352	col de montagne
+4353	activer réparation automatique
+4354	désactiver réparation automatique
+4355	activer exploitation automatique
+4356	désactiver exploitation automatique
+4357	chantier naval
+4358	bateau
+4359	destroyer
+4360	cuirassé
+4361	sous-marin
+4362	prairies
+4363	forêt
+4364	forêt épaisse
+4365	basculer contre-attaque
+4366	contre-attaque activée
+4367	contre-attaque désactivée
+4368	garde
+4369	poursuite
+4370	capturer
+4372	maison d'or
+4373	production en cours
+4375	arrêter la production
+4376	réglages sonores
+4377	réglages d'équilibre sonore
+4378	activer l'équilibre sonore
+4379	désactiver l'équilibre sonore
+4380	activer ou désactiver l'équilibre sonore
+4381	méthode d'équilibre sonore
+4382	changer la méthode d'équilibre sonore
+4383	équilibre sonore activé
+4384	équilibre sonore désactivé
+4385	racine carrée
+4386	linéaire
+4387	logarithmique
+4388	aucun
+4389	attributs
+4390	appuyez sur la lettre correspondante pour plus d'informations
+4391	appuyez sur Échap pour quitter
+4392	quitter l'écran des attributs
+4393	plusieurs unités sélectionnées : 
+4394	aucun attribut disponible
+4395	: 
+4396	dégâts de mêlée
+4397	dégâts à distance
+4398	défense de mêlée
+4399	défense à distance
+4400	recharge mêlée
+4401	recharge à distance
+4402	portée mêlée
+4403	portée à distance
+4404	contre 
+4405	bonus de dégâts de mêlée
+4406	bonus de dégâts à distance
+4407	points de vie
+4408	état
+4409	technologies recherchées
+4410	temps de préparation corps à corps
+4411	temps de préparation à distance
+4412	portée minimale corps à corps
+4413	portée minimale à distance
+4414	précision corps à corps
+4415	précision à distance
+4416	esquive corps à corps
+4417	esquive à distance
+4418	dégâts de zone corps à corps
+4419	dégâts de zone à distance
+4420	rayon de zone corps à corps
+4421	rayon de zone à distance
+4422	décroissance minimale de zone corps à corps
+4423	décroissance minimale de zone à distance
+4424	bonus de défense de mêlée
+4425	bonus de défense à distance
+4426	bonus de portée mêlée
+4427	bonus de portée à distance
+4428	bonus de portée minimale mêlée
+4429	bonus de portée minimale à distance
+4430	bonus de préparation mêlée
+4431	bonus de préparation à distance
+4432	bonus de recharge mêlée
+4433	bonus de recharge à distance
+4434	bonus de précision mêlée
+4435	bonus de précision à distance
+4436	bonus d'esquive mêlée
+4437	bonus d'esquive à distance
+4438	bonus de précision mêlée selon le terrain
+4439	bonus de précision à distance selon le terrain
+4440	bonus d'esquive mêlée selon le terrain
+4441	bonus d'esquive à distance selon le terrain
+4442	bonus de vitesse
+4443	bonus de vitesse selon le terrain
+4444	mana
+4445	réduction
+4446	exploration automatique
+4452	modificateur de mêlée selon le terrain
+4453	modificateur à distance selon le terrain
+4454	modificateur de recharge mêlée selon le terrain
+4455	modificateur de recharge à distance selon le terrain
+4456	modificateur de charge mêlée selon le terrain
+4457	modificateur de charge à distance selon le terrain
+4458	modificateur de recharge de charge mêlée selon le terrain
+4459	modificateur de recharge de charge à distance selon le terrain
+4500	alliés
+4501	ennemis
+4502	tous
+4503	bâtiments
+4504	unités
+4505	éléments
+4506	tous les types
+4507	renforts
+4508	changer en
+4509	trop tôt
+4510	ramasser
+4600	niveau
+4601	XP
+4602	/
+4603	niveau maximum
+4604	temps de réanimation
+4605	montée de niveau
+4606	ressuscité
+4610	multiplicateur critique corps à corps
+4611	multiplicateur critique à distance
+4612	chance critique corps à corps
+4613	chance critique à distance
+4614	bonus de multiplicateur critique mêlée
+4615	bonus de multiplicateur critique à distance
+4616	bonus de chance critique mêlée
+4617	bonus de chance critique à distance
+4618	résistance critique corps à corps
+4619	résistance critique à distance
+4620	bonus de résistance critique mêlée
+4621	bonus de résistance critique à distance
+4622	pénétration d'armure corps à corps
+4623	pénétration d'armure à distance
+4624	chance de pénétration corps à corps
+4625	chance de pénétration à distance
+4626	bonus de perçage mêlée
+4627	bonus de perçage à distance
+4628	bonus de chance de perçage mêlée
+4629	bonus de chance de perçage à distance
+4630	résistance à la pénétration corps à corps
+4631	résistance à la pénétration à distance
+4632	bonus de résistance au perçage mêlée
+4633	bonus de résistance au perçage à distance
+4634	musique
+4635	musique activée
+4636	musique désactivée
+4637	volume en pourcentage
+4650	démarrer la production automatique
+4651	démarrer la production manuelle
+4655	démarrer la culture automatique
+4656	démarrer la culture manuelle
+4657	culture
+4658	labour en cours
+4659	arrêter la culture
+4660	maison
+4661	verger
+4700	Observer une partie
+4701	Partie en cours
+4702	Aucune partie à observer
+4703	Sélectionner une partie à observer
+4704	Observation en cours
+4705	Arrêter d'observer
+4706	Vous observez
+4707	Spectateur rejoint
+4708	Spectateur parti
+4709	Partie en cours
+4710	lent
+4711	aucun ennemi en vue
+4712	attaque
+4713	centre
+4714	l'échelle de zoom doit être entre 2 et 20
+4715	entrez l'échelle de zoom, ex. 3x3 ou 4x4
+4716	peut entraîner
+#	constantes de messages d'attributs
+4717	dégâts de charge corps à corps
+4718	bonus de dégâts de charge mêlée
+4719	dégâts de charge à distance
+4720	bonus de dégâts de charge à distance
+4721	recharge de charge corps à corps
+4722	recharge de charge à distance
+4723	distance de charge corps à corps
+4724	distance de charge à distance
+4725	zone de charge corps à corps
+4726	bonus d'éclaboussure de charge mêlée
+4727	zone de charge à distance
+4728	bonus d'éclaboussure de charge à distance
+4729	décroissance minimale de charge corps à corps
+4730	bonus d'atténuation d'éclaboussure de charge mêlée
+4731	décroissance minimale de charge à distance
+4732	bonus d'atténuation d'éclaboussure de charge à distance
+4733	rayon de charge corps à corps
+4734	bonus de rayon d'éclaboussure de charge mêlée
+4735	rayon de charge à distance
+4736	bonus de rayon d'éclaboussure de charge à distance
+4737	dégâts de contre-charge corps à corps
+4738	dégâts de contre-charge à distance
+4739	bonus anti-charge mêlée
+4740	bonus anti-charge à distance
+4741	recharge de contre-charge corps à corps
+4742	recharge de contre-charge à distance
+4743	distance de contre-charge corps à corps
+4744	distance de contre-charge à distance
+4750	technologies utilisables
+4751	compétences utilisables
+4752	peut rechercher
+4753	peut évoluer en
+4754	coût en mana
+4755	effet
+4756	portée d'effet
+4757	rayon d'effet
+4758	appliquer le bonus
+4759	bonus
+4760	niveau de dégâts
+4761	type de cible des dégâts
+4762	météores
+4763	infini
+4764	appliquer
+4765	, durée
+4768	coût
+4769	temps
+4770	population
+4771	prérequis
+4772	invoquer
+4773	soigner
+4774	dégâts
+4775	ressusciter au maximum
+4776	unités
+4777	relever les morts
+4778	, type :
+4779	convertir les unités ennemies
+4780	temps de recharge
+4781	points de vie
+4782	points de vie maximum
+4783	dégâts corps à corps
+4784	dégâts à distance
+4785	défense corps à corps
+4786	défense à distance
+4787	vitesse de déplacement
+4788	portée de vision
+4789	portée corps à corps
+4790	portée à distance
+4791	recharge corps à corps
+4792	recharge à distance
+4793	mana
+4794	mana maximum
+4795	temps de collecte
+4796	quantité collectée
+4797	temps de production
+4798	quantité produite
+4799	coût
+4800	coût en temps
+4801	coût en population
+4802	: attributs :
+4803	attribut inexistant
+4804	aucun bonus
+4805	minutes
+4806	population fournie
+4807	niveau de soin
+4808	secondes
+4809	peut construire
+4810	type d'unité
+4811	classe
+4812	bâtiment
+4813	ouvrier
+4814	soldat
+4815	effet
+4816	technologie
+4817	Navires réparables et à quai
+4818	oui
+4819	non
+4820	explosion mêlée
+4821	explosion à distance
+4822	coût en PV de l'autodestruction
+4823	facteur de dégâts d'explosion
+4824	portée de vision
+4825	cibles de mêlée
+4826	cibles à distance
+4827	peut collecter
+4828	temps de collecte
+4829	quantité collectée
+4830	peut réparer
+4831	cible terrestre
+4832	cible aérienne
+4833	cible bâtiment
+4834	cible unité
+4835	tous
+4836	type de ressource
+4837	temps d'extraction
+4838	quantité d'extraction
+4839	régénération de ressource
+4840	volume de ressource max
+4841	volume de ressource initial
+4842	type de gisement
+4843	nom de ressource
+4844	type d'unités
+4845	réparable
+4846	soignable
+4847	capacité de transport
+4848	volume de transport
+4849	types d'attaque des passagers
+4850	bonus de chargement
+4927	bonus passager
+4928	chance d'attaque intérieure
+4851	cadavre
+4852	sol
+4853	air
+4854	eau
+4855	produit
+4856	ne produit pas
+4857	est mort-vivant
+4858	ressource
+4859	arme actuelle
+4860	armes disponibles
+4861	commutable
+4862	changer d'arme
+4863	épée
+4864	arc
+4865	nom de l'arme
+4866	armure
+4867	armure actuelle
+4868	nom de l'armure
+4871	armure
+4872	mêlée
+4873	arme
+4875	inventaire
+4876	nom de l'objet
+4877	collision
+4878	consommé à la ramasse
+4879	est un butin
+4880	récompenses de ressources
+4881	compétences
+4882	buffs
+4883	objet
+4885	héros
+4886	épée courte
+4887	type de production
+4888	introduction
+4889	Unité ouvrière de base, capable de collecter des ressources, construire des bâtiments et réparer des navires. C'est le fondement de toute civilisation.
+4890	Infanterie de mêlée de base, équipée d'une épée et d'une armure. Peu coûteuse à entraîner, elle forme le gros de l'armée.
+4891	rayon de soin
+4892	rayon de dégâts
+4893	portée de soin
+4894	portée de dégâts
+4895	recharge de soin
+4896	recharge de dégâts
+4897	préparation de soin
+4898	préparation de dégâts
+4899	recharge de régénération de PV
+4900	préparation de régénération de PV
+4901	recharge de régénération de mana
+4902	préparation de régénération de mana
+4903	type de cible soignable
+4904	par niveau
+4905	croissance
+4906	régénération de PV
+4907	quantité actuelle
+4908	quantité maximale
+4909	catégorie
+4910	capacité d'inventaire
+4911	régénération de mana
+4912	dégâts minimum corps à corps
+4913	dégâts minimum à distance
+4914	rayon de buff
+4915	dégâts minimum
+4916	délai de projectile corps à corps
+4917	délai de projectile à distance
+4918	durée d'état corps à corps
+4919	durée d'état à distance
+4924	dégâts forcés
+4925	distance minimale de charge corps à corps
+4926	distance minimale de charge à distance
+4920	Traité
+4921	Traité actif, aucune attaque autorisée
+4922	Traité terminé, vous pouvez combattre
+4923	pas de traité
+4930	cerf
+4931	mouton
+4932	carcasse
+4933	sanglier
+4934	rabattre
+4935	suivi
+4936	techniques de chasse
+4950	Campagne coopérative
+4951	Campagne coopérative locale
+4952	Sélectionner une campagne coopérative
+4953	Sélectionner un chapitre coopératif
+4954	Alliés définis pour la coopérative
+4955	Coopérez avec votre coéquipier pour jouer la campagne
+4960	diplomatie
+4961	aucun candidat
+4962	allié avec
+4963	désallié avec
+4964	mutuel
+4965	unilatéral
+4966	s'allier avec
+4967	annuler l'alliance avec
+4968	demande d'alliance de
+4969	alliance acceptée avec
+4970	alliance refusée avec
+4971	les alliances sont verrouillées pour cette partie
+4972	Demande d'alliance envoyée
+4973	Demande d'alliance refusée
+4974	Demande d'alliance retirée
+4975	Alliance formée
+4976	l'eau est infranchissable
+4977	la terre est infranchissable
+4978	inachevé, infranchissable
+4980	Phase actuelle
+4981	Âge sombre
+4982	Âge féodal
+4983	Âge des châteaux
+4984	Âge impérial
+4985	peut avancer vers
+4986	continuer la partie inachevée
+4987	reprendre là où vous vous êtes arrêté
+4988	sélectionner un emplacement de sauvegarde
+4989	aucune sauvegarde trouvée
+4990	sauvegarde
+4991	emplacement vide
+4992	sauvegarde réussie
+4993	progression conservée, vous pourrez continuer plus tard
+4994	entrez un nouveau nom. Entrée pour confirmer, Échap pour annuler
+4995	supprimer cet élément ? Entrée pour confirmer, Échap pour annuler
+4996	supprimé
+4997	renommé
+4998	nom invalide
+4999	annulé
+5027	neutre
 5028	replay
-5033 carte aléatoire
-5034 modèle
-5035 standard
-5036 rapide
-5037 pour le centre
-5038 macro
-5039 économique
-5040 taille de carte
-5041 petite
-5042 moyenne
-5043 grande
-5044 nombre de joueurs
-5045 joueurs
-5046 force des monstres
-5047 faible
-5048 moyen
-5049 fort
-5050 distribution des ressources
-5051 uniforme
-5052 concentrée
-5053 terrain
-5054 aléatoire
-5055 plaine
-5056 marais
-5057 montagne
-5058 graine
-5059 voies
-5060 dispute des voies
-5061 graine aléatoire
-5062 graine personnalisée
-5063 entrez un numéro de graine
-5064 carte générée
-5065 mode d'équipe
-5066 chacun pour soi
-5067 deux équipes
-5068 eau
-5069 sans eau
-5070 lac
-5071 rivière
-5072 trésor
-5073 pas de trésor
-5074 peu de trésors
-5075 beaucoup de trésors
-5076 code de partage
-5077 importer un code
-5078 entrez un code de partage
-5079 code invalide
-5080 aperçu de la carte
-5209 interface de sélection d'unités
-5210 interface de sélection de bâtiments
-5211 interface de commandes
-5212 interface de compétences
-5213 interface d'aide et de requête
-5214 interface de diplomatie
-5215 sac à dos vide
-5216 schéma de raccourcis
-5217 raccourcis par interface
-5218 raccourcis classiques
-5219 schéma de raccourcis modifié, effectif à la prochaine partie
-
-; Level-up stat labels (auto-maintained)
-4410 temps de préparation corps à corps
-4411 temps de préparation à distance
-4412 portée minimale corps à corps
-4413 portée minimale à distance
-4414 précision corps à corps
-4415 précision à distance
-4416 esquive corps à corps
-4417 esquive à distance
-4418 dégâts de zone corps à corps
-4419 dégâts de zone à distance
-4420 rayon de zone corps à corps
-4421 rayon de zone à distance
-4422 décroissance minimale de zone corps à corps
-4423 décroissance minimale de zone à distance
-4604 temps de réanimation
-4610 multiplicateur critique corps à corps
-4611 multiplicateur critique à distance
-4612 chance critique corps à corps
-4613 chance critique à distance
-4618 résistance critique corps à corps
-4619 résistance critique à distance
-4622 pénétration d'armure corps à corps
-4623 pénétration d'armure à distance
-4624 chance de pénétration corps à corps
-4625 chance de pénétration à distance
-4630 résistance à la pénétration corps à corps
-4631 résistance à la pénétration à distance
-4717 dégâts de charge corps à corps
-4719 dégâts de charge à distance
-4721 recharge de charge corps à corps
-4722 recharge de charge à distance
-4723 distance de charge corps à corps
-4724 distance de charge à distance
-4725 zone de charge corps à corps
-4727 zone de charge à distance
-4729 décroissance minimale de charge corps à corps
-4731 décroissance minimale de charge à distance
-4733 rayon de charge corps à corps
-4735 rayon de charge à distance
-4737 dégâts de contre-charge corps à corps
-4738 dégâts de contre-charge à distance
-4741 recharge de contre-charge corps à corps
-4742 recharge de contre-charge à distance
-4743 distance de contre-charge corps à corps
-4744 distance de contre-charge à distance
-4760 niveau de dégâts
-4782 points de vie maximum
-4783 dégâts corps à corps
-4784 dégâts à distance
-4785 défense corps à corps
-4786 défense à distance
-4789 portée corps à corps
-4790 portée à distance
-4791 recharge corps à corps
-4792 recharge à distance
-4794 mana maximum
-4807 niveau de soin
-4822 coût en PV de l'autodestruction
-4823 facteur de dégâts d'explosion
-4891 rayon de soin
-4892 rayon de dégâts
-4893 portée de soin
-4894 portée de dégâts
-4895 recharge de soin
-4896 recharge de dégâts
-4897 préparation de soin
-4898 préparation de dégâts
-4899 recharge de régénération de PV
-4900 préparation de régénération de PV
-4901 recharge de régénération de mana
-4902 préparation de régénération de mana
-4904 par niveau
-4905 croissance
-4906 régénération de PV
-4911 régénération de mana
-4912 dégâts minimum corps à corps
-4913 dégâts minimum à distance
-4915 dégâts minimum
-4916 délai de projectile corps à corps
-4917 délai de projectile à distance
-4918 durée d'état corps à corps
-4919 durée d'état à distance
-4924 dégâts forcés
-4925 distance minimale de charge corps à corps
-4926 distance minimale de charge à distance
+5029	non neutre
+5030	objectif optionnel
+5031	objectif optionnel abandonné
+5032	objectif principal
+5033	carte aléatoire
+5034	modèle
+5035	standard
+5036	rapide
+5037	pour le centre
+5038	macro
+5039	économique
+5040	taille de carte
+5041	petite
+5042	moyenne
+5043	grande
+5044	nombre de joueurs
+5045	joueurs
+5046	force des monstres
+5047	faible
+5048	moyen
+5049	fort
+5050	distribution des ressources
+5051	uniforme
+5052	concentrée
+5053	terrain
+5054	aléatoire
+5055	plaine
+5056	marais
+5057	montagne
+5058	graine
+5059	voies
+5060	dispute des voies
+5061	graine aléatoire
+5062	graine personnalisée
+5063	entrez un numéro de graine
+5064	carte générée
+5065	mode d'équipe
+5066	chacun pour soi
+5067	deux équipes
+5068	eau
+5069	sans eau
+5070	lac
+5071	rivière
+5072	trésor
+5073	pas de trésor
+5074	peu de trésors
+5075	beaucoup de trésors
+5076	code de partage
+5077	importer un code
+5078	entrez un code de partage
+5079	code invalide
+5080	aperçu de la carte
+5081	coffre au trésor
+5082	arbalétrier à répétition
+5083	animal
+5084	fournit un champ de construction
+5085	nécessite un champ de construction
+5086	rayon du champ de construction
+5087	mode de construction
+5088	construction assistée
+5089	placer et partir
+5090	construction sacrificielle
+5091	se construit seul
+5092	sacrifie l'ouvrier
+5093	constructible partout
+5094	bâtiment annexe
+5095	types d'hôte d'annexe
+5096	peut avoir une annexe
+5097	maximum d'annexes
+5100	le champ de construction persiste
+5101	le champ de construction s'étend
+5102	nécessite un champ sur la case
+5103	perd l'alimentation sans champ
+5104	cases propagées par seconde
+5105	nécessite un gisement
+5106	placer un effet de champ de bataille
+5107	échafaudage
+5108	travée de pont
+5109	tablier de pont
+5110	quantité du gisement
+5111	cibles du bonus de phase
+5112	unités évoluent automatiquement
+5115	viande
+5116	fruit
+5117	objet de production
+5118	production automatique
+5119	production manuelle
+5120	culture automatique
+5121	culture manuelle
+5122	atelier monétaire
+5123	pièce d'or
+5113	sauf
+5114	toute cible autre que
+5190	briefing de mission
+5191	objectifs principaux
+5192	objectifs secondaires
+5193	difficulté
+5194	standard
+5195	modéré
+5196	difficile
+5197	verrouillé
+5198	terminé
+5199	synopsis de campagne
+5200	démarrer la mission
+5201	joueurs nécessaires
+5202	campagne coopérative en ligne
+5203	mission suivante déverrouillée
+5204	rejouer cette mission
+5205	facile
+5206	extrême
+5207	difficulté standard
+5208	force ennemie
+5209	interface de sélection d'unités
+5210	interface de sélection de bâtiments
+5211	interface de commandes
+5212	interface de compétences
+5213	interface d'aide et de requête
+5214	interface de diplomatie
+5215	sac à dos vide
+5216	schéma de raccourcis
+5217	raccourcis par interface
+5218	raccourcis classiques
+5219	schéma de raccourcis modifié, effectif à la prochaine partie
+5220	ordinateur débutant
+5221	ordinateur intermédiaire
+5222	ordinateur avancé
+5223	ordinateur expert
+5224	ordinateur cauchemar
+5225	résultat
+5226	extraction
+5227	utilisation des ressources
+5228	survie des unités
+5229	défense des bâtiments
+5230	combat
+5231	démolition
+5232	score total
+5233	note
+5234	note S, parfait
+5235	note A, excellent
+5236	note B, bien
+5237	note C, passable
+5238	note D, médiocre
+5239	note E, à améliorer
+5240	sur
+5241	plus
+5242	points
+5243	vaincu
+5244	succès déverrouillé
+5245	obtenu
+5246	médailles
+5247	carte obtenue
+5248	charges restantes
+5249	grade promu à
+5250	titre d'honneur obtenu
+5251	efficacité frugale
+5260	joueur coopératif
+5261	emplacement libre
+5262	partenaire IA coopératif
+5263	définir comme partenaire IA coopératif
+5264	définir l'emplacement comme libre
+5265	type de salle coopérative
+5266	salle coopérative privée
+5267	salle coopérative publique
+5280	configuration des touches
+5281	raccourcis globaux
+5282	raccourci actuel
+5283	appuyez sur une nouvelle touche
+5284	Échap pour annuler, Retour arrière pour effacer
+5285	raccourci enregistré, effectif à la prochaine partie
+5286	la configuration des raccourcis classiques arrivera dans une version ultérieure
+5287	réinitialiser les raccourcis globaux
+5288	raccourcis globaux réinitialisés
+5289	touche déjà utilisée par
+5290	Entrée pour confirmer le remplacement, Échap pour annuler
+5291	non assigné
+5292	défini sur
+5293	appuyez sur Entrée pour reconfigurer
+5294	actif
+5295	inactif
+5296	raccourcis de couche réinitialisés
+5297	réinitialiser les raccourcis de couche
+5298	interface de parcours de carte
+5299	réinitialiser les raccourcis classiques
+5300	bataille parfaite
+5301	commandement excellent
+5302	bonne bataille
+5303	note de passage
+5304	victoire frugale
+5305	préservation parfaite
+5306	chasseur de cauchemars
+5307	tueur d'experts
+5308	première victoire
+5309	contrat de renforts
+5310	succès
+5311	voir les succès déverrouillés et l'armurerie de ce mod
+5312	verrouillé
+5313	déverrouillé
+5314	aucun succès défini pour ce mod
+5315	liste des succès
+5316	armurerie
+5317	voir grades, honneurs, médailles et cartes de ce mod
+5318	total de médailles
+5319	charges
+5350	grade actuel
+5351	grade suivant
+5355	il manque encore
+5356	médailles
+5357	sélectionner une carte d'équipement pour l'emplacement
+5358	ignorer cet emplacement
+5359	démarrer la partie maintenant
+5360	aucune carte disponible à emporter
+5361	carte d'équipement appliquée
+5362	emplacement
+5363	emplacements d'équipement augmentés, maintenant
+5364	à emporter avant une escarmouche ou une carte aléatoire contre l'ordinateur
+5450	prend effet immédiatement au début de la partie
+5365	en plus au début
+5366	apparaît près de votre départ au début
+5367	achèvement répété
+5368	voir la liste des succès
+5369	voir l'armurerie
+5370	nécessite
+5371	en dessous de
+5372	au moins
+5373	victoire cette partie
+5374	ou
+5375	voir les succès et conditions de déverrouillage de ce mod
+5376	sur la carte
+5377	fois
+5378	cumulé
+5379	branches
+5380	progression inter-factions
+5381	chacun déverrouille au moins
+5382	médailles au moins
+5383	chacun a un titre d'honneur
+5384	jalon de carte terminé
+5385	succès
+5386	choisissez votre faction pour cette partie
+5387	prend effet après
+5388	effet de carte d'équipement déclenché
+5389	apparaît près de votre départ
+5390	accorde en plus
+5393	accorde une technologie
+5394	en plus après le premier entraînement terminé de
+5395	cette partie, en plus après le premier entraînement terminé de
+5392	.
+5352	titres d'honneur
+5353	emplacements de cartes pré-mission
+5354	nécessite le grade
+5320	carte de ravitaillement d'or
+5321	carte de ravitaillement de bois
+5322	carte de renfort d'infanterie
+5323	carte de renfort de cavalerie
+5324	carte de renfort d'archers
+5325	carte de renfort de mages
+5326	carte de renfort de dragons
+5327	carte de renfort de siège
+5328	carte de renfort aérien
+5329	carte combo infanterie-cavalerie
+5330	carte combo infanterie-archers
+5331	carte combo archers-cavalerie
+5332	carte d'armée mixte
+5333	carte de renfort d'infanterie différé
+5334	carte d'arme de mêlée différée
+5396	carte bonus d'entraînement d'infanterie
+5340	aucune carte ni médaille obtenue pour l'instant
+5399	raccourcis classiques réinitialisés
+5397	configuration des raccourcis du mod
+5400	recrue
+5401	soldat de première classe
+5402	caporal
+5403	sergent
+5404	lieutenant
+5405	capitaine
+5406	commandant
+5407	colonel
+5408	général de brigade
+5409	général de division
+5410	général
+5411	maréchal
+5420	maître de la frugalité
+5421	gardien parfait
+5422	tueur de cauchemars
+5423	tueur d'experts
+5424	premier sang
+5425	mode de victoire
+5426	conquête, éliminer tous les joueurs ennemis
+5427	économie, atteindre l'objectif de ressources
+5428	exploration, visiter chaque ruine antique
+5429	survie, tenir jusqu'à la fin du temps
+5430	visitez chaque ruine antique avec vos unités
+5431	ruine antique
+5432	caserne capturable
+5433	ruine découverte
+5434	caserne capturée
+5435	ressources accumulées atteignent
+5436	tenir pendant
+5437	minutes
+5451	éliminer tous les joueurs ennemis
+5452	tout en gardant votre hôtel de ville
+5438	livrer une pièce d'or au marchand de la cité-État
+5439	le marchand vous récompense en fournitures
+5440	livrer une potion de soin au guérisseur du village
+5441	le guérisseur rejoint votre cause
+5442	nécessite de déverrouiller le succès
+5443	sur une carte aléatoire
+5445	conquérant aléatoire
+5446	magnat aléatoire
+5447	chasseur de ruines
+5448	survivant
+5449	maître des quatre modes
+5453	chargement invalide
+5454	échec du chargement
+5455	déchargement invalide
+5456	échec du déchargement
+5457	carte de renfort d'infanterie petite
+5458	carte de renfort d'infanterie moyenne
+5459	carte de renfort d'infanterie grande
+5460	carte de renfort de cavalerie petite
+5461	carte de renfort de cavalerie moyenne
+5462	carte de renfort de cavalerie grande
+5463	carte de renfort d'archers petite
+5464	carte de renfort d'archers moyenne
+5465	carte de renfort d'archers grande
+5466	carte de renfort de mages petite
+5467	carte de renfort de mages moyenne
+5468	carte de renfort de mages grande
+5469	carte de renfort de dragons petite
+5470	carte de renfort de dragons moyenne
+5471	carte de renfort de dragons grande
+5472	carte de renfort de siège petite
+5473	carte de renfort de siège moyenne
+5474	carte de renfort de siège grande
+5475	carte de renfort aérien petite
+5476	carte de renfort aérien moyenne
+5477	carte de renfort aérien grande
+5478	carte de ravitaillement d'or petite
+5479	carte de ravitaillement d'or moyenne
+5480	carte de ravitaillement d'or grande
+5481	carte de ravitaillement de bois petite
+5482	carte de ravitaillement de bois moyenne
+5483	carte de ravitaillement de bois grande
+5484	note F, insuffisant
+5485	carte héros Raynor
+5486	briefing de mission
+5487	des ruines antiques sont dispersées sur la carte
+5488	certaines ruines peuvent cacher des secrets dans les cases voisines
+5489	les rivaux n'attendront pas : trouvez toutes les ruines en premier
+5490	des échos métalliques derrière la pierre, fouillez la case voisine
+5491	la chambre cachée offre un butin supplémentaire
+5492	ruines encore non découvertes
+5493	il ne reste qu'une ruine à découvrir
+7736	Raynor, seigneur de la Coalition
+5398	aucun mod
+5500	tout sélectionner localement
+5501	parcourir les unités
+5502	ouvrier
+5503	soldat
+5504	bâtiment
+5505	tous les soldats, tout sélectionner localement
+5506	unité locale
+5507	bâtiment générique
+5510	état ressource 1
+5511	état ressource 2
+5512	état ressource 3
+5513	état de la population
+5514	annuler ou entrer dans le parcours de carte
+5515	basculer interface unités et bâtiments
+5516	basculer interface commandes et compétences
+5517	basculer sac à dos et équipement
+5518	entrer dans l'aide et la consultation
+5519	entrer dans l'interface de diplomatie
+5520	écran des attributs
+5521	sac à dos
+5522	écran d'équipement
+5523	sélectionner la cible suivante
+5524	sélectionner la cible précédente
+5525	sélectionner la cible utile suivante
+5526	sélectionner la cible utile précédente
+5527	avancer d'une case vers le nord
+5528	avancer d'une case vers le sud
+5529	avancer d'une case vers l'ouest
+5530	avancer d'une case vers l'est
+5531	case explorée suivante
+5532	case explorée précédente
+5533	case de conflit suivante
+5534	case de conflit précédente
+5535	case inconnue suivante
+5536	case inconnue précédente
+5537	case de ressource suivante
+5538	case de ressource précédente
+5539	commande par défaut
+5540	confirmer la commande
+5541	examiner
+5542	suivre la vue de l'unité
+5543	points de vie de l'unité
+5544	description d'objectif suivante
+5545	description d'objectif précédente
+5546	annoncer la liste des joueurs
+5547	historique précédent
+5548	historique suivant
+5549	menu du jeu
+5550	augmenter le volume
+5551	baisser le volume
+5552	mode à la première personne
+5553	console
+5554	basculer la musique
+5555	plein écran
+5556	basculer l'horloge parlante
+5557	changer de joueur
+5558	commander une unité
+5559	raccourci lettre d'ordre
+5560	basculer le filtre de camp
+5561	basculer le filtre de type
+5562	commander un bâtiment
+5563	parcourir la commande suivante
+5564	répéter la dernière commande
+5565	répéter immédiatement la dernière commande
+5566	ordre
+5567	parcourir la compétence suivante
+5568	compétence
+5569	liste des compétences
+5570	attaque automatique
+5571	aide élément suivant
+5572	aide élément précédent
+5573	annoncer l'heure
+5574	ouvrir la saisie de chat
+5575	basculer le métronome
+5576	quitter l'interface d'aide
+5577	gisement ressource 1 suivant
+5578	gisement ressource 1 précédent
+5579	gisement ressource 2 suivant
+5580	gisement ressource 2 précédent
+5581	gisement ressource 3 suivant
+5582	gisement ressource 3 précédent
+5583	prairie suivante
+5584	prairie précédente
+5585	passage suivant
+5586	passage précédent
+5587	basculer le zoom
+5588	quitter le parcours de carte
+5589	sélectionner un candidat d'alliance
+5590	envoyer une demande d'alliance
+5591	accepter l'alliance
+5592	refuser ou annuler l'alliance
+5593	quitter l'interface de diplomatie
+5594	annuler la commande
+5595	précision du zoom
+5596	sélectionner des unités
+5597	tous
+5598	une moitié
+5599	un tiers
+5600	un quart
+5601	un cinquième
+5602	dissocier le groupe
+5603	groupe de contrôle 1
+5604	groupe de contrôle 2
+5605	groupe de contrôle 3
+5606	groupe de contrôle 4
+5610	Control
+5611	Shift
+5612	Alt
+5613	haut
+5614	bas
+5615	gauche
+5616	droite
+5617	PageUp
+5618	PageDown
+5619	Home
+5620	End
+5621	Tab
+5622	espace
+5623	Entrée
+5624	Entrée du pavé numérique
+5625	Échap
+5626	Retour arrière
+5627	plus du pavé numérique
+5628	moins du pavé numérique
+5629	égal
+5630	moins
+5631	barre oblique inverse
+5632	point-virgule
+5633	accent grave
+5634	guillemet
+5635	Control gauche
+5636	Control droit
+5637	Alt gauche
+5638	Alt droit
+5639	Shift gauche
+5640	Shift droit
+5641	basculer l'affichage
+5642	enregistrer le groupe
+5643	ajouter des unités au groupe
+5644	basculer le mode triche
+5645	diminuer la précision du zoom
+5646	augmenter la précision du zoom
+5647	interroger la précision du zoom
+5648	recharger les paramètres
+5649	arrêter la lecture de l'historique
+5650	augmenter le volume de la musique
+5651	baisser le volume de la musique
+5652	confirmer avec file d'attente
+5653	confirmer en impératif
+5654	mettre en file
+5655	portée sur toute la carte
+5656	tout sélectionner globalement
+5657	parcourir la commande précédente
+5658	commandes inactives seulement
+5659	basculer le filtre de camp en arrière
+5660	basculer le filtre de type en arrière
+5661	répéter maintenant avec file d'attente
+5662	tous les soldats
+5663	candidat d'alliance précédent
+5664	cinq cases
+5665	ignorer les collisions
+5666	parcourir les unités en arrière
+5667	unités inactives seulement
+5668	inclure les bâtiments sans menu
+5669	sur toute la carte
+5670	ouvrier et tous les soldats
+5671	rechercher des raccourcis
+5672	entrez le texte de recherche, Échap pour annuler
+5673	aucun raccourci correspondant
+5674	variantes avancées
+5675	exporter la configuration des raccourcis
+5676	importer la configuration des raccourcis
+5677	copié dans le presse-papiers
+5678	import réussi, effectif à la prochaine partie
+5679	échec de l'import, format invalide
+5680	import par fusion
+5681	import par remplacement
+5682	tapez la première lettre pour aller rapidement
+5683	touches d'alias
+5684	touche par défaut
+5685	interface à la première personne
+5686	niveau trop bas pour apprendre cette compétence
+5687	compétence déjà connue
+5688	appris
+5689	remboursement de démolition de bâtiment reçu
+5690	jeter
+5691	donner
+5692	activer l'exploration automatique
+5693	désactiver l'exploration automatique
+5694	terrain constructible
+5695	ville
+5696	plaine
+5697	ruisseau
+5698	terrain élevé
+5699	colline
+4371	occupé
+4511	ralentir
+4638	production manuelle
+4654	bâtiment de mine d'or
+4662	plaine
+4663	terrain découvert

@@ -1532,3 +1532,9 @@
 5697 creek
 5698 high ground
 5699 hill
+4371	occupied
+4511	slow
+4638	manual production
+4654	gold mine building
+4662	plain
+4663	open ground

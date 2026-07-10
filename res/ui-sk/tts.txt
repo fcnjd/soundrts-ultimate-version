@@ -1,25 +1,18 @@
-﻿; coding: utf-8
-
+;	coding: utf-8
 0	nič!
 1	ste
-
 3	pred vami
 4	za vami
 5	Aké sú vaše rozkazy?
-
 23	a
-
 38	máte
 39	hitpointy z
 40	level
-
 54	na
 55	metrov
-
 59	hráč
 60	ste
 61	zabitý
-
 65	minút
 66	sekund
 67	sever
@@ -77,10 +70,10 @@
 133	jedla
 134	obsahuje
 135	nie je dosť
+136	totiž!
 137	jedla
 138	ovládate
-+139	skupinu
-
+139	skupina
 142	produkcia pozastavená
 143	fronta je plná
 144	vyčerpaný
@@ -90,18 +83,18 @@
 148	píla
 149	víťazstvo!
 150	porážka
+151	1
 152	upozornenie
 153	most
 154	otvorené
 155	postúpili ste
 156	v strede
-
-
-
 2008	stlačte F5 pre opakované vypočutie
 2010	stlačte
 2011	na
+2012	Tab
 2013	vyberte
+2014	Enter
 2015	potvrdenie
 2016	A a Q
 2017	rozkaz
@@ -111,17 +104,24 @@
 2021	skontrolovanie zdrojov
 2022	1, 2 alebo 3
 2023	ovládanie skupiny
+2024	0
 2025	ovládanie jedného z jednotky
+2026	Backspace
 2027	dať typický príkaz pre vami vybraný cieľ
 2028	F5 a F6
 2029	história
+2030	Alt
 2031	prerušenie reči
+2032	Escape
 2033	zrušiť
+2034	Shift
 2035	späť
 2036	otvorenie menu
 2037	kurzorové šípky
 2038	pohyb po mape
+2039	Control
 2040	ignorovanie prekážok
+2041	Page Down
 2042	presun na ďalšie zaujímavé políčko
 2043	medzerník
 2044	presun na políčko jednotky, ktorú práve ovládate a sledovať ju
@@ -140,8 +140,51 @@
 2057	ovládanie všetkých roľníkov na vami vybratom políčku
 2058	ovládanie ďalšej stavby
 2059	ovládanie ďalšieho roľníka
-
-
+3000	0
+3001	1
+3002	2
+3003	3
+3004	4
+3005	5
+3006	6
+3007	7
+3008	8
+3009	9
+3010	10
+3011	11
+3012	12
+3013	13
+3014	14
+3015	15
+3016	16
+3017	17
+3018	18
+3019	19
+3020	20
+3021	21
+3022	22
+3023	23
+3024	24
+3025	25
+3026	26
+3027	27
+3028	28
+3029	29
+3030	30
+3031	31
+3040	40
+3041	41
+3050	50
+3051	51
+3060	60
+3061	61
+3070	70
+3071	71
+3080	80
+3090	90
+3100	sto
+3101	tisíc
+3102	milión
 4000	hra
 4001	na internete
 4002	na počítači
@@ -167,7 +210,6 @@
 4024	využitých
 4025	stavba
 4026	skóre
-
 4028	stlačte F1 pre pomoc
 4029	hlavné menu
 4030	vyberte si
@@ -179,7 +221,6 @@
 4036	spustiť server na vašom počítači pre vytváranie hier pre viacero hráčov
 4037	nastavenia
 4038	zmeňte svoje parametre
-
 4041	koniec
 4042	ukončiť tento program
 4043	Aký druh serveru?
@@ -203,10 +244,8 @@
 4062	hra začne o 5 sekund
 4063	hra začne, keď organizátor bude pripravený.
 4064	stlačte enter pre potvrdenie
-
 4066	stlačte opakovane tab pre okruh všetkých viditeľných objektov
 4067	stlačte tab na výber cieľa a potom enter pre potvrdenie
-
 4070	zrušiť hru
 4071	pokračovať v hre
 4072	nedá sa spojiť s metaserverom
@@ -225,29 +264,25 @@
 4085	chyba pri pripájaní na server
 4086	menu nastavenia
 4087	zmeňte vaše prihlasovacie meno
-
 4096	uložiť
 4097	uložiť vaše nastavenia a návrat do hlavného menu
 4098	zrušiť,
 4099	vrátiť sa do hlavného menu bez nastavenia zmien
-
 4101	nové okno bude otvorené
 4102	pripájanie bolo prerušené
 4103	nastaviť rýchlosť hry na pomalú
 4104	nastaviť rýchlosť hry na normálnu
 4105	nastaviť rýchlosť hry na rýchlu
-
 4112	uložiť hru
 4113	obnoviť uloženú hru
 4114	hrať proti počítaču
 4115	počítač verzus počítač
-
 4118	naspäť na predchádzajúce menu
 4119	vybrať server zo zoznamu
 4120	vložiť IP adresu servera
 4121	súkromný server
 4122	server nebude pridaný v zozname
-4202	ťažba dreva bola vylepšena
+4200	produkcia dreva je vylepšená
 4201	katapult
 4202	čaká na vaše rozkazy
 4203	z
@@ -331,259 +366,1081 @@
 4281	vyložiť všetko na
 4282	vlož do
 4283	temný lukostrelec
-
-
+5000	a
+5001	b
+5002	c
+5003	d
+5004	e
+5005	f
+5006	g
+5007	h
+5008	i
+5009	j
+5010	k
+5011	l
+5012	m
+5013	n
+5014	o
+5015	p
+5016	q
+5017	r
+5018	s
+5019	t
+5020	u
+5021	v
+5022	w
+5023	x
+5024	y
+5025	z
 5026	bodka
-
 4284	presuň
 4285	do aliancie
 4286	príbuzný
 4287	povedal
 4288	napíš svoju správu
-
 4289	neviditeľný
 4290	detektor
 4291	zahaľovač
 4292	privolať
 4293	získať smrť
 4294	oživiť
-
 4295	zombi
 4296	kostlivec
-
 4297	mních
 4298	chrám
-
 4299	svätá vízia
 4300	zariekanie
-
 4301	človek
 4302	ohyzd
-
 4303	nekromantik
 4304	nekropolis
-
 4305	smrtiaca hmla
 4306	meteory
-
 4307	povolanie
-
 4308	kameňa
 4309	kameňolom
-
-4311 bol porazený
-4312 Boli ste porazený.
-4313 Ste v pozorovacom režime.
-
-4314 plošina
-
-4315 pozrite si nahratú hru
-4316 Stlačte Control shift a F4 na pozorovania iného hráča.
-
-4317 Vložte príkaz.
-
-4318 zväčšiť
-
-4319 zmeň poradie načítaných módov
-4320 Pridať nový mód do zoznamu
-4321 zoznam je prázdny
-4322 načítavam
-
-4323 balíky
-4324 menu balíkov
-4325 nainštaluj balík
-4326 odinštaluj balík
-4327 aktualizuj balík
-4328 sťahujem...
-4329 rozbaľujem...
-4330 Nemôžem nájsť mód:
-
-4331 múr
-4332 brána
-4333 zablokuj
-
-4334 náhodná frakcia
-
-4335 Dosiahol sa limit počtu
-
-4336 otvor používateľský priečinok
-4337 Dokumentácia
-
-4338 masívny múr
-4339 masívna brána
-4340 začať verejnú hru na
-4341 režimy
-4342 zvukové balíky
-4343 rýchlosť
-
-4344 more
-4345 jazero
-4346 rieka
-4347 hora
-4348 most
-4349 brod
-4350 močiar
-4351 oceán
-4352 horský priesmyk
-
-4353 povoliť automatickú úpravu
-4354 zakázať automatickú úpravu
-4355 povoliť automatické zhromažďovanie
-4356 zakázať automatické zhromažďovanie
-
-4357 lodenica
-4358 čln
-4359 torpédoborec
-4360 vojnová loď
-4361 ponorka
-
-4362 lúky
-4363 lesy
-4364 hustý les
+4311	bol porazený
+4312	Boli ste porazený.
+4313	Ste v pozorovacom režime.
+4314	plošina
+4315	pozrite si nahratú hru
+4316	Stlačte Control shift a F4 na pozorovania iného hráča.
+4317	Vložte príkaz.
+4318	zväčšiť
+4319	zmeň poradie načítaných módov
+4320	Pridať nový mód do zoznamu
+4321	zoznam je prázdny
+4322	načítavam
+4323	balíky
+4324	menu balíkov
+4325	nainštaluj balík
+4326	odinštaluj balík
+4327	aktualizuj balík
+4328	sťahujem...
+4329	rozbaľujem...
+4330	Nemôžem nájsť mód:
+4331	múr
+4332	brána
+4333	zablokuj
+4334	náhodná frakcia
+4335	Dosiahol sa limit počtu
+4336	otvor používateľský priečinok
+4337	Dokumentácia
+4338	masívny múr
+4339	masívna brána
+4340	začať verejnú hru na
+4341	režimy
+4342	zvukové balíky
+4343	rýchlosť
+4344	more
+4345	jazero
+4346	rieka
+4347	hora
+4348	most
+4349	brod
+4350	močiar
+4351	oceán
+4352	horský priesmyk
+4353	povoliť automatickú úpravu
+4354	zakázať automatickú úpravu
+4355	povoliť automatické zhromažďovanie
+4356	zakázať automatické zhromažďovanie
+4357	lodenica
+4358	čln
+4359	torpédoborec
+4360	vojnová loď
+4361	ponorka
+4362	lúky
+4363	lesy
+4364	hustý les
+4365	prepnúť protiútok
+4366	protiútok zapnutý
+4367	protiútok vypnutý
+4368	stráž
+4369	prenasledovanie
+4370	dobyť
+4372	zlatý dom
+4373	prebieha výroba
+4375	zastaviť výrobu
+4376	nastavenia zvuku
+4377	nastavenia vyváženia zvuku
+4378	zapnúť vyváženie zvuku
+4379	vypnúť vyváženie zvuku
+4380	prepnúť vyváženie zvuku
+4381	metóda vyváženia zvuku
+4382	zmeniť metódu vyváženia zvuku
+4383	vyváženie zvuku zapnuté
+4384	vyváženie zvuku vypnuté
+4385	odmocnina
+4386	lineárny
+4387	logaritmický
+4388	žiadne
+4389	atribúty
+4390	stlačte príslušné písmeno pre informácie
+4391	stlačte Escape pre ukončenie
+4392	opustiť obrazovku atribútov
+4393	vybraných niekoľko jednotiek: 
+4394	žiadne atribúty nie sú k dispozícii
+4395	: 
+4396	poškodenie na blízko
+4397	poškodenie na diaľku
+4398	obrana na blízko
+4399	obrana na diaľku
+4400	cooldown na blízko
+4401	cooldown na diaľku
+4402	dostrel na blízko
+4403	dostrel na diaľku
+4404	proti 
+4405	bonus poškodenia na blízko
+4406	bonus poškodenia na diaľku
+4407	životy
+4408	stav
+4409	preskúmané technológie
+4410	čas prípravy na boj zblízka
+4411	čas prípravy na boj na diaľku
+4412	minimálny dosah boja zblízka
+4413	minimálny dosah boja na diaľku
+4414	presnosť boja zblízka
+4415	presnosť boja na diaľku
+4416	vyhnutie sa boju zblízka
+4417	vyhnutie sa boju na diaľku
+4418	oblasťový damage zblízka
+4419	oblasťový damage na diaľku
+4420	polomer oblasti zblízka
+4421	polomer oblasti na diaľku
+4422	minimálny pokles oblasti zblízka
+4423	minimálny pokles oblasti na diaľku
+4424	bonus obrany na blízko
+4425	bonus obrany na diaľku
+4426	bonus dostrelu na blízko
+4427	bonus dostrelu na diaľku
+4428	bonus minimálneho dostrelu na blízko
+4429	bonus minimálneho dostrelu na diaľku
+4430	bonus náprahu na blízko
+4431	bonus náprahu na diaľku
+4432	bonus cooldownu na blízko
+4433	bonus cooldownu na diaľku
+4434	bonus zásahu na blízko
+4435	bonus zásahu na diaľku
+4436	bonus úhybu na blízko
+4437	bonus úhybu na diaľku
+4438	bonus zásahu na blízko podľa terénu
+4439	bonus zásahu na diaľku podľa terénu
+4440	bonus úhybu na blízko podľa terénu
+4441	bonus úhybu na diaľku podľa terénu
+4442	bonus rýchlosti
+4443	bonus rýchlosti na rôznych terénoch
+4444	mana
+4445	zľava
+4446	automatický prieskum
+4452	modifikátor útoku na blízko podľa terénu
+4453	modifikátor útoku na diaľku podľa terénu
+4454	modifikátor cooldownu na blízko podľa terénu
+4455	modifikátor cooldownu na diaľku podľa terénu
+4456	modifikátor útoku z rozbehu na blízko podľa terénu
+4457	modifikátor útoku z rozbehu na diaľku podľa terénu
+4458	modifikátor cooldownu útoku z rozbehu na blízko podľa terénu
+4459	modifikátor cooldownu útoku z rozbehu na diaľku podľa terénu
+4500	spojenci
+4501	nepriatelia
+4502	všetky
+4503	budovy
+4504	jednotky
+4505	prvky
+4506	všetky typy
+4507	posily
+4508	prepnúť na
+4509	príliš skoro
+4510	zdvihnúť
+4600	úroveň
+4601	SK
+4602	/
+4603	maximálna úroveň
+4604	čas oživenia
+4605	zvýšenie úrovne
+4606	vzkriesený
+4610	multiplikátor kritu zblízka
+4611	multiplikátor kritu na diaľku
+4612	šanca na krit zblízka
+4613	šanca na krit na diaľku
+4614	bonus násobiteľa kritického zásahu na blízko
+4615	bonus násobiteľa kritického zásahu na diaľku
+4616	bonus šance na kritický zásah na blízko
+4617	bonus šance na kritický zásah na diaľku
+4618	odolnosť voči kritu zblízka
+4619	odolnosť voči kritu na diaľku
+4620	bonus odolnosti voči kritickému zásahu na blízko
+4621	bonus odolnosti voči kritickému zásahu na diaľku
+4622	prienik pancierom zblízka
+4623	prienik pancierom na diaľku
+4624	šanca prieniku pancierom zblízka
+4625	šanca prieniku pancierom na diaľku
+4626	bonus prieniku na blízko
+4627	bonus prieniku na diaľku
+4628	bonus šance na prienik na blízko
+4629	bonus šance na prienik na diaľku
+4630	odolnosť voči prieniku zblízka
+4631	odolnosť voči prieniku na diaľku
+4632	bonus odolnosti voči prieniku na blízko
+4633	bonus odolnosti voči prieniku na diaľku
+4634	hudba
+4635	hudba zapnutá
+4636	hudba vypnutá
+4637	hlasitosť v percentách
+4650	spustiť automatickú výrobu
+4651	spustiť ručnú výrobu
+4655	spustiť automatické pestovanie
+4656	spustiť ručné pestovanie
+4657	pestovanie
+4658	prebieha pestovanie
+4659	zastaviť pestovanie
+4660	dom
+4661	ovocný sad
+4700	sledovať hru
+4701	hra prebieha
+4702	žiadne hry na sledovanie
+4703	vyberte hru na sledovanie
+4704	sledovanie hry
+4705	ukončiť sledovanie
+4706	sledujete
+4707	pripojil sa divák
+4708	divák odišiel
+4709	hra prebieha
+4710	pomalý
+4711	žiadny nepriateľ na dohľad
+4712	útočí
+4713	stred
+4714	mierka zväčšenia musí byť medzi 2 a 20
+4715	zadajte mierku zväčšenia, napr. 3x3 alebo 4x4
+4716	môže trénovať
+#	konštanty správ atribútov
+4717	damage útoku zblízka
+4718	bonus poškodenia útoku z rozbehu na blízko
+4719	damage útoku na diaľku
+4720	bonus poškodenia útoku z rozbehu na diaľku
+4721	cooldown útoku zblízka
+4722	cooldown útoku na diaľku
+4723	dosah útoku zblízka
+4724	dosah útoku na diaľku
+4725	oblasťový damage útoku zblízka
+4726	bonus plošného poškodenia útoku z rozbehu na blízko
+4727	oblasťový damage útoku na diaľku
+4728	bonus plošného poškodenia útoku z rozbehu na diaľku
+4729	minimálny pokles útoku zblízka
+4730	bonus útlmu plošného poškodenia útoku z rozbehu na blízko
+4731	minimálny pokles útoku na diaľku
+4732	bonus útlmu plošného poškodenia útoku z rozbehu na diaľku
+4733	polomer útoku zblízka
+4734	bonus polomeru útoku z rozbehu na blízko
+4735	polomer útoku na diaľku
+4736	bonus polomeru útoku z rozbehu na diaľku
+4737	damage protiútoku zblízka
+4738	damage protiútoku na diaľku
+4739	bonus protiútoku z rozbehu na blízko
+4740	bonus protiútoku z rozbehu na diaľku
+4741	cooldown protiútoku zblízka
+4742	cooldown protiútoku na diaľku
+4743	dosah protiútoku zblízka
+4744	dosah protiútoku na diaľku
+4750	použiteľné technológie
+4751	použiteľné zručnosti
+4752	preskúmateľné technológie
+4753	možno vylepšiť na
+4754	cena many
+4755	efekt
+4756	dosah efektu
+4757	polomer efektu
+4758	použiť bonus
+4759	bonus
+4760	úroveň poškodenia
+4761	typ cieľa poškodenia efektu
+4762	meteory
+4763	nekonečno
+4764	použiť
+4765	, trvanie
+4768	cena
+4769	čas
+4770	populácia
+4771	požiadavky
+4772	vyvolať
+4773	liečiť
+4774	poškodenie
+4775	vzkriesiť maximálne
+4776	jednotky
+4777	vzkriesiť mŕtvych
+4778	, typ:
+4779	obrátiť nepriateľské jednotky
+4780	cooldown
+4781	životy
+4782	maximálne body zdravia
+4783	damage zblízka
+4784	damage na diaľku
+4785	obrana zblízka
+4786	obrana na diaľku
+4787	rýchlosť pohybu
+4788	dohľad
+4789	dosah zblízka
+4790	dosah na diaľku
+4791	cooldown zblízka
+4792	cooldown na diaľku
+4793	mana
+4794	maximálna mana
+4795	čas zberu
+4796	množstvo zberu
+4797	čas výroby
+4798	množstvo výroby
+4799	cena
+4800	časová cena
+4801	cena populácie
+4802	 — atribúty: 
+4803	žiadny taký atribút
+4804	žiadny bonus
+4805	minút
+4806	poskytovaná populácia
+4807	úroveň liečenia
+4808	sekúnd
+4809	môže stavať
+4810	typ jednotky
+4811	trieda
+4812	budova
+4813	robotník
+4814	vojak
+4815	efekt
+4816	technológia
+4817	opraviteľné a zakotvené plavidlá
+4818	áno
+4819	nie
+4820	samovražedný útok na blízko
+4821	samovražedný útok na diaľku
+4822	percento HP pri sebazničení
+4823	faktor explozívneho poškodenia
+4824	dohľad
+4825	typy cieľov na blízko
+4826	typy cieľov na diaľku
+4827	môže zbierať
+4828	čas zberu
+4829	množstvo zberu
+4830	môže opravovať
+4831	pozemný cieľ
+4832	vzdušný cieľ
+4833	budova ako cieľ
+4834	jednotka ako cieľ
+4835	všetky
+4836	typ zdroja
+4837	čas ťažby
+4838	množstvo ťažby
+4839	regenerácia zdrojov
+4840	maximálna kapacita zdrojov
+4841	počiatočná kapacita zdrojov
+4842	typ ložiska
+4843	názov zdroja
+4844	podtyp
+4845	opraviteľný
+4846	liečiteľný
+4847	prepravná kapacita
+4848	prepravný objem
+4849	cestujúci napadnuteľní zvonka
+4850	bonus naloženia
+4927	bonus cestujúceho
+4928	šanca zásahu jednotiek vnútri zvonka
+4851	mŕtvola
+4852	zem
+4853	vzduch
+4854	voda
+4855	produkuje
+4856	neprodukuje
+4857	nemŕtvy
+4858	zdroj
+4859	aktuálna zbraň
+4860	dostupné zbrane
+4861	prepínateľná
+4862	prepnúť zbraň
+4863	meč
+4864	luk
+4865	názov zbrane
+4866	brnenie
+4867	aktuálne brnenie
+4868	názov brnenia
+4871	brnenie
+4872	boj na blízko
+4873	zbraň
+4875	inventár
+4876	názov predmetu
+4877	kolízny objem
+4878	spotrebovať pri zdvihnutí
+4879	korisť
+4880	odmeny v zdrojoch
+4881	zručnosti
+4882	posilnenia
+4883	predmet
+4885	hrdina
+4886	krátky meč
+4887	typ výroby
+4888	úvod
+4889	Základná robotnícka jednotka schopná zbierať zdroje, stavať budovy a opravovať lode. Je základom každej civilizácie.
+4890	Základná pechota na blízko s mečom a brnením. Lacná na výcvik a tvorí hlavnú časť armády.
+4891	polomer liečenia
+4892	polomer poškodenia
+4893	dosah liečenia
+4894	dosah poškodenia
+4895	cooldown liečenia
+4896	cooldown poškodenia
+4897	príprava liečenia
+4898	príprava poškodenia
+4899	cooldown regenerácie HP
+4900	príprava regenerácie HP
+4901	cooldown regenerácie many
+4902	príprava regenerácie many
+4903	typy liečiteľných cieľov
+4904	za úroveň
+4905	rast
+4906	regenerácia HP
+4907	aktuálne množstvo
+4908	maximálne množstvo
+4909	kategória
+4910	kapacita inventára
+4911	regenerácia many
+4912	minimálny damage zblízka
+4913	minimálny damage na diaľku
+4914	polomer posilnenia
+4915	minimálny damage
+4916	oneskorenie projektilu zblízka
+4917	oneskorenie projektilu na diaľku
+4918	trvanie stavu zblízka
+4919	trvanie stavu na diaľku
+4924	vynútené poškodenie
+4925	minimálny dosah útoku zblízka
+4926	minimálny dosah útoku na diaľku
+4920	zmluva
+4921	zmluva aktívna, útoky zakázané
+4922	zmluva skončila, môžete bojovať
+4923	žiadna zmluva
+4930	jeleň
+4931	ovca
+4932	mršina
+4933	diviak
+4934	hnať
+4935	nasleduje
+4936	lovecké techniky
+4950	kooperatívna kampaň
+4951	miestna kooperatívna kampaň
+4952	vyberte kooperatívnu kampaň
+4953	vyberte kooperatívnu kapitolu
+4954	spojenci pre kooperáciu nastavení
+4955	spolupracujte so spoluhráčom pri hraní kampane
+4960	diplomacia
+4961	žiadny kandidát
+4962	spojenec s
+4963	spojenectvo zrušené s
+4964	vzájomný
+4965	jednosmerný
+4966	navrhnúť spojenectvo s
+4967	stiahnuť žiadosť o spojenectvo s
+4968	žiadosť o spojenectvo od
+4969	spojenectvo prijaté s
+4970	spojenectvo odmietnuté s
+4971	spojenectvá sú v tejto hre uzamknuté
+4972	žiadosť o spojenectvo odoslaná
+4973	žiadosť o spojenectvo odmietnutá
+4974	žiadosť o spojenectvo stiahnutá
+4975	spojenectvo uzavreté
+4976	voda je nepriechodná
+4977	pevnina je nepriechodná
+4978	nedokončené, nepriechodné
+4980	aktuálny vek
+4981	doba temna
+4982	feudálny vek
+4983	hradný vek
+4984	imperiálny vek
+4985	môže postúpiť do
+4986	pokračovať v nedokončenej hre
+4987	pokračovať tam, kde ste skončili
+4988	vyberte slot uloženia
+4989	nebol nájdený žiadny uložený stav
+4990	uloženie
+4991	prázdny slot
+4992	uložené
+4993	postup zachovaný, hru možno neskôr pokračovať
+4994	zadajte nový názov. Enter na potvrdenie, Escape na zrušenie
+4995	vymazať túto položku? Enter na potvrdenie, Escape na zrušenie
+4996	vymazané
+4997	premenované
+4998	neplatný názov
+4999	zrušené
+5027	neutrálny
 5028	replay
-5033 náhodná mapa
-5034 šablóna
-5035 štandardná
-5036 rýchla
-5037 boj o stred
-5038 makro
-5039 ekonomická
-5040 veľkosť mapy
-5041 malá
-5042 stredná
-5043 veľká
-5044 počet hráčov
-5045 hráčov
-5046 sila monštier
-5047 slabá
-5048 stredná
-5049 silná
-5050 rozmiestnenie surovín
-5051 rovnomerné
-5052 sústredené
-5053 terén
-5054 náhodný
-5055 rovina
-5056 močiar
-5057 hory
-5058 semienko
-5059 pruhy
-5060 boj o pruhy
-5061 náhodné semienko
-5062 vlastné semienko
-5063 zadajte číslo semienka
-5064 mapa vygenerovaná
-5065 režim tímov
-5066 každý proti každému
-5067 dva tímy
-5068 voda
-5069 bez vody
-5070 jazero
-5071 rieka
-5072 poklad
-5073 bez pokladov
-5074 málo pokladov
-5075 veľa pokladov
-5076 zdieľací kód
-5077 importovať kód
-5078 zadajte kód
-5079 neplatný kód
-5080 náhľad mapy
-5209 rozhranie výberu jednotiek
-5210 rozhranie výberu budov
-5211 rozhranie príkazov
-5212 rozhranie schopností
-5213 rozhranie pomoci a dotazov
-5214 diplomatické rozhranie
-5215 prázdny batoh
-5216 schéma klávesových skratiek
-5217 vrstvené klávesové skratky
-5218 klasické klávesové skratky
-5219 schéma klávesových skratiek zmenené, platí od ďalšej hry
-
-; Level-up stat labels (auto-maintained)
-4410 čas prípravy na boj zblízka
-4411 čas prípravy na boj na diaľku
-4412 minimálny dosah boja zblízka
-4413 minimálny dosah boja na diaľku
-4414 presnosť boja zblízka
-4415 presnosť boja na diaľku
-4416 vyhnutie sa boju zblízka
-4417 vyhnutie sa boju na diaľku
-4418 oblasťový damage zblízka
-4419 oblasťový damage na diaľku
-4420 polomer oblasti zblízka
-4421 polomer oblasti na diaľku
-4422 minimálny pokles oblasti zblízka
-4423 minimálny pokles oblasti na diaľku
-4604 čas oživenia
-4610 multiplikátor kritu zblízka
-4611 multiplikátor kritu na diaľku
-4612 šanca na krit zblízka
-4613 šanca na krit na diaľku
-4618 odolnosť voči kritu zblízka
-4619 odolnosť voči kritu na diaľku
-4622 prienik pancierom zblízka
-4623 prienik pancierom na diaľku
-4624 šanca prieniku pancierom zblízka
-4625 šanca prieniku pancierom na diaľku
-4630 odolnosť voči prieniku zblízka
-4631 odolnosť voči prieniku na diaľku
-4717 damage útoku zblízka
-4719 damage útoku na diaľku
-4721 cooldown útoku zblízka
-4722 cooldown útoku na diaľku
-4723 dosah útoku zblízka
-4724 dosah útoku na diaľku
-4725 oblasťový damage útoku zblízka
-4727 oblasťový damage útoku na diaľku
-4729 minimálny pokles útoku zblízka
-4731 minimálny pokles útoku na diaľku
-4733 polomer útoku zblízka
-4735 polomer útoku na diaľku
-4737 damage protiútoku zblízka
-4738 damage protiútoku na diaľku
-4741 cooldown protiútoku zblízka
-4742 cooldown protiútoku na diaľku
-4743 dosah protiútoku zblízka
-4744 dosah protiútoku na diaľku
-4760 úroveň poškodenia
-4782 maximálne body zdravia
-4783 damage zblízka
-4784 damage na diaľku
-4785 obrana zblízka
-4786 obrana na diaľku
-4789 dosah zblízka
-4790 dosah na diaľku
-4791 cooldown zblízka
-4792 cooldown na diaľku
-4794 maximálna mana
-4807 úroveň liečenia
-4822 percento HP pri sebazničení
-4823 faktor explozívneho poškodenia
-4891 polomer liečenia
-4892 polomer poškodenia
-4893 dosah liečenia
-4894 dosah poškodenia
-4895 cooldown liečenia
-4896 cooldown poškodenia
-4897 príprava liečenia
-4898 príprava poškodenia
-4899 cooldown regenerácie HP
-4900 príprava regenerácie HP
-4901 cooldown regenerácie many
-4902 príprava regenerácie many
-4904 za úroveň
-4905 rast
-4906 regenerácia HP
-4911 regenerácia many
-4912 minimálny damage zblízka
-4913 minimálny damage na diaľku
-4915 minimálny damage
-4916 oneskorenie projektilu zblízka
-4917 oneskorenie projektilu na diaľku
-4918 trvanie stavu zblízka
-4919 trvanie stavu na diaľku
-4924 vynútené poškodenie
-4925 minimálny dosah útoku zblízka
-4926 minimálny dosah útoku na diaľku
+5029	neneutrálny
+5030	voliteľný cieľ
+5031	voliteľný cieľ opustený
+5032	hlavný cieľ
+5033	náhodná mapa
+5034	šablóna
+5035	štandardná
+5036	rýchla
+5037	boj o stred
+5038	makro
+5039	ekonomická
+5040	veľkosť mapy
+5041	malá
+5042	stredná
+5043	veľká
+5044	počet hráčov
+5045	hráčov
+5046	sila monštier
+5047	slabá
+5048	stredná
+5049	silná
+5050	rozmiestnenie surovín
+5051	rovnomerné
+5052	sústredené
+5053	terén
+5054	náhodný
+5055	rovina
+5056	močiar
+5057	hory
+5058	semienko
+5059	pruhy
+5060	boj o pruhy
+5061	náhodné semienko
+5062	vlastné semienko
+5063	zadajte číslo semienka
+5064	mapa vygenerovaná
+5065	režim tímov
+5066	každý proti každému
+5067	dva tímy
+5068	voda
+5069	bez vody
+5070	jazero
+5071	rieka
+5072	poklad
+5073	bez pokladov
+5074	málo pokladov
+5075	veľa pokladov
+5076	zdieľací kód
+5077	importovať kód
+5078	zadajte kód
+5079	neplatný kód
+5080	náhľad mapy
+5081	truhlica s pokladom
+5082	kušiník s opakovačkou
+5083	zviera
+5084	poskytuje stavebné pole
+5085	vyžaduje stavebné pole
+5086	polomer stavebného poľa
+5087	režim stavby
+5088	asistovaná stavba
+5089	umiestniť a odísť
+5090	obetná stavba
+5091	staví sa samo
+5092	obetuje robotníka
+5093	možno stavať kdekoľvek na súši
+5094	prídavná budova
+5095	možné hlavné budovy
+5096	môže mať prídavok
+5097	maximum prídavkov
+5100	stavebné pole pretrváva
+5101	stavebné pole sa šíri
+5102	vyžaduje značku na poli
+5103	stráca energiu bez poľa
+5104	polí šírenia za sekundu
+5105	vyžaduje ložisko
+5106	umiestniť efekt bojiska
+5107	lešenie
+5108	mostné pole
+5109	mostovka
+5110	zásoba
+5111	ciele fázového bonusu
+5112	jednotky sa automaticky vylepšujú
+5115	mäso
+5116	ovocie
+5117	výrobná položka
+5118	automatická výroba
+5119	ručná výroba
+5120	automatické pestovanie
+5121	ručné pestovanie
+5122	mincovňa
+5123	zlatá minca
+5113	okrem
+5114	akýkoľvek cieľ okrem
+5190	briefing misie
+5191	hlavné ciele
+5192	vedľajšie ciele
+5193	obtiažnosť
+5194	štandardná
+5195	stredná
+5196	ťažká
+5197	zamknuté
+5198	dokončené
+5199	synopsa kampane
+5200	spustiť misiu
+5201	potrební hráči
+5202	online kooperatívna kampaň
+5203	ďalšia misia odomknutá
+5204	zopakovať túto misiu
+5205	ľahká
+5206	extrémna
+5207	štandardná obtiažnosť
+5208	sila nepriateľa
+5209	rozhranie výberu jednotiek
+5210	rozhranie výberu budov
+5211	rozhranie príkazov
+5212	rozhranie schopností
+5213	rozhranie pomoci a dotazov
+5214	diplomatické rozhranie
+5215	prázdny batoh
+5216	schéma klávesových skratiek
+5217	vrstvené klávesové skratky
+5218	klasické klávesové skratky
+5219	schéma klávesových skratiek zmenené, platí od ďalšej hry
+5220	začiatočnícky počítač
+5221	pokročilý počítač
+5222	skúsený počítač
+5223	expertný počítač
+5224	nočná mora počítač
+5225	výsledok
+5226	ťažba
+5227	využitie zdrojov
+5228	prežitie jednotiek
+5229	obrana budov
+5230	boj
+5231	demolícia
+5232	celkové skóre
+5233	známka
+5234	známka S, dokonalá
+5235	známka A, výborná
+5236	známka B, dobrá
+5237	známka C, prospel
+5238	známka D, dostatočná
+5239	známka E, treba zlepšiť
+5240	z
+5241	plus
+5242	bodov
+5243	porazený
+5244	úspech odomknutý
+5245	získané
+5246	medailí
+5247	získaná karta
+5248	zostávajúce nabitia
+5249	hodnosť povýšená na
+5250	získaný čestný titul
+5251	úsporná efektivita
+5260	kooperatívny hráč
+5261	voľný slot
+5262	AI kooperatívny partner
+5263	nastaviť ako AI kooperatívneho partnera
+5264	nastaviť slot ako voľný
+5265	typ kooperatívnej miestnosti
+5266	súkromná kooperatívna miestnosť
+5267	verejná kooperatívna miestnosť
+5280	zmeniť mapovanie kláves
+5281	globálne klávesové skratky
+5282	aktuálna skratka
+5283	stlačte novú klávesu
+5284	Esc na zrušenie, Backspace na vymazanie väzby
+5285	skratka uložená, platí od budúcej hry
+5286	mapovanie klasických skratiek príde v neskoršej verzii
+5287	obnoviť predvolené globálne skratky
+5288	globálne skratky obnovené na predvolené
+5289	klávesa už použitá pre 
+5290	Enter na potvrdenie nahradenia, Esc na zrušenie
+5291	nepriradené
+5292	nastavené na
+5293	Enter na remapovanie
+5294	aktívne
+5295	neaktívne
+5296	skratky vrstvy obnovené na predvolené
+5297	obnoviť predvolené skratky vrstvy
+5298	prehliadač máp
+5299	obnoviť predvolené klasické skratky
+5300	dokonalá bitka
+5301	výborné velenie
+5302	dobrá bitka
+5303	prospel
+5304	úsporné víťazstvo
+5305	dokonalé zachovanie
+5306	lovec nočných mor
+5307	zabijak expertov
+5308	prvé víťazstvo
+5309	zmluva o posilách
+5310	úspechy
+5311	zobraziť odomknuté úspechy a zbrojnicu tohto modu
+5312	zamknuté
+5313	odomknuté
+5314	pre tento mod nie sú definované úspechy
+5315	zoznam úspechov
+5316	zbrojnica
+5317	zobraziť hodnosť, pocty, medaily a karty tohto modu
+5318	spolu medailí
+5319	nabitia
+5350	aktuálna hodnosť
+5351	do ďalšej hodnosti
+5355	ešte treba
+5356	medaily
+5357	vyberte výbavovú kartu pre slot
+5358	preskočiť tento slot
+5359	spustiť hru teraz
+5360	žiadne karty k dispozícii
+5361	výbavová karta použitá
+5362	slot
+5363	sloty výbavy zvýšené, teraz
+5364	vziať pred skirmishom alebo náhodnou mapou proti počítaču
+5450	platí hneď po štarte hry
+5365	navyše na začiatku
+5366	objaví sa na začiatku hry blízko vášho štartu
+5367	opakované dokončenie
+5368	zobraziť zoznam úspechov
+5369	zobraziť zbrojnicu
+5370	vyžaduje
+5371	pod
+5372	aspoň
+5373	víťazstvo v tejto hre
+5374	alebo
+5375	zobraziť úspechy a podmienky odomknutia tohto modu
+5376	na mape
+5377	krát
+5378	kumulatívne
+5379	vetvy
+5380	medzifakčný postup
+5381	každá odomknúť aspoň
+5382	medailí aspoň
+5383	každá má čestný titul
+5384	míľnik mapy dokončený
+5385	úspechov
+5386	vyberte frakciu pre túto hru
+5387	platí po
+5388	efekt výbavovej karty spustený
+5389	objaví sa blízko vášho štartu
+5390	poskytuje navyše
+5393	poskytuje technológiu
+5394	navyše po prvom dokončenom výcviku
+5395	v tejto hre navyše po prvom dokončenom výcviku
+5392	.
+5352	čestné tituly
+5353	sloty kariet pred misiou
+5354	vyžaduje hodnosť
+5320	karta zásoby zlata
+5321	karta zásoby dreva
+5322	karta posíl pechoty
+5323	karta posíl kavalérie
+5324	karta posíl lukostrelcov
+5325	karta posíl mágov
+5326	karta posíl drakov
+5327	karta posíl obliehania
+5328	karta posíl letectva
+5329	karta kombinácie pechota-kavaléria
+5330	karta kombinácie pechota-lukostrelci
+5331	karta kombinácie lukostrelci-kavaléria
+5332	karta zmiešanej armády
+5333	karta oneskorených posíl pechoty
+5334	karta oneskorenej zbrane na blízko
+5396	karta bonusu výcviku pechoty
+5340	zatiaľ žiadne karty ani medaily
+5399	klasické skratky obnovené na predvolené
+5397	mapovanie skratiek modu 
+5400	rekrut
+5401	slobodník
+5402	desiatnik
+5403	seržant
+5404	poručík
+5405	kapitán
+5406	major
+5407	plukovník
+5408	generálmajor
+5409	generálporučík
+5410	generál
+5411	maršál
+5420	majster úspornosti
+5421	dokonalý strážca
+5422	zabijak nočných mor
+5423	zabijak expertov
+5424	prvá krv
+5425	režim víťazstva
+5426	dobytie, zničte všetkých nepriateľských hráčov
+5427	ekonomika, dosiahnite cieľ zdrojov
+5428	prieskum, navštívte každú starovekú ruinu
+5429	prežitie, vydržte do konca času
+5430	navštívte každú starovekú ruinu svojimi jednotkami
+5431	staroveká ruina
+5432	dobyateľné kasárne
+5433	ruina objavená
+5434	kasárne dobyté
+5435	nahromadené zdroje dosiahnu
+5436	vydržať
+5437	minút
+5451	zničte všetkých nepriateľských hráčov
+5452	a pritom si udržať radnicu
+5438	doručte zlatú mincu obchodníkovi mestského štátu
+5439	obchodník vás odmení zásobami
+5440	doručte liečivý elixír dedinskému liečiteľovi
+5441	liečiteľ sa pridá k vašej veci
+5442	najprv odomknite úspech
+5443	na náhodnej mape
+5445	náhodný dobyvatel
+5446	náhodný magnát
+5447	lovec ruín
+5448	preživší
+5449	majster štyroch režimov
+5453	naloženie neplatné
+5454	naloženie zlyhalo
+5455	vyloženie neplatné
+5456	vyloženie zlyhalo
+5457	malá karta posíl pechoty
+5458	stredná karta posíl pechoty
+5459	veľká karta posíl pechoty
+5460	malá karta posíl kavalérie
+5461	stredná karta posíl kavalérie
+5462	veľká karta posíl kavalérie
+5463	malá karta posíl lukostrelcov
+5464	stredná karta posíl lukostrelcov
+5465	veľká karta posíl lukostrelcov
+5466	malá karta posíl mágov
+5467	stredná karta posíl mágov
+5468	veľká karta posíl mágov
+5469	malá karta posíl drakov
+5470	stredná karta posíl drakov
+5471	veľká karta posíl drakov
+5472	malá karta posíl obliehania
+5473	stredná karta posíl obliehania
+5474	veľká karta posíl obliehania
+5475	malá karta posíl letectva
+5476	stredná karta posíl letectva
+5477	veľká karta posíl letectva
+5478	malá karta zásoby zlata
+5479	stredná karta zásoby zlata
+5480	veľká karta zásoby zlata
+5481	malá karta zásoby dreva
+5482	stredná karta zásoby dreva
+5483	veľká karta zásoby dreva
+5484	známka F, zlá
+5485	karta hrdinu Raynora
+5486	briefing misie
+5487	staroveké ruiny sú rozptýlené po mape
+5488	niektoré ruiny môžu skrývať ďalšie tajomstvá na susedných poliach
+5489	súperi nebudú čakať — nájdite každú ruinu ako prví
+5490	kovové ozveny za kameňom, prehľadajte susedné pole
+5491	skrytá komnata skýta ďalšiu korisť
+5492	dosiaľ neobjavené ruiny
+5493	zostáva len jedna ruina na objavenie
+7736	Raynor, pán koalície
+5398	žiadny mod
+5500	lokálne vybrať všetko
+5501	prechádzať jednotky
+5502	robotník
+5503	vojak
+5504	budova
+5505	všetci vojaci, lokálne vybrať všetko
+5506	miestna jednotka
+5507	všeobecná budova
+5510	stav zdroja 1
+5511	stav zdroja 2
+5512	stav zdroja 3
+5513	stav populácie
+5514	zrušiť alebo otvoriť prehliadač máp
+5515	prepnúť rozhranie jednotiek a budov
+5516	prepnúť rozhranie príkazov a zručností
+5517	prepnúť batoh a výbavu
+5518	otvoriť pomoc a dopyty
+5519	otvoriť rozhranie diplomacie
+5520	obrazovka atribútov
+5521	batoh
+5522	obrazovka výbavy
+5523	vybrať ďalší cieľ
+5524	vybrať predchádzajúci cieľ
+5525	vybrať ďalší užitočný cieľ
+5526	vybrať predchádzajúci užitočný cieľ
+5527	posunúť o pole na sever
+5528	posunúť o pole na juh
+5529	posunúť o pole na západ
+5530	posunúť o pole na východ
+5531	ďalšie preskúmané pole
+5532	predchádzajúce preskúmané pole
+5533	ďalšie konfliktné pole
+5534	predchádzajúce konfliktné pole
+5535	ďalšie neznáme pole
+5536	predchádzajúce neznáme pole
+5537	ďalšie pole zdrojov
+5538	predchádzajúce pole zdrojov
+5539	predvolený príkaz
+5540	potvrdiť príkaz
+5541	preskúmať
+5542	sledovať pohľad jednotky
+5543	životy jednotky
+5544	popis ďalšieho cieľa
+5545	popis predchádzajúceho cieľa
+5546	oznámiť zoznam hráčov
+5547	história späť
+5548	história vpred
+5549	herné menu
+5550	hlasitejšie
+5551	tichšie
+5552	režim prvej osoby
+5553	konzola
+5554	prepnúť hudbu
+5555	celá obrazovka
+5556	prepnúť hovoriace hodiny
+5557	zmeniť hráča
+5558	veliť jednotke
+5559	písmenová skratka príkazu
+5560	prepnúť filter strany
+5561	prepnúť filter typu
+5562	veliť budove
+5563	prechádzať ďalší príkaz
+5564	opakovať posledný príkaz
+5565	opakovať posledný príkaz hneď
+5566	príkaz
+5567	prechádzať ďalšiu zručnosť
+5568	zručnosť
+5569	zoznam zručností
+5570	automatický útok
+5571	pomoc ďalšia položka
+5572	pomoc predchádzajúca položka
+5573	oznámiť čas
+5574	otvoriť vstup chatu
+5575	prepnúť metronóm
+5576	opustiť rozhranie pomoci
+5577	ďalšie ložisko zdroja 1
+5578	predchádzajúce ložisko zdroja 1
+5579	ďalšie ložisko zdroja 2
+5580	predchádzajúce ložisko zdroja 2
+5581	ďalšie ložisko zdroja 3
+5582	predchádzajúce ložisko zdroja 3
+5583	ďalšia lúka
+5584	predchádzajúca lúka
+5585	ďalší priechod
+5586	predchádzajúci priechod
+5587	prepnúť zväčšenie
+5588	opustiť prehliadač máp
+5589	vybrať kandidáta spojenectva
+5590	odoslať žiadosť o spojenectvo
+5591	prijať spojenectvo
+5592	odmietnuť alebo zrušiť spojenectvo
+5593	opustiť rozhranie diplomacie
+5594	zrušiť príkaz
+5595	presnosť zväčšenia
+5596	vybrať jednotky
+5597	všetky
+5598	polovica
+5599	tretina
+5600	štvrť
+5601	pätina
+5602	zrušiť skupinu
+5603	ovládacia skupina 1
+5604	ovládacia skupina 2
+5605	ovládacia skupina 3
+5606	ovládacia skupina 4
+5610	Control
+5611	Shift
+5612	Alt
+5613	hore
+5614	dole
+5615	doľava
+5616	doprava
+5617	PageUp
+5618	PageDown
+5619	Home
+5620	End
+5621	Tab
+5622	medzerník
+5623	Enter
+5624	Enter na numerickej klávesnici
+5625	Escape
+5626	Backspace
+5627	plus na numerickej klávesnici
+5628	minus na numerickej klávesnici
+5629	rovná sa
+5630	mínus
+5631	spätné lomítko
+5632	bodkočiarka
+5633	spätná úvodzovka
+5634	úvodzovky
+5635	ľavý Control
+5636	pravý Control
+5637	ľavý Alt
+5638	pravý Alt
+5639	ľavý Shift
+5640	pravý Shift
+5641	prepnúť zobrazenie
+5642	uložiť skupinu
+5643	pridať jednotky do skupiny
+5644	prepnúť režim cheatov
+5645	znížiť presnosť zväčšenia
+5646	zvýšiť presnosť zväčšenia
+5647	opýtať sa na presnosť zväčšenia
+5648	znova načítať parametre
+5649	zastaviť prehrávanie histórie
+5650	hlasitejšie hudba
+5651	tichšie hudba
+5652	potvrdiť s frontou
+5653	potvrdiť naliehavo
+5654	do fronty
+5655	dosah celej mapy
+5656	globálne vybrať všetko
+5657	prechádzať predchádzajúci príkaz
+5658	iba neaktívne príkazy
+5659	prepnúť filter strany späť
+5660	prepnúť filter typu späť
+5661	opakovať teraz a do fronty
+5662	všetci vojaci
+5663	predchádzajúci kandidát spojenectva
+5664	päť polí
+5665	ignorovať kolíziu
+5666	prechádzať jednotky späť
+5667	iba nečinné jednotky
+5668	zahrnúť budovy bez menu
+5669	celá mapa
+5670	robotník a všetci vojaci
+5671	hľadať skratky
+5672	zadajte hľadaný text, Esc na zrušenie
+5673	žiadne zodpovedajúce skratky
+5674	pokročilé varianty
+5675	exportovať konfiguráciu skratiek
+5676	importovať konfiguráciu skratiek
+5677	skopírované do schránky
+5678	import úspešný, platí od budúcej hry
+5679	import zlyhal, neplatný formát
+5680	zlúčený import
+5681	nahrádzajúci import
+5682	napíšte prvé písmeno pre rýchly skok
+5683	aliasové klávesy
+5684	predvolená klávesa
+5685	rozhranie prvej osoby
+5686	úroveň príliš nízka na naučenie tejto zručnosti
+5687	túto zručnosť už poznáte
+5688	naučené
+5689	získaná refundácia za demolíciu budovy
+5690	odhodiť
+5691	dať
+5692	zapnúť automatický prieskum
+5693	vypnúť automatický prieskum
+5694	stavebné miesto
+5695	mesto
+5696	pláň
+5697	potok
+5698	vyvýšenina
+5699	kopec
+4371	obsadené
+4511	spomaliť
+4638	ručná výroba
+4654	budova zlatej bane
+4662	pláň
+4663	otvorený terén

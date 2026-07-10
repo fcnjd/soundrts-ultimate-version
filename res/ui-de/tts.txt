@@ -1,25 +1,18 @@
-﻿; coding: utf-8
-
+;	coding: utf-8
 0	unbekannt!
 1	Sie 
-
 3	vor Ihnen
 4	hinter Ihnen
 5	Wie sind Ihre Befehle?
-
 23	und
-
 38	Sie haben
 39	Lebenspunkte von
 40	Level
-
 54	auf
 55	Meter
-
 59	der Spieler
 60	Sie sind
 61	getötet
-
 65	Minuten
 66	Sekunden
 67	Norden
@@ -66,7 +59,7 @@
 122	Aue
 123	rekrutiere
 124	fertig!
-125									Sie befehligen
+125	Sie befehligen
 126	abgeschlossen
 127	abbrechen von
 128	bauen
@@ -81,7 +74,6 @@
 137	Nahrung
 138	Sie befehligen
 139	eine Gruppe
-
 142	Produktion angehalten
 143	die Warteschlange ist voll
 144	abgebaut,
@@ -97,9 +89,6 @@
 154	offen
 155	Level abgeschlossen
 156	im Zentrum
-
-
-
 2008	Drücken Sie F5 für Wiederholung
 2010	drücken Sie
 2011	für
@@ -173,6 +162,14 @@
 3019	19
 3020	20
 3021	21
+3022	22
+3023	23
+3024	24
+3025	25
+3026	26
+3027	27
+3028	28
+3029	29
 3030	30
 3031	31
 3040	40
@@ -184,11 +181,10 @@
 3070	70
 3071	71
 3080	80
-3090	90	
+3090	90
 3100	Hundert
 3101	Tausend
 3102	millionen
-
 4000	spiel
 4001	Internet
 4002	lokal
@@ -214,7 +210,6 @@
 4024	benötigt
 4025	Gebäude
 4026	punkte
-
 4028	F1 für Hilfe
 4029	Hauptmenü,
 4030	bitte wählen Sie einen Eintrag.
@@ -226,7 +221,6 @@
 4036	Erstellen Sie einen eigenen Server
 4037	einstellungen,
 4038	Konfigurieren Sie das Spiel
-
 4041	beenden,
 4042	Beenden Sie das Spiel
 4043	welche art von server?
@@ -250,10 +244,8 @@
 4062	das spiel startet in 5 sekunden...
 4063	das Spiel startet, wenn der Spielleiter bereit ist.
 4064	drücken Sie Eingabe um zu bestädigen.
-
 4066	drücken sie TAB um zwischen den sichtbaren objekten zu wählen. 
 4067	drücken sie TAB um ein ziel auszuwählen, und Enter um zu bestätigen.
-
 4070	Spiel abbrechen
 4071	Spiel fortsetzen
 4072	Die Verbindung zu dem Server konnte nicht hergestellt werden. Bitte überprüfen Sie Ihre Internet-Verbindung.
@@ -272,29 +264,24 @@
 4085	fehler! Die Verbindung zum Server ist fehlgeschlagen.
 4086	bitte wählen Sie einen Eintrag.
 4087	Zugangsdaten ändern
-
 4096	speichern,
 4097	Einstellungen werden übernommen
 4098	zurück,
 4099	Einstellungen werden verworfen
-
 4101	ein neues fenster wird sich öffnen.
 4102	die verbindung wurde unterbrochen.
 4103	Langsames Spiel
 4104	Normales Spiel
 4105	Schnelles Spiel
-
 4112	Spiel speichern
 4113	Spiel laden
 4114	Spiel gegen den Computer.
 4115	Erzeuge einen Fehler im Spiel, und lasse den Computer gegen sich selbst spielen.
-
 4118	zurück,
 4119	wählen Sie einen Server
 4120	geben Sie die IP-Adresse des Servers ein.
 4121	privater server
 4122	Der Server wird nicht in die Liste aufgenommen
-
 4200	die Holz produktion wurde beschläunigt.
 4201	katapult
 4202	erwartet Ihre Befehle
@@ -319,7 +306,7 @@
 4221	schloss
 4222	stall
 4223	das menü von
-4224	 hat sich gerade verändert
+4224	hat sich gerade verändert
 4225	ritter
 4226	werkstatt
 4227	drachenhöhle
@@ -379,293 +366,1081 @@
 4281	lade alle ab nach
 4282	gehe in
 4283	unsichtbarer schütze
-
-5000 a
-5001 b
-5002 c
-5003 d
-5004 e
-5005 f
-5006 g
-5007 h
-5008 i
-5009 j
-5010 k
-5011 l
-5012 m
-5013 n
-5014 o
-5015 p
-5016 q
-5017 r
-5018 s
-5019 t
-5020 u
-5021 v
-5022 w
-5023 x
-5024 y
-5025 z
-
+5000	a
+5001	b
+5002	c
+5003	d
+5004	e
+5005	f
+5006	g
+5007	h
+5008	i
+5009	j
+5010	k
+5011	l
+5012	m
+5013	n
+5014	o
+5015	p
+5016	q
+5017	r
+5018	s
+5019	t
+5020	u
+5021	v
+5022	w
+5023	x
+5024	y
+5025	z
 5026	punkt
-
-4284 bewege
-4285 zu Allianz
-4286 verbunden
-4287 sagt
-4288 geben Sie Ihre nachricht ein
-
-4289 unsichtbar
-4290 enttarnen
-4291 tarnen
-
-4292 herbeirufen von
-4293 die toten aus den Gräbern holen
-4294 auferstehung
-
-4295 zombie
-4296 skellett
-
-4297 priester
-4298 tempel
-
-4299 fernsicht
-4300 heiliger blick
-
-4301 mensch
-4302 ork
-
-4303 nekromant
-4304 friedhof
-
-4305 nebel des todes
-4306 meteor
-
-4307 zurückholen
-
-4308 stein
-4309 steinbruch
-
-4311 wurde besiegt
-4312 Du wurdest besiegt.
-4313 Du bist jetzt im Beobachter-Modus.
-
-4314 plateau
-
-4315 Beobachte ein aufgenommenes Spiel.
-4316 Drücke strg+shift+F4, um einen anderen Spieler zu beobachten.
-
-4317 Gebe einen Befehl ein.
-
-4318 zoom
-
-4319 Die Reihenfolge ändern, in der Mods geladen werden.
-4320 Einen Mod zur Liste hinzufügen
-4321 die Liste ist leer
-4322 wird geladen
-
-4323 Pakete
-4324 Paketmenü
-4325 Paket installieren
-4326 Paket deinstallieren
-4327 Paket aktualisieren
-4328 Lade herunter...
-4329 Extrahiere...
-4330 Konnte mod nicht finden:
-
-4331 Mauer
-4332 Tor
-4333 blockiere
-
-4334 zufällige Art
-
-4335 Höchste Anzahl erreicht
-
-4336 user-Ordner öffnen
-4337 Anleitung
-
-4338 massive Mauer
-4339 massives Tor
-4340 Starte ein öffentliches Spiel auf
-4341 Mods
-4342 Soundpacks
-4343 Geschwindigkeit
-
-4344 Meer
-4345 See
-4346 Fluss
-4347 Berg
-4348 Brücke
-4349 Furt
-4350 Sumpf
-4351 Ozean
-4352 Gebirgspass
-
-4353 automatische Reparatur aktivieren
-4354 automatische Reparatur deaktivieren
-4355 automatisches Sammeln aktivieren
-5356 automatisches Sammeln deaktivieren
-
-5357 Schiffswerft
-4358 Boot
-4359 Zerstörer
-4360 Kampfschiff
-4361 U-Boot
-
-4362 Wiese
-4363 Wald
-4364 dichter Wald
+4284	bewege
+4285	zu Allianz
+4286	verbunden
+4287	sagt
+4288	geben Sie Ihre nachricht ein
+4289	unsichtbar
+4290	enttarnen
+4291	tarnen
+4292	herbeirufen von
+4293	die toten aus den Gräbern holen
+4294	auferstehung
+4295	zombie
+4296	skellett
+4297	priester
+4298	tempel
+4299	fernsicht
+4300	heiliger blick
+4301	mensch
+4302	ork
+4303	nekromant
+4304	friedhof
+4305	nebel des todes
+4306	meteor
+4307	zurückholen
+4308	stein
+4309	steinbruch
+4311	wurde besiegt
+4312	Du wurdest besiegt.
+4313	Du bist jetzt im Beobachter-Modus.
+4314	Hochebene
+4315	Beobachte ein aufgenommenes Spiel.
+4316	Drücke strg+shift+F4, um einen anderen Spieler zu beobachten.
+4317	Gebe einen Befehl ein.
+4318	Zoom
+4319	Die Reihenfolge ändern, in der Mods geladen werden.
+4320	Einen Mod zur Liste hinzufügen
+4321	die Liste ist leer
+4322	wird geladen
+4323	Pakete
+4324	Paketmenü
+4325	Paket installieren
+4326	Paket deinstallieren
+4327	Paket aktualisieren
+4328	Lade herunter...
+4329	Extrahiere...
+4330	Konnte mod nicht finden:
+4331	Mauer
+4332	Tor
+4333	blockiere
+4334	zufällige Art
+4335	Höchste Anzahl erreicht
+4336	user-Ordner öffnen
+4337	Anleitung
+4338	massive Mauer
+4339	massives Tor
+4340	Starte ein öffentliches Spiel auf
+4341	Mods
+4342	Soundpacks
+4343	Geschwindigkeit
+4344	Meer
+4345	See
+4346	Fluss
+4347	Berg
+4348	Brücke
+4349	Furt
+4350	Sumpf
+4351	Ozean
+4352	Gebirgspass
+4353	automatische Reparatur aktivieren
+4354	automatische Reparatur deaktivieren
+4355	automatisches Sammeln aktivieren
+4356	automatisches Sammeln deaktivieren
+4357	Werft
+4358	Boot
+4359	Zerstörer
+4360	Kampfschiff
+4361	U-Boot
+4362	Wiese
+4363	Wald
+4364	dichter Wald
+4365	Gegenangriff umschalten
+4366	Gegenangriff aktiviert
+4367	Gegenangriff deaktiviert
+4368	Wache
+4369	Verfolgung
+4370	Erobern
+4372	Goldhaus
+4373	Produktion läuft
+4375	Produktion stoppen
+4376	Soundeinstellungen
+4377	Soundbalance-Einstellungen
+4378	Soundbalance aktivieren
+4379	Soundbalance deaktivieren
+4380	Soundbalance ein- oder ausschalten
+4381	Soundbalance-Methode
+4382	Soundbalance-Methode ändern
+4383	Soundbalance aktiviert
+4384	Soundbalance deaktiviert
+4385	Quadratwurzel
+4386	linear
+4387	logarithmisch
+4388	keine
+4389	Attribute
+4390	Drücken Sie den entsprechenden Buchstaben für Informationen
+4391	Drücken Sie Escape zum Beenden
+4392	Attributbildschirm verlassen
+4393	Mehrere Einheiten ausgewählt: 
+4394	Keine Attribute verfügbar
+4395	: 
+4396	Nahkampfschaden
+4397	Fernkampfschaden
+4398	Nahkampfverteidigung
+4399	Fernkampfverteidigung
+4400	Nahkampf-Abklingzeit
+4401	Fernkampf-Abklingzeit
+4402	Nahkampfreichweite
+4403	Fernkampfreichweite
+4404	gegen 
+4405	Nahkampfschaden-Bonus
+4406	Fernkampfschaden-Bonus
+4407	Trefferpunkte
+4408	Status
+4409	Erforschte Technologien
+4410	Nahkampf-Vorbereitungszeit
+4411	Fernkampf-Vorbereitungszeit
+4412	minimale Nahkampfreichweite
+4413	minimale Fernkampfreichweite
+4414	Nahkampftrefferquote
+4415	Fernkampftrefferquote
+4416	Nahkampfausweichquote
+4417	Fernkampfausweichquote
+4418	Nahkampf-Flächenschaden
+4419	Fernkampf-Flächenschaden
+4420	Nahkampf-Flächenradius
+4421	Fernkampf-Flächenradius
+4422	minimale Nahkampf-Flächenabnahme
+4423	minimale Fernkampf-Flächenabnahme
+4424	Nahkampfverteidigungs-Bonus
+4425	Fernkampfverteidigungs-Bonus
+4426	Nahkampfreichweiten-Bonus
+4427	Fernkampfreichweiten-Bonus
+4428	Bonus minimale Nahkampfreichweite
+4429	Bonus minimale Fernkampfreichweite
+4430	Nahkampf-Aushol-Bonus
+4431	Fernkampf-Aushol-Bonus
+4432	Nahkampf-Abklingzeit-Bonus
+4433	Fernkampf-Abklingzeit-Bonus
+4434	Nahkampf-Treffer-Bonus
+4435	Fernkampf-Treffer-Bonus
+4436	Nahkampf-Ausweich-Bonus
+4437	Fernkampf-Ausweich-Bonus
+4438	Nahkampf-Treffer-Geländebonus
+4439	Fernkampf-Treffer-Geländebonus
+4440	Nahkampf-Ausweich-Geländebonus
+4441	Fernkampf-Ausweich-Geländebonus
+4442	Geschwindigkeitsbonus
+4443	Geschwindigkeitsbonus je nach Gelände
+4444	Mana
+4445	Rabatt
+4446	Automatische Erkundung
+4452	Nahkampf-Geländemodifikator
+4453	Fernkampf-Geländemodifikator
+4454	Nahkampf-Abklingzeit-Geländemodifikator
+4455	Fernkampf-Abklingzeit-Geländemodifikator
+4456	Nahkampf-Sturmangriff-Geländemodifikator
+4457	Fernkampf-Sturmangriff-Geländemodifikator
+4458	Nahkampf-Sturmangriff-Abklingzeit-Geländemodifikator
+4459	Fernkampf-Sturmangriff-Abklingzeit-Geländemodifikator
+4500	Verbündete
+4501	Feinde
+4502	Alle
+4503	Gebäude
+4504	Einheiten
+4505	Elemente
+4506	Alle Typen
+4507	Verstärkungen
+4508	wechseln zu
+4509	zu früh
+4510	aufheben
+4600	Stufe
+4601	EP
+4602	/
+4603	Maximalstufe
+4604	Wiederbelebungszeit
+4605	Stufenaufstieg
+4606	wiederbelebt
+4610	Nahkampf-Krit-Multiplikator
+4611	Fernkampf-Krit-Multiplikator
+4612	Nahkampf-Krit-Chance
+4613	Fernkampf-Krit-Chance
+4614	Nahkampf-Krit-Multiplikator-Bonus
+4615	Fernkampf-Krit-Multiplikator-Bonus
+4616	Nahkampf-Kritchance-Bonus
+4617	Fernkampf-Kritchance-Bonus
+4618	Nahkampf-Krit-Resistenz
+4619	Fernkampf-Krit-Resistenz
+4620	Nahkampf-Kritwiderstand-Bonus
+4621	Fernkampf-Kritwiderstand-Bonus
+4622	Nahkampf-Rüstungsdurchdringung
+4623	Fernkampf-Rüstungsdurchdringung
+4624	Nahkampf-Durchdringungschance
+4625	Fernkampf-Durchdringungschance
+4626	Nahkampf-Durchschlag-Bonus
+4627	Fernkampf-Durchschlag-Bonus
+4628	Nahkampf-Durchschlagchance-Bonus
+4629	Fernkampf-Durchschlagchance-Bonus
+4630	Nahkampf-Durchdringungsresistenz
+4631	Fernkampf-Durchdringungsresistenz
+4632	Nahkampf-Durchschlagwiderstand-Bonus
+4633	Fernkampf-Durchschlagwiderstand-Bonus
+4634	Musik
+4635	Musik an
+4636	Musik aus
+4637	Lautstärke in Prozent
+4650	Automatische Produktion starten
+4651	Manuelle Produktion starten
+4655	Automatischen Anbau starten
+4656	Manuellen Anbau starten
+4657	Anbau
+4658	wird angebaut
+4659	Anbau stoppen
+4660	Haus
+4661	Obstgarten
+4700	Spiel zuschauen
+4701	Spiel läuft
+4702	Keine Spiele zum Zuschauen verfügbar
+4703	Spiel zum Zuschauen wählen
+4704	Spiel wird zugeschaut
+4705	Zuschauen beenden
+4706	Sie schauen zu
+4707	Zuschauer beigetreten
+4708	Zuschauer verlassen
+4709	Spiel läuft
+4710	langsam
+4711	kein Feind in Sicht
+4712	greift an
+4713	Mitte
+4714	Zoomfaktor muss zwischen 2 und 20 liegen
+4715	Zoomfaktor eingeben, z. B. 3x3 oder 4x4
+4716	kann ausbilden
+#	attributbezogene Meldungskonstanten
+4717	Nahkampf-Ansturm-Schaden
+4718	Nahkampf-Sturmangriffschaden-Bonus
+4719	Fernkampf-Ansturm-Schaden
+4720	Fernkampf-Sturmangriffschaden-Bonus
+4721	Nahkampf-Ansturm-Abklingzeit
+4722	Fernkampf-Ansturm-Abklingzeit
+4723	Nahkampf-Ansturm-Distanz
+4724	Fernkampf-Ansturm-Distanz
+4725	Nahkampf-Ansturm-Flächenschaden
+4726	Nahkampf-Sturmangriff-Flächenschaden-Bonus
+4727	Fernkampf-Ansturm-Flächenschaden
+4728	Fernkampf-Sturmangriff-Flächenschaden-Bonus
+4729	minimale Nahkampf-Ansturm-Flächenabnahme
+4730	Nahkampf-Sturmangriff-Flächenabfall-Bonus
+4731	minimale Fernkampf-Ansturm-Flächenabnahme
+4732	Fernkampf-Sturmangriff-Flächenabfall-Bonus
+4733	Nahkampf-Ansturm-Flächenradius
+4734	Nahkampf-Sturmangriff-Radius-Bonus
+4735	Fernkampf-Ansturm-Flächenradius
+4736	Fernkampf-Sturmangriff-Radius-Bonus
+4737	Nahkampf-Gegenansturm-Schaden
+4738	Fernkampf-Gegenansturm-Schaden
+4739	Nahkampf-Gegensturm-Bonus
+4740	Fernkampf-Gegensturm-Bonus
+4741	Nahkampf-Gegenansturm-Abklingzeit
+4742	Fernkampf-Gegenansturm-Abklingzeit
+4743	Nahkampf-Gegenansturm-Distanz
+4744	Fernkampf-Gegenansturm-Distanz
+4750	verfügbare Technologien
+4751	verfügbare Fertigkeiten
+4752	erforschbare Technologien
+4753	aufwertbar zu
+4754	Manakosten
+4755	Effekt
+4756	Effektreichweite
+4757	Effektradius
+4758	Bonus anwenden
+4759	Bonus
+4760	Schadensstufe
+4761	Schadenszieltyp des Effekts
+4762	Meteore
+4763	unendlich
+4764	anwenden
+4765	, Dauer
+4768	Kosten
+4769	Zeit
+4770	Bevölkerung
+4771	Voraussetzungen
+4772	beschwören
+4773	heilen
+4774	Schaden
+4775	maximal wiederbeleben
+4776	Einheiten
+4777	Tote erwecken
+4778	, Typ:
+4779	feindliche Einheiten bekehren
+4780	Abklingzeit
+4781	Trefferpunkte
+4782	maximale Trefferpunkte
+4783	Nahkampfschaden
+4784	Fernkampfschaden
+4785	Nahkampfverteidigung
+4786	Fernkampfverteidigung
+4787	Bewegungsgeschwindigkeit
+4788	Sichtweite
+4789	Nahkampfreichweite
+4790	Fernkampfreichweite
+4791	Nahkampf-Abklingzeit
+4792	Fernkampf-Abklingzeit
+4793	Mana
+4794	maximales Mana
+4795	Sammelzeit
+4796	Sammelmenge
+4797	Produktionszeit
+4798	Produktionsmenge
+4799	Kosten
+4800	Zeitkosten
+4801	Bevölkerungskosten
+4802	s Attribute: 
+4803	kein solches Attribut
+4804	kein Bonus
+4805	Minuten
+4806	bereitgestellte Bevölkerung
+4807	Heilungsstufe
+4808	Sekunden
+4809	kann bauen
+4810	Einheitentyp
+4811	Klasse
+4812	Gebäude
+4813	Arbeiter
+4814	Soldat
+4815	Effekt
+4816	Technologie
+4817	Reparierbare und angedockte Schiffe
+4818	ja
+4819	nein
+4820	Nahkampf-Selbstzerstörung
+4821	Fernkampf-Selbstzerstörung
+4822	Selbstzerstörungs-HP-Kosten in Prozent
+4823	Explosionsschaden-Faktor
+4824	Sichtweite
+4825	Nahkampf-Zieltypen
+4826	Fernkampf-Zieltypen
+4827	kann sammeln
+4828	Sammelzeit
+4829	Sammelmenge
+4830	kann reparieren
+4831	Bodenziel
+4832	Luftziel
+4833	Gebäudeziel
+4834	Einheitsziel
+4835	alle
+4836	Ressourcentyp
+4837	Abbauzeit
+4838	Abbaumenge
+4839	Ressourcenregeneration
+4840	maximale Ressourcenkapazität
+4841	anfängliche Ressourcenkapazität
+4842	Lagerstättentyp
+4843	Ressourcenname
+4844	Untertyp
+4845	reparierbar
+4846	heilbar
+4847	Transportkapazität
+4848	Transportvolumen
+4849	angreifbare Passagiere
+4850	Ladebonus
+4927	Passagierbonus
+4928	Trefferchance innen von außen
+4851	Leiche
+4852	Boden
+4853	Luft
+4854	Wasser
+4855	erzeugt
+4856	erzeugt nicht
+4857	Untoter
+4858	Ressource
+4859	aktuelle Waffe
+4860	verfügbare Waffen
+4861	umschaltbar
+4862	Waffe wechseln
+4863	Schwert
+4864	Bogen
+4865	Waffenname
+4866	Rüstung
+4867	aktuelle Rüstung
+4868	Rüstungsname
+4871	Rüstung
+4872	Nahkampf
+4873	Waffe
+4875	Inventar
+4876	Gegenstandname
+4877	Kollisionsvolumen
+4878	beim Aufheben verbrauchen
+4879	Beute
+4880	Ressourcenbelohnungen
+4881	Fertigkeiten
+4882	Buffs
+4883	Gegenstand
+4885	Held
+4886	Kurzschwert
+4887	Produktionstyp
+4888	Einführung
+4889	Grundlegende Arbeitereinheit, die Ressourcen sammeln, Gebäude errichten und Schiffe reparieren kann. Sie ist die Grundlage jeder Zivilisation.
+4890	Grundlegende Nahkampf-Infanterie mit Schwert und Rüstung. Günstig auszubilden und bildet den Kern der Armee.
+4891	Heilungsradius
+4892	Schadensradius
+4893	Heilungsreichweite
+4894	Schadensreichweite
+4895	Heilungsabklingzeit
+4896	Schadensabklingzeit
+4897	Heilungsvorbereitungszeit
+4898	Schadensvorbereitungszeit
+4899	HP-Regenerations-Abklingzeit
+4900	HP-Regenerations-Vorbereitungszeit
+4901	Mana-Regenerations-Abklingzeit
+4902	Mana-Regenerations-Vorbereitungszeit
+4903	heilbare Zieltypen
+4904	pro Stufe
+4905	Wachstum
+4906	HP-Regeneration
+4907	aktuelle Menge
+4908	maximale Menge
+4909	Kategorie
+4910	Inventarkapazität
+4911	Mana-Regeneration
+4912	minimaler Nahkampfschaden
+4913	minimaler Fernkampfschaden
+4914	Buff-Radius
+4915	Mindestschaden
+4916	Nahkampf-Projektilverzögerung
+4917	Fernkampf-Projektilverzögerung
+4918	Nahkampf-Statusdauer
+4919	Fernkampf-Statusdauer
+4924	Erzwungener Schaden
+4925	minimale Nahkampf-Ansturmdistanz
+4926	minimale Fernkampf-Ansturmdistanz
+4920	Vertrag
+4921	Vertrag aktiv, Angriffe verboten
+4922	Vertrag beendet, Kampf erlaubt
+4923	kein Vertrag
+4930	Hirsch
+4931	Schaf
+4932	Kadaver
+4933	Wildschwein
+4934	treiben
+4935	folgt
+4936	Jagdtechniken
+4950	Koop-Kampagne
+4951	Lokale Koop-Kampagne
+4952	Koop-Kampagne wählen
+4953	Koop-Kapitel wählen
+4954	Verbündete für Koop festgelegt
+4955	Spielen Sie die Kampagne gemeinsam mit Ihrem Teamkollegen
+4960	Diplomatie
+4961	kein Kandidat
+4962	verbündet mit
+4963	Bündnis mit aufgelöst
+4964	gegenseitig
+4965	einseitig
+4966	Bündnis anbieten mit
+4967	Bündnisanfrage zurückziehen mit
+4968	Bündnisanfrage von
+4969	Bündnis angenommen mit
+4970	Bündnis abgelehnt mit
+4971	Bündnisse sind in diesem Spiel gesperrt
+4972	Bündnisanfrage gesendet
+4973	Bündnisanfrage abgelehnt
+4974	Bündnisanfrage zurückgezogen
+4975	Bündnis geschlossen
+4976	Wasser ist unpassierbar
+4977	Land ist unpassierbar
+4978	unfertig, unpassierbar
+4980	Aktuelle Epoche
+4981	Dunkles Zeitalter
+4982	Feudalzeitalter
+4983	Burgenzeitalter
+4984	Kaiserzeitalter
+4985	kann aufsteigen zu
+4986	unbeendetes Spiel fortsetzen
+4987	Dort weitermachen, wo Sie aufgehört haben
+4988	Speicherplatz wählen
+4989	kein Speicherstand gefunden
+4990	Speicherstand
+4991	leerer Slot
+4992	gespeichert
+4993	Fortschritt behalten, Spiel später fortsetzbar
+4994	Neuen Namen eingeben. Enter zum Bestätigen, Escape zum Abbrechen
+4995	Diesen Eintrag löschen? Enter zum Bestätigen, Escape zum Abbrechen
+4996	gelöscht
+4997	umbenannt
+4998	ungültiger Name
+4999	abgebrochen
+5027	neutral
 5028	replay
-5033 Zufallskarte
-5034 Vorlage
-5035 Standard
-5036 schnell
-5037 Zentrum kämpfen
-5038 Makro
-5039 wirtschaftlich
-5040 Kartengröße
-5041 klein
-5042 mittel
-5043 groß
-5044 Spieleranzahl
-5045 Spieler
-5046 Monsterstärke
-5047 schwach
-5048 mittel
-5049 stark
-5050 Ressourcenverteilung
-5051 gleichmäßig
-5052 konzentriert
-5053 Gelände
-5054 zufällig
-5055 Grasland
-5056 Sumpf
-5057 Berge
-5058 Seed
-5059 Gassen
-5060 Gassenkampf
-5061 Zufalls-Seed
-5062 fester Seed
-5063 Seed-Nummer eingeben
-5064 Karte erstellt
-5065 Team-Modus
-5066 jeder gegen jeden
-5067 zwei Teams
-5068 Gewässer
-5069 ohne Gewässer
-5070 See
-5071 Fluss
-5072 Schatz
-5073 kein Schatz
-5074 wenig Schätze
-5075 viele Schätze
-5076 Teilungscode
-5077 Code importieren
-5078 Teilungscode eingeben
-5079 ungültiger Code
-5080 Kartenvorschau
-5209 Einheitenauswahl
-5210 Gebäudeauswahl
-5211 Befehlsinterface
-5212 Fähigkeiteninterface
-5213 Hilfe- und Abfrageinterface
-5214 Diplomatieinterface
-5215 Rucksack leer
-5216 Tastenbelegung
-5217 Schicht-Tastenbelegung
-5218 klassische Tastenbelegung
-5219 Tastenbelegung geändert, wirksam ab der nächsten Partie
-
-; Computer-Schwierigkeitsgrade
-5220 Anfänger-Computer
-5221 fortgeschrittener Computer
-5222 erfahrener Computer
-5223 Experten-Computer
-5224 Albtraum-Computer
-
-; Level-up stat labels (auto-maintained)
-4410 Nahkampf-Vorbereitungszeit
-4411 Fernkampf-Vorbereitungszeit
-4412 minimale Nahkampfreichweite
-4413 minimale Fernkampfreichweite
-4414 Nahkampftrefferquote
-4415 Fernkampftrefferquote
-4416 Nahkampfausweichquote
-4417 Fernkampfausweichquote
-4418 Nahkampf-Flächenschaden
-4419 Fernkampf-Flächenschaden
-4420 Nahkampf-Flächenradius
-4421 Fernkampf-Flächenradius
-4422 minimale Nahkampf-Flächenabnahme
-4423 minimale Fernkampf-Flächenabnahme
-4604 Wiederbelebungszeit
-4610 Nahkampf-Krit-Multiplikator
-4611 Fernkampf-Krit-Multiplikator
-4612 Nahkampf-Krit-Chance
-4613 Fernkampf-Krit-Chance
-4618 Nahkampf-Krit-Resistenz
-4619 Fernkampf-Krit-Resistenz
-4622 Nahkampf-Rüstungsdurchdringung
-4623 Fernkampf-Rüstungsdurchdringung
-4624 Nahkampf-Durchdringungschance
-4625 Fernkampf-Durchdringungschance
-4630 Nahkampf-Durchdringungsresistenz
-4631 Fernkampf-Durchdringungsresistenz
-4717 Nahkampf-Ansturm-Schaden
-4719 Fernkampf-Ansturm-Schaden
-4721 Nahkampf-Ansturm-Abklingzeit
-4722 Fernkampf-Ansturm-Abklingzeit
-4723 Nahkampf-Ansturm-Distanz
-4724 Fernkampf-Ansturm-Distanz
-4725 Nahkampf-Ansturm-Flächenschaden
-4727 Fernkampf-Ansturm-Flächenschaden
-4729 minimale Nahkampf-Ansturm-Flächenabnahme
-4731 minimale Fernkampf-Ansturm-Flächenabnahme
-4733 Nahkampf-Ansturm-Flächenradius
-4735 Fernkampf-Ansturm-Flächenradius
-4737 Nahkampf-Gegenansturm-Schaden
-4738 Fernkampf-Gegenansturm-Schaden
-4741 Nahkampf-Gegenansturm-Abklingzeit
-4742 Fernkampf-Gegenansturm-Abklingzeit
-4743 Nahkampf-Gegenansturm-Distanz
-4744 Fernkampf-Gegenansturm-Distanz
-4760 Schadensstufe
-4782 maximale Trefferpunkte
-4783 Nahkampfschaden
-4784 Fernkampfschaden
-4785 Nahkampfverteidigung
-4786 Fernkampfverteidigung
-4789 Nahkampfreichweite
-4790 Fernkampfreichweite
-4791 Nahkampf-Abklingzeit
-4792 Fernkampf-Abklingzeit
-4794 maximales Mana
-4807 Heilungsstufe
-4822 Selbstzerstörungs-HP-Kosten in Prozent
-4823 Explosionsschaden-Faktor
-4891 Heilungsradius
-4892 Schadensradius
-4893 Heilungsreichweite
-4894 Schadensreichweite
-4895 Heilungsabklingzeit
-4896 Schadensabklingzeit
-4897 Heilungsvorbereitungszeit
-4898 Schadensvorbereitungszeit
-4899 HP-Regenerations-Abklingzeit
-4900 HP-Regenerations-Vorbereitungszeit
-4901 Mana-Regenerations-Abklingzeit
-4902 Mana-Regenerations-Vorbereitungszeit
-4904 pro Stufe
-4905 Wachstum
-4906 HP-Regeneration
-4911 Mana-Regeneration
-4912 minimaler Nahkampfschaden
-4913 minimaler Fernkampfschaden
-4915 Mindestschaden
-4916 Nahkampf-Projektilverzögerung
-4917 Fernkampf-Projektilverzögerung
-4918 Nahkampf-Statusdauer
-4919 Fernkampf-Statusdauer
-4924 Erzwungener Schaden
-4925 minimale Nahkampf-Ansturmdistanz
-4926 minimale Fernkampf-Ansturmdistanz
+5029	nicht neutral
+5030	optionales Ziel
+5031	optionales Ziel aufgegeben
+5032	Hauptziel
+5033	Zufallskarte
+5034	Vorlage
+5035	Standard
+5036	schnell
+5037	Zentrum kämpfen
+5038	Makro
+5039	wirtschaftlich
+5040	Kartengröße
+5041	klein
+5042	mittel
+5043	groß
+5044	Spieleranzahl
+5045	Spieler
+5046	Monsterstärke
+5047	schwach
+5048	mittel
+5049	stark
+5050	Ressourcenverteilung
+5051	gleichmäßig
+5052	konzentriert
+5053	Gelände
+5054	zufällig
+5055	Grasland
+5056	Sumpf
+5057	Berge
+5058	Seed
+5059	Gassen
+5060	Gassenkampf
+5061	Zufalls-Seed
+5062	fester Seed
+5063	Seed-Nummer eingeben
+5064	Karte erstellt
+5065	Team-Modus
+5066	jeder gegen jeden
+5067	zwei Teams
+5068	Gewässer
+5069	ohne Gewässer
+5070	See
+5071	Fluss
+5072	Schatz
+5073	kein Schatz
+5074	wenig Schätze
+5075	viele Schätze
+5076	Teilungscode
+5077	Code importieren
+5078	Teilungscode eingeben
+5079	ungültiger Code
+5080	Kartenvorschau
+5081	Schatztruhe
+5082	Repetierarmbrustschütze
+5083	Tier
+5084	stellt Baufeld bereit
+5085	benötigt Baufeld
+5086	Baufeld-Radius
+5087	Baumodus
+5088	unterstütztes Bauen
+5089	platzieren und gehen
+5090	Opferbau
+5091	baut sich selbst
+5092	opfert Arbeiter
+5093	überall auf Land baubar
+5094	Anbau-Gebäude
+5095	mögliche Hauptgebäude
+5096	kann Anbau haben
+5097	Anbau-Maximum
+5100	Baufeld bleibt bestehen
+5101	Baufeld breitet sich aus
+5102	benötigt Markierung auf dem Feld
+5103	verliert Energie ohne Feld
+5104	Ausbreitungsfelder pro Sekunde
+5105	benötigt Lagerstätte
+5106	Schlachtfeldeffekt platzieren
+5107	Gerüst
+5108	Brückenabschnitt
+5109	Brückendeck
+5110	Vorratsmenge
+5111	Phasenbonus-Ziele
+5112	Einheiten steigen automatisch auf
+5115	Fleisch
+5116	Obst
+5117	Produktionsgegenstand
+5118	automatische Produktion
+5119	manuelle Produktion
+5120	automatischer Anbau
+5121	manueller Anbau
+5122	Münzprägeanstalt
+5123	Goldmünze
+5113	außer
+5114	jedes Ziel außer
+5190	Missionsbriefing
+5191	Hauptziele
+5192	Nebenziele
+5193	Schwierigkeit
+5194	Standard
+5195	Mittel
+5196	Schwer
+5197	gesperrt
+5198	abgeschlossen
+5199	Kampagnensynopsis
+5200	Mission starten
+5201	benötigte Spieler
+5202	Online-Koop-Kampagne
+5203	nächste Mission freigeschaltet
+5204	diese Mission wiederholen
+5205	Leicht
+5206	Extrem
+5207	Standardschwierigkeit
+5208	Feindstärke
+5209	Einheitenauswahl
+5210	Gebäudeauswahl
+5211	Befehlsinterface
+5212	Fähigkeiteninterface
+5213	Hilfe- und Abfrageinterface
+5214	Diplomatieinterface
+5215	Rucksack leer
+5216	Tastenbelegung
+5217	Schicht-Tastenbelegung
+5218	klassische Tastenbelegung
+5219	Tastenbelegung geändert, wirksam ab der nächsten Partie
+5220	Anfänger-Computer
+5221	fortgeschrittener Computer
+5222	erfahrener Computer
+5223	Experten-Computer
+5224	Albtraum-Computer
+5225	Ergebnis
+5226	Abbau
+5227	Ressourcennutzung
+5228	Überleben der Einheiten
+5229	Gebäudeverteidigung
+5230	Kampf
+5231	Abriss
+5232	Gesamtpunktzahl
+5233	Note
+5234	Note S, perfekt
+5235	Note A, ausgezeichnet
+5236	Note B, gut
+5237	Note C, bestanden
+5238	Note D, ausreichend
+5239	Note E, verbesserungswürdig
+5240	von
+5241	plus
+5242	Punkte
+5243	besiegt
+5244	Erfolg freigeschaltet
+5245	erhalten
+5246	Medaillen
+5247	Karte erhalten
+5248	verbleibende Ladungen
+5249	Rang befördert zu
+5250	Ehrentitel erhalten
+5251	sparsame Effizienz
+5260	Koop-Spieler
+5261	offener Slot
+5262	KI-Koop-Partner
+5263	als KI-Koop-Partner setzen
+5264	Slot auf offen setzen
+5265	Koop-Raumtyp
+5266	privater Koop-Raum
+5267	öffentlicher Koop-Raum
+5280	Tastenbelegung ändern
+5281	globale Hotkeys
+5282	aktueller Hotkey
+5283	neue Taste drücken
+5284	Escape zum Abbrechen, Backspace zum Löschen der Belegung
+5285	Hotkey gespeichert, gilt ab dem nächsten Spiel
+5286	Tastenbelegung für klassische Hotkeys kommt in einer späteren Version
+5287	globale Hotkeys auf Standard zurücksetzen
+5288	globale Hotkeys auf Standard zurückgesetzt
+5289	Taste bereits verwendet von 
+5290	Enter zum Ersetzen bestätigen, Escape zum Abbrechen
+5291	nicht belegt
+5292	gesetzt auf
+5293	Enter zum Neu zuweisen
+5294	aktiv
+5295	inaktiv
+5296	Ebenen-Hotkeys auf Standard zurückgesetzt
+5297	Ebenen-Hotkeys auf Standard zurücksetzen
+5298	Kartenbrowser
+5299	klassische Hotkeys auf Standard zurücksetzen
+5300	perfekter Kampf
+5301	ausgezeichnete Führung
+5302	guter Kampf
+5303	bestanden
+5304	sparsamer Sieg
+5305	perfekter Erhalt
+5306	Albtraumjäger
+5307	Expertenbezwinger
+5308	erster Sieg
+5309	Verstärkungsvertrag
+5310	Erfolge
+5311	freigeschaltete Erfolge und Arsenal dieses Mods anzeigen
+5312	gesperrt
+5313	freigeschaltet
+5314	für diesen Mod sind keine Erfolge definiert
+5315	Erfolgsliste
+5316	Arsenal
+5317	Rang, Ehren, Medaillen und Karten dieses Mods anzeigen
+5318	Medaillen gesamt
+5319	Ladungen
+5350	aktueller Rang
+5351	nächster Rang
+5355	noch nötig
+5356	automatisches Sammeln deaktivieren
+5357	Schiffswerft
+5358	diesen Slot überspringen
+5359	Spiel jetzt starten
+5360	keine Karten zum Mitnehmen verfügbar
+5361	Ausrüstungskarte angewendet
+5362	Slot
+5363	Ausrüstungsplätze erhöht, jetzt
+5364	vor Gefecht oder Zufallskarte gegen Computer mitnehmen
+5450	wirkt sofort beim Spielstart
+5365	extra zu Beginn
+5366	erscheint zu Spielbeginn nahe Ihrem Start
+5367	Wiederholung
+5368	Erfolgsliste anzeigen
+5369	Arsenal anzeigen
+5370	benötigt
+5371	unter
+5372	mindestens
+5373	Sieg in diesem Spiel
+5374	oder
+5375	Erfolge und Freischaltbedingungen dieses Mods anzeigen
+5376	auf Karte
+5377	Mal
+5378	kumulativ
+5379	Zweige
+5380	Fraktionsübergreifender Fortschritt
+5381	jeweils mindestens freischalten
+5382	Medaillen mindestens
+5383	jeweils mit Ehrentitel
+5384	Kartenmeilenstein abgeschlossen
+5385	Erfolge
+5386	wählen Sie Ihre Fraktion für dieses Spiel
+5387	wirkt nach
+5388	Effekt der Ausrüstungskarte ausgelöst
+5389	erscheint nahe Ihrem Start
+5390	gewährt extra
+5393	gewährt Technologie
+5394	extra nach erstem abgeschlossenen Training von
+5395	in diesem Spiel extra nach erstem abgeschlossenen Training von
+5392	.
+5352	Ehrentitel
+5353	Kartenplätze vor der Mission
+5354	benötigt Rang
+5320	Goldversorgungskarte
+5321	Holzversorgungskarte
+5322	Infanterieverstärkungs-Karte
+5323	Kavallerieverstärkungs-Karte
+5324	Bogenschützenverstärkungs-Karte
+5325	Magierverstärkungs-Karte
+5326	Drachenverstärkungs-Karte
+5327	Belagerungsverstärkungs-Karte
+5328	Luftverstärkungs-Karte
+5329	Infanterie-Kavallerie-Kombi-Karte
+5330	Infanterie-Bogenschützen-Kombi-Karte
+5331	Bogenschützen-Kavallerie-Kombi-Karte
+5332	gemischte Armee-Karte
+5333	verzögerte Infanterieverstärkungs-Karte
+5334	verzögerte Nahkampfwaffen-Karte
+5396	Infanterie-Trainingsbonus-Karte
+5340	noch keine Karten oder Medaillen verdient
+5399	klassische Hotkeys auf Standard zurückgesetzt
+5397	Hotkey-Belegung für Mod 
+5400	Rekrut
+5401	Obergefreiter
+5402	Unteroffizier
+5403	Feldwebel
+5404	Leutnant
+5405	Hauptmann
+5406	Major
+5407	Oberst
+5408	Generalmajor
+5409	Generalleutnant
+5410	General
+5411	Marschall
+5420	Meister der Sparsamkeit
+5421	perfekter Wächter
+5422	Albtraumbezwinger
+5423	Expertenbezwinger
+5424	erster Blut
+5425	Siegmodus
+5426	Eroberung, alle feindlichen Spieler vernichten
+5427	Wirtschaft, Ressourcenziel erreichen
+5428	Erkundung, jede antike Ruine besuchen
+5429	Überleben, bis zum Zeitablauf halten
+5430	jede antike Ruine mit Ihren Einheiten besuchen
+5431	antike Ruine
+5432	einnehmbare Kaserne
+5433	Ruine entdeckt
+5434	Kaserne eingenommen
+5435	angesammelte Ressourcen erreichen
+5436	halten für
+5437	Minuten
+5451	alle feindlichen Spieler vernichten
+5452	und Ihr Rathaus behalten
+5438	eine Goldmünze dem Stadtstaat-Händler liefern
+5439	der Händler belohnt Sie mit Vorräten
+5440	einen Heiltrank dem Dorfheiler liefern
+5441	der Heiler schließt sich Ihrer Sache an
+5442	Erfolg muss zuerst freigeschaltet werden
+5443	auf einer Zufallskarte
+5445	Zufallseroberer
+5446	Zufallstycoon
+5447	Ruinenjäger
+5448	Überlebender
+5449	Meister der vier Modi
+5453	Laden ungültig
+5454	Laden fehlgeschlagen
+5455	Entladen ungültig
+5456	Entladen fehlgeschlagen
+5457	kleine Infanterieverstärkungs-Karte
+5458	mittlere Infanterieverstärkungs-Karte
+5459	große Infanterieverstärkungs-Karte
+5460	kleine Kavallerieverstärkungs-Karte
+5461	mittlere Kavallerieverstärkungs-Karte
+5462	große Kavallerieverstärkungs-Karte
+5463	kleine Bogenschützenverstärkungs-Karte
+5464	mittlere Bogenschützenverstärkungs-Karte
+5465	große Bogenschützenverstärkungs-Karte
+5466	kleine Magierverstärkungs-Karte
+5467	mittlere Magierverstärkungs-Karte
+5468	große Magierverstärkungs-Karte
+5469	kleine Drachenverstärkungs-Karte
+5470	mittlere Drachenverstärkungs-Karte
+5471	große Drachenverstärkungs-Karte
+5472	kleine Belagerungsverstärkungs-Karte
+5473	mittlere Belagerungsverstärkungs-Karte
+5474	große Belagerungsverstärkungs-Karte
+5475	kleine Luftverstärkungs-Karte
+5476	mittlere Luftverstärkungs-Karte
+5477	große Luftverstärkungs-Karte
+5478	kleine Goldversorgungskarte
+5479	mittlere Goldversorgungskarte
+5480	große Goldversorgungskarte
+5481	kleine Holzversorgungskarte
+5482	mittlere Holzversorgungskarte
+5483	große Holzversorgungskarte
+5484	Note F, schlecht
+5485	Helden-Raynor-Karte
+5486	Missionsbriefing
+5487	antike Ruinen liegen verstreut über die Karte
+5488	manche Ruinen können in Nachbarfeldern weitere Geheimnisse verbergen
+5489	Rivalen warten nicht — finden Sie jede Ruine zuerst
+5490	metallene Echos hinter dem Stein, prüfe das Nachbarfeld
+5491	die versteckte Kammer birgt zusätzliche Beute
+5492	noch unentdeckte Ruinen
+5493	nur noch eine Ruine zu entdecken
+7736	Raynor, Herr der Koalition
+5398	kein Mod
+5500	lokal alles auswählen
+5501	Einheit durchschalten
+5502	Arbeiter
+5503	Soldat
+5504	Gebäude
+5505	alle Soldaten, lokal alles auswählen
+5506	lokale Einheit
+5507	allgemeines Gebäude
+5510	Status Ressource 1
+5511	Status Ressource 2
+5512	Status Ressource 3
+5513	Bevölkerungsstatus
+5514	abbrechen oder Kartenbrowser öffnen
+5515	Einheiten- und Gebäudeoberfläche umschalten
+5516	Befehls- und Fertigkeitenoberfläche umschalten
+5517	Rucksack und Ausrüstung umschalten
+5518	Hilfe und Abfrage öffnen
+5519	Diplomatieoberfläche öffnen
+5520	Attributbildschirm
+5521	Rucksack
+5522	Ausrüstungsbildschirm
+5523	nächstes Ziel wählen
+5524	vorheriges Ziel wählen
+5525	nächstes nützliches Ziel wählen
+5526	vorheriges nützliches Ziel wählen
+5527	ein Feld nach Norden
+5528	ein Feld nach Süden
+5529	ein Feld nach Westen
+5530	ein Feld nach Osten
+5531	nächstes erkundetes Feld
+5532	vorheriges erkundetes Feld
+5533	nächstes Konfliktfeld
+5534	vorheriges Konfliktfeld
+5535	nächstes unbekanntes Feld
+5536	vorheriges unbekanntes Feld
+5537	nächstes Ressourcenfeld
+5538	vorheriges Ressourcenfeld
+5539	Standardbefehl
+5540	Befehl bestätigen
+5541	untersuchen
+5542	Einheitenansicht folgen
+5543	Trefferpunkte der Einheit
+5544	nächste Zielbeschreibung
+5545	vorherige Zielbeschreibung
+5546	Spielerliste ansagen
+5547	Verlauf vorheriger
+5548	Verlauf nächster
+5549	Spielmenü
+5550	lauter
+5551	leiser
+5552	Ich-Perspektive
+5553	Konsole
+5554	Musik umschalten
+5555	Vollbild
+5556	sprechende Uhr umschalten
+5557	Spieler wechseln
+5558	Einheit befehligen
+5559	Buchstabenkürzel für Befehl
+5560	Seitenfilter umschalten
+5561	Typfilter umschalten
+5562	Gebäude befehligen
+5563	nächsten Befehl durchsuchen
+5564	letzten Befehl wiederholen
+5565	letzten Befehl sofort wiederholen
+5566	Befehl
+5567	nächste Fertigkeit durchsuchen
+5568	Fertigkeit
+5569	Fertigkeitenliste
+5570	Automatischer Angriff
+5571	Hilfe nächster Eintrag
+5572	Hilfe vorheriger Eintrag
+5573	Zeit ansagen
+5574	Chateingabe öffnen
+5575	Metronom umschalten
+5576	Hilfeoberfläche verlassen
+5577	nächste Lagerstätte Ressource 1
+5578	vorherige Lagerstätte Ressource 1
+5579	nächste Lagerstätte Ressource 2
+5580	vorherige Lagerstätte Ressource 2
+5581	nächste Lagerstätte Ressource 3
+5582	vorherige Lagerstätte Ressource 3
+5583	nächste Wiese
+5584	vorherige Wiese
+5585	nächster Durchgang
+5586	vorheriger Durchgang
+5587	Zoom umschalten
+5588	Kartenbrowser verlassen
+5589	Bündniskandidaten wählen
+5590	Bündnisanfrage senden
+5591	Bündnis annehmen
+5592	Bündnis ablehnen oder abbrechen
+5593	Diplomatieoberfläche verlassen
+5594	Befehl abbrechen
+5595	Zoompräzision
+5596	Einheiten auswählen
+5597	alle
+5598	eine Hälfte
+5599	ein Drittel
+5600	ein Viertel
+5601	ein Fünftel
+5602	Gruppierung aufheben
+5603	Kontrollgruppe 1
+5604	Kontrollgruppe 2
+5605	Kontrollgruppe 3
+5606	Kontrollgruppe 4
+5610	Control
+5611	Shift
+5612	Alt
+5613	hoch
+5614	runter
+5615	links
+5616	rechts
+5617	PageUp
+5618	PageDown
+5619	Home
+5620	End
+5621	Tab
+5622	Leertaste
+5623	Enter
+5624	Enter auf Ziffernblock
+5625	Escape
+5626	Backspace
+5627	Plus auf Ziffernblock
+5628	Minus auf Ziffernblock
+5629	Gleichheitszeichen
+5630	Minus
+5631	Backslash
+5632	Semikolon
+5633	Gravis
+5634	Anführungszeichen
+5635	linke Control
+5636	rechte Control
+5637	linke Alt
+5638	rechte Alt
+5639	linke Shift
+5640	rechte Shift
+5641	Anzeige umschalten
+5642	Gruppe speichern
+5643	Einheiten zur Gruppe hinzufügen
+5644	Cheat-Modus umschalten
+5645	Zoompräzision verringern
+5646	Zoompräzision erhöhen
+5647	Zoompräzision abfragen
+5648	Parameter neu laden
+5649	Verlaufswiedergabe stoppen
+5650	Musik lauter
+5651	Musik leiser
+5652	mit Warteschlange bestätigen
+5653	zwingend bestätigen
+5654	in Warteschlange
+5655	kartenweite Reichweite
+5656	global alles auswählen
+5657	vorherigen Befehl durchsuchen
+5658	nur inaktive Befehle
+5659	Seitenfilter rückwärts umschalten
+5660	Typfilter rückwärts umschalten
+5661	jetzt wiederholen und in Warteschlange
+5662	alle Soldaten
+5663	vorheriger Bündniskandidat
+5664	fünf Felder
+5665	Kollision ignorieren
+5666	Einheit rückwärts durchschalten
+5667	nur untätige Einheiten
+5668	Gebäude ohne Menü einschließen
+5669	kartenweit
+5670	Arbeiter und alle Soldaten
+5671	Hotkeys suchen
+5672	Suchtext eingeben, Escape zum Abbrechen
+5673	keine passenden Hotkeys
+5674	erweiterte Varianten
+5675	Hotkey-Konfiguration exportieren
+5676	Hotkey-Konfiguration importieren
+5677	in Zwischenablage kopiert
+5678	Import erfolgreich, gilt ab dem nächsten Spiel
+5679	Import fehlgeschlagen, ungültiges Format
+5680	Import zusammenführen
+5681	Import ersetzen
+5682	ersten Buchstaben tippen zum schnellen Springen
+5683	Aliastasten
+5684	Standardtaste
+5685	Ich-Perspektiv-Oberfläche
+5686	Stufe zu niedrig, um diese Fertigkeit zu lernen
+5687	diese Fertigkeit bereits bekannt
+5688	erlernt
+5689	Gebäudeabriss-Rückerstattung erhalten
+5690	ablegen
+5691	geben
+5692	automatische Erkundung aktivieren
+5693	automatische Erkundung deaktivieren
+5694	Baugrund
+5695	Stadt
+5696	Ebene
+5697	Bach
+5698	Hochland
+5699	Hügel
+4371	besetzt
+4511	verlangsamen
+4638	manuelle Produktion
+4654	Goldminengebäude
+4662	Ebene
+4663	offenes Gelände
