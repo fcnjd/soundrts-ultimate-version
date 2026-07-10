@@ -17,7 +17,7 @@ Por ejemplo: mods = paquete de sonido, mi mod, mi_otro_mod
 El archivo reglas.txt parcheará el archivo predeterminado. Por ejemplo, un archivo reglas.txt que contenga estas 2 líneas: "def campesino" y "decay 20" hará que cualquier campesino desaparezca después de 20 segundos.
 
 Localización de mods (ui-xx)
->>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 Las carpetas Mod reflejan el árbol ``res``. Agregue carpetas localizadas junto a ``ui/`` (``ui-zh``, ``ui-fr``, ``ui-de``, etc.). El juego carga el idioma desde ``cfg/language.txt`` (o la configuración regional del sistema); las entradas que faltan vuelven a ``ui/tts.txt``.
 
@@ -83,10 +83,12 @@ Each faction is defined in rules.txt . For example::
 Nota: el nombre "orc_faction" termina con "_faction" sólo para evitar conflictos de nombres. Este sufijo "_faction" no es obligatorio siempre que el nombre sea único.
 
 unidad
->>>>
+>>>>>>
 
-Nota: una unidad también puede ser un edificio.límite_conteo
-============================================================
+Nota: una unidad también puede ser un edificio.
+
+límite_conteo
+=============
 
 Nuevo en SoundRTS 1.2 alfa 10.
 
@@ -95,8 +97,10 @@ Nuevo en SoundRTS 1.2 alfa 10.
 El valor predeterminado es 0 (sin límite).
 Cuando el límite está activo, un tipo de unidad que alcance el límite no se puede entrenar,
 construido, convocado, resucitado, resucitado o agregado mediante un disparador (add_unit).
-Sin embargo, la conversión no se ve afectada.mdg_projectile / rdg_projectile
-============================================================================
+Sin embargo, la conversión no se ve afectada.
+
+mdg_projectile / rdg_projectile
+===============================
 
 Nuevo en SoundRTS 1.3.8.2. Se agregó restricción de terreno bajo versus terreno alto en 1.3.9.1.
 Reemplaza el obsoleto ``is_ballistic``.
@@ -123,6 +127,7 @@ Ranged projectile example::
     rdg 3
     rdg_range 4
     rdg_projectile 1
+
 es_teleportable
 ===============
 
@@ -130,37 +135,47 @@ Nuevo en SoundRTS 1.2 alfa 9.
 
 ``is_teleportable 1``
 
-La unidad (o edificio) se ve afectada por el efecto de teletransportación o el efecto de recuperación.hp_regen
-==============================================================================================================
+La unidad (o edificio) se ve afectada por el efecto de teletransportación o el efecto de recuperación.
+
+hp_regen
+========
 
 Nuevo en SoundRTS 1.2 alfa 11
 
 `hp_regen <hit points regeneration rate>`
 
-Por ejemplo, con "hp_regen 0.15", la unidad recupera 0,15 puntos de vida por segundo.inicio_maná
-================================================================================================
+Por ejemplo, con "hp_regen 0.15", la unidad recupera 0,15 puntos de vida por segundo.
+
+inicio_maná
+===========
 
 Nuevo en SoundRTS 1.2 alfa 10.
 
 ``mana_start 50``
 
-En el ejemplo, la unidad comenzará con 50 maná en lugar de mana_max. El valor predeterminado para mana_start es 0. Si mana_start es 0 o negativo, se usa mana_max en su lugar.proporciona_supervivencia
-=======================================================================================================================================================================================================
+En el ejemplo, la unidad comenzará con 50 maná en lugar de mana_max. El valor predeterminado para mana_start es 0. Si mana_start es 0 o negativo, se usa mana_max en su lugar.
+
+proporciona_supervivencia
+=========================
 
 Nuevo en SoundRTS 1.2 alfa 9.
 
 ``provides_survival 1``
 
-Tener al menos una unidad (o edificio) con "provides_survival" igual a 1 evita que un jugador pierda en un juego multijugador (no en una campaña para un solo jugador). El activador afectado es "no_building_left". De forma predeterminada, solo los edificios tienen esta propiedad establecida en 1. Los sitios de construcción tienen esta propiedad establecida en 0 y no se puede cambiar.bonificación_almacenamiento
-============================================================================================================================================================================================================================================================================================================================================================================================================================
+Tener al menos una unidad (o edificio) con "provides_survival" igual a 1 evita que un jugador pierda en un juego multijugador (no en una campaña para un solo jugador). El activador afectado es "no_building_left". De forma predeterminada, solo los edificios tienen esta propiedad establecida en 1. Los sitios de construcción tienen esta propiedad establecida en 0 y no se puede cambiar.
+
+bonificación_almacenamiento
+===========================
 
 `storage_bonus <bonus for resource 0> <bonus for resource 1> ...`
 
 Por ejemplo, "storage_bonus 0 1" generará una bonificación de +1 para la madera (el segundo tipo de recurso).
 
 El bono va al dueño de la unidad.
-La bonificación no se acumula: solo se aplicará la bonificación más alta para cada tipo de recurso.daño_vs
-==========================================================================================================
+La bonificación no se acumula: solo se aplicará la bonificación más alta para cada tipo de recurso.
+
+daño_vs
+=======
 
 Nota: desde SoundRTS 1.4 el sistema único ``damage`` / ``armor`` fue reemplazado por el
 sistema dividido cuerpo a cuerpo/a distancia (``mdg`` / ``rdg`` / ``mdf`` / ``rdf`` ...). Ver `Sistema de combate
@@ -181,12 +196,13 @@ Ejemplo de un tipo de piquero que sería más eficiente contra un caballero.
 ``damage_vs knight 7 footman peasant 1``
 
 habilidad
->>>>>>>
+>>>>>>>>>
 
-Nota: desde SoundRTS 1.4, las habilidades están unificadas en ``class skill`` (ver `Habilidades (clase
-habilidad)`_ abajo). Las propiedades ``effect`` documentadas aquí todavía se aplican a las habilidades y a
-``class effect`` definiciones.efecto
-====================================
+Nota: desde SoundRTS 1.4, las habilidades están unificadas en ``class skill`` (ver `Habilidades (habilidad de clase)`_ abajo). Las propiedades ``effect`` documentadas aquí todavía se aplican a las habilidades y a
+``class effect`` definiciones.
+
+efecto
+======
 
 `effect <effect type> [parameters]`
 
@@ -194,7 +210,7 @@ Valor predeterminado: (ninguno)
 
 Un efecto es una propiedad de una habilidad. Cuando una unidad usa una habilidad, el efecto se producirá a menos que no se haya mencionado ningún tipo de efecto.
 
-Propiedades adicionales pueden modificar un efecto: effect_target_ y effect_range_.
+Propiedades adicionales pueden modificar un efecto: objetivo_efecto_ y rango_efecto_.
 
 aplicar_bonus
 ^^^^^^^^^^^^^
@@ -372,7 +388,9 @@ Si el destino es el mismo que el cuadrado del lanzador, no se hará nada.
 Valores permitidos para las propiedades relacionadas:
 
 * effect_target: preguntar, aleatorio
-* effect_range: cerca, en cualquier lugarobjetivo_efecto
+* effect_range: cerca, en cualquier lugar
+
+objetivo_efecto
 ===============
 
 `effect_target <selection method>`
@@ -385,8 +403,10 @@ Valores posibles:
 
 * yo: el objetivo será el lanzador (o la ubicación del lanzador si el objetivo debe ser un lugar)
 * preguntar: la interfaz de usuario solicitará un objetivo
-* aleatorio: el juego elegirá un cuadrado aleatorio como objetivorango_efecto
-==============
+* aleatorio: el juego elegirá un cuadrado aleatorio como objetivo
+
+rango_efecto
+============
 
 `effect_range <distance>`
 
@@ -396,8 +416,10 @@ Valor predeterminado: 6
 
 Valor especial: inf (infinito)
 
-Si la distancia actual es mayor que la distancia requerida, el lanzador intentará moverse a un lugar más cercano y usar la habilidad desde allí.radio_efecto
-============================================================================================================================================================
+Si la distancia actual es mayor que la distancia requerida, el lanzador intentará moverse a un lugar más cercano y usar la habilidad desde allí
+
+radio_efecto
+============
 
 `effect_radius <distance>`
 
@@ -604,28 +626,25 @@ Desde 1.4.4.6: ``harm_target``, ``harm_area``, ``burst``, ``push``, ``effect buf
 
 Las habilidades aprendidas van en ``can_use_skill``. Manual y automático pueden coexistir (``manual_use 1`` + ``auto_trigger 1``).
 
-+--------------------+------------------------------------------------+
-| ``manual_use 1`` | Mostrar en el menú de comandos (predeterminado 1) |
-+--------------------+------------------------------------------------+
-| ``auto_trigger 1`` | Dispara automáticamente en combate |
-+--------------------+------------------------------------------------+
-| ``trigger_timing`` | Cuándo disparar automáticamente (ver tabla) |
-+--------------------+------------------------------------------------+
++--------------------+---------------------------------------------------+
+| ``manual_use 1``   | Mostrar en el menú de comandos (predeterminado 1) |
++--------------------+---------------------------------------------------+
+| ``auto_trigger 1`` | Dispara automáticamente en combate                |
++--------------------+---------------------------------------------------+
+| ``trigger_timing`` | Cuándo disparar automáticamente (ver tabla)       |
++--------------------+---------------------------------------------------+
 
-+---------------------------------+----------------------------------------------+---------------------+
-| ``trigger_timing`` | Cuando | Lista heredada |
-+
-=========================+
-================================================+
-==============================+
-| ``on_hit`` (predeterminado) | Después de golpear a un enemigo | ``active_trigger_skills`` |
-+---------------------------------+----------------------------------------------+---------------------+
-| ``on_attack`` | Al inicio del ataque; El ataque normal continúa | ``attack_trigger_skills`` |
-+---------------------------------+----------------------------------------------+---------------------+
-| ``on_attack_replace`` | Al inicio del ataque; reemplaza este ataque | ``attack_replace_skills`` |
-+---------------------------------+----------------------------------------------+---------------------+
-| ``on_damaged`` | Cuando es golpeado por un enemigo (pasivo) | ``passive_trigger_skills``|
-+---------------------------------+----------------------------------------------+---------------------+
++-----------------------------+-------------------------------------------------+----------------------------+
+| ``trigger_timing``          | Cuando                                          | Lista heredada             |
++=============================+=================================================+============================+
+| ``on_hit`` (predeterminado) | Después de golpear a un enemigo                 | ``active_trigger_skills``  |
++-----------------------------+-------------------------------------------------+----------------------------+
+| ``on_attack``               | Al inicio del ataque; el ataque normal continúa | ``attack_trigger_skills``  |
++-----------------------------+-------------------------------------------------+----------------------------+
+| ``on_attack_replace``       | Al inicio del ataque; reemplaza este ataque     | ``attack_replace_skills``  |
++-----------------------------+-------------------------------------------------+----------------------------+
+| ``on_damaged``              | Cuando es golpeado por un enemigo (pasivo)      | ``passive_trigger_skills`` |
++-----------------------------+-------------------------------------------------+----------------------------+
 
 Tarifas: ``active_trigger_rate`` / ``passive_trigger_rate`` (1–100); opcional ``mdg_trigger_rate`` / ``rdg_trigger_rate`` anula la velocidad activa para cuerpo a cuerpo/a distancia.
 
@@ -1194,7 +1213,7 @@ recombinación de despegue. Implementación de referencia: ``mods/starcraft/rule
 - Tumores de reina y fluencia zerg: ``../player/starcraft-zerg-creep.htm``
 
 Campos de construcción (Protoss psi / Zerg creep)
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 | Atributo | Rol |
 | --- | --- |
@@ -1260,7 +1279,7 @@ Criadero: ``provides_build_field creep`` + ``build_field_radius_m 12`` + ``build
 Interfaz de usuario: ``def build_field_\<name\>`` + ``title \<tts_id\>`` en ``ui/style.txt``; ambiente opcional ``noise``.
 
 Depósitos y gas (``requires_deposit``)
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 | Atributo | Rol |
 | --- | --- |
@@ -1271,7 +1290,7 @@ La plantilla de gas ``sc_gas_building`` utiliza ``auto_production`` + ``is_gathe
 Los trabajadores necesitan ``can_gather assimilator`` (tipo de edificio), no ``geyser`` (depósito).
 
 Modos de construcción de trabajadores
->>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 | ``build_mode`` | Comportamiento |
 | --- | --- |
@@ -1282,7 +1301,7 @@ Modos de construcción de trabajadores
 Además: ``self_constructs 1``, ``build_sacrifices_worker 1``, ``is_buildable_anywhere 1`` (no hay una ranura ``class building_land`` separada en Protoss/Zerg/terran voladores).
 
 Complementos terran
->>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>
 
 | Atributo | Rol |
 | --- | --- |
@@ -1298,7 +1317,7 @@ Complementos terran
 Cree un complemento en un host existente, no en un terreno desnudo.
 
 Despegue y recombinación
->>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>
 
 | Atributo | Rol |
 | --- | --- |
@@ -1386,7 +1405,7 @@ estilo
 El estilo se define en "ui/style.txt" y en la versión localizada de "style.txt".
 
 atajo
->>>>>>>>
+>>>>>>>
 
 Órdenes simples, órdenes de construcción, órdenes de entrenamiento, órdenes usando una habilidad se pueden dar con un atajo, si se define un atajo.
 
