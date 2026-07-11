@@ -8,6 +8,17 @@ Notas de lançamento
 1.4.5.1
 -------
 
+**Melhoria: cobertura de terreno, modificadores por unidade e notação percentual**
+
+- ``class terrain`` em ``rules.txt`` agora suporta ``cover <solo> <ar>``, como ``speed``: ``terrain marsh h8`` no mapa herda cobertura padrão; linhas ``cover`` do mapa ainda sobrescrevem casas individuais.
+- O terreno pode modificar **tipos de unidade** com ``speed_vs``, ``cover_vs``, ``dodge_vs``, ``mdg_vs``, ``rdg_vs``, ``mdg_cd_vs``, ``rdg_cd_vs`` (ex. ``speed_vs knight .25 archer .5``). Basta usar ``*_vs`` sem ``speed``/``cover`` global.
+- Esses ``*_vs`` e ``mdg_on_terrain`` / ``rdg_on_terrain`` / ``mdg_cd_on_terrain`` / ``rdg_cd_on_terrain`` (e ``charge_*_terrain``) usam **percentuais decimais 0–1** (``.5`` = ±50%%, ``.1`` = ±10%%) em relação ao dano ou cooldown base atual da unidade.
+- ``speed_on_terrain`` continua sendo **velocidade absoluta** (diferente de ``speed_vs`` em percentual).
+- ``speed`` / ``cover`` do mapa afetam **todas** as unidades na casa; diferenças por unidade ficam nas defs de terreno ou unidade em ``rules.txt``.
+- **Código**: ``worldterrain.py``, ``lib/square_terrain_rules.py``, ``world/world_map.py``, ``combat/hit_miss.py``, ``combat/damage_calculation.py``, ``combat/attack_action.py``, ``worldunit/world_movement.py``; mapas aleatórios emitem linhas ``cover`` (``rmg_templates.terrain_cover_line``).
+- **Documentação**: ``mod/building-land-terrain.rst``; comentários em ``res/ui/editor_palette.txt``.
+- **Testes**: ``test_terrain_cover_defaults.py``, ``test_terrain_unit_vs.py``, ``test_unit_on_terrain_percent.py``; ``test_combat_terrain_modifiers.py`` atualizado para casos percentuais.
+
 Correções de bugs e melhorias de UX de voz/áudio:
 
 **Correção: cooldown de ataque corpo a corpo / à distância (``mdg_cd`` / ``rdg_cd``) mais lento que nas rules**
@@ -38,6 +49,14 @@ Correções de bugs e melhorias de UX de voz/áudio:
 - **Causa**: Paredes herdam ``is_repairable=True`` das construções, então a lógica de ataque / reparo / limiar de captura podia interagir; a sincronização de HP na neblina (``_sync_memory_hp_from_live``) sem carregar o ``previous_hp`` entre trocas de visão de percepção/memória causava feedback falso de mudança de vida.
 - **Correção**: ``world_order.py`` / ``worldcreature.py`` / ``worldworker.py`` — construções reparáveis inimigas usam por padrão ``go``, imperativo usa por padrão ``attack``; caminhos de reparo protegidos com ``not is_an_enemy(target)``; ``game_navigation.py`` preserva o rastreamento de HP em atualizações de neblina (``_take_hp_tracking`` / ``_apply_hp_tracking``).
 - **Testes**: ``test_imperative_attack.py`` (ataque imperativo em paredes).
+
+**Correção: ordem go normal interrompia incorretamente o ataque imperativo**
+
+- **Sintoma**: Com uma unidade em ataque forçado (ex. prefeitura), um ``go`` normal interrompia o ataque, mas a seleção de grupo (ex. F) ainda anunciava «atacar a prefeitura, ir para \<casa\>» — comportamento e voz inconsistentes.
+- **Causa**: ``take_order`` com ``forget_previous=True`` chamava ``cancel_all_orders()``, removendo o ataque imperativo e enfileirando ``go``, enquanto ``AttackAction`` podia permanecer na unidade.
+- **Correção**: Com ordem imperativa ativa, comandos normais (exceto ``stop``) são enfileirados automaticamente (``forget_previous=False``) sem substituir a cabeça imperativa; a unidade conclui o ataque forçado antes do comando na fila. Após um imperativo só é permitido **um** comando enfileirado; um novo comando normal **substitui** o já enfileirado (como em 1.3.8.1).
+- **Código**: ``worldunit/world_order.py`` ``take_order``.
+- **Testes**: ``test_imperative_attack.py``.
 
 **Melhoria: descrições de voz do comportamento das unidades**
 

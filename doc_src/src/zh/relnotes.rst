@@ -53,6 +53,14 @@ Bug 修复与语音/音频体验改善：
 - **修复**：``world_order.py`` / ``worldcreature.py`` / ``worldworker.py`` — 敌方可修理建筑默认 ``go``，强制默认 ``attack``；修理路径统一 ``not is_an_enemy(target)`` 守卫；``game_navigation.py`` 雾战更新时保留 HP 追踪（``_take_hp_tracking`` / ``_apply_hp_tracking``）。
 - **测试**：``test_imperative_attack.py``（城墙强制攻击用例）。
 
+**修复：强制攻击时普通 go 命令错误打断攻击**
+
+- **现象**：单位强制攻击目标（如市政厅）时，若再下达普通 go 命令，攻击会停止，但按 F 等仍播报「攻击市政厅，去到某某」，行为与显示不一致。
+- **原因**：``take_order`` 在 ``forget_previous=True`` 时会 ``cancel_all_orders()``，取消强制攻击并加入 go，但 ``AttackAction`` 可能仍残留在单位上。
+- **修复**：强制命令进行中时，普通命令（``stop`` 除外）自动改为排队（``forget_previous=False``），不取消队首强制命令；单位会先完成强制攻击，再执行排队命令。强制命令后只允许排队**一个**后续命令；再下普通命令时**替换**已有排队项（与 1.3.8.1 一致）。
+- **实现**：``worldunit/world_order.py`` ``take_order``。
+- **测试**：``test_imperative_attack.py``（``test_normal_go_queues_behind_imperative_attack``、``test_only_one_queued_order_behind_imperative_attack`` 等）。
+
 **改善：单位行为语音描述**
 
 - Tab 选目标后 Ctrl+退格、选择 go 后 Ctrl+回车：对敌方目标播报「攻击某某」而非「移动」。

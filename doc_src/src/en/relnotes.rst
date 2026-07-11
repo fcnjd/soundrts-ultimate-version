@@ -8,6 +8,17 @@ Release notes
 1.4.5.1
 --------
 
+**Improvement: terrain cover, per-unit modifiers, and percent notation**
+
+- ``rules.txt`` ``class terrain`` now supports ``cover <ground> <air>``, same as ``speed``: a map line ``terrain marsh h8`` inherits default cover; per-square map ``cover`` lines still override.
+- Terrain can modify **unit types** via ``speed_vs``, ``cover_vs``, ``dodge_vs``, ``mdg_vs``, ``rdg_vs``, ``mdg_cd_vs``, ``rdg_cd_vs`` (e.g. ``speed_vs knight .25 archer .5``). You may use ``*_vs`` alone without a global ``speed``/``cover``.
+- Those ``*_vs`` fields and unit ``mdg_on_terrain`` / ``rdg_on_terrain`` / ``mdg_cd_on_terrain`` / ``rdg_cd_on_terrain`` (and ``charge_*_terrain``) now use **0–1 decimal percents** (``.5`` = ±50%%, ``.1`` = ±10%%) relative to the unit's current base damage or cooldown.
+- ``speed_on_terrain`` remains an **absolute speed** override (unlike percent ``speed_vs``).
+- Map ``speed`` / ``cover`` still apply to **all** units on a square; per-unit differences belong in terrain or unit defs in ``rules.txt``.
+- **Code**: ``worldterrain.py``, ``lib/square_terrain_rules.py``, ``world/world_map.py``, ``combat/hit_miss.py``, ``combat/damage_calculation.py``, ``combat/attack_action.py``, ``worldunit/world_movement.py``; random maps emit ``cover`` lines (``rmg_templates.terrain_cover_line``).
+- **Docs**: ``mod/building-land-terrain.rst``; ``res/ui/editor_palette.txt`` comments.
+- **Tests**: ``test_terrain_cover_defaults.py``, ``test_terrain_unit_vs.py``, ``test_unit_on_terrain_percent.py``; ``test_combat_terrain_modifiers.py`` updated to percent cases.
+
 Bug fixes and voice/audio UX improvements:
 
 **Fix: melee/ranged attack cooldown (``mdg_cd`` / ``rdg_cd``) slower than rules specify**
@@ -42,6 +53,14 @@ Bug fixes and voice/audio UX improvements:
 - **Cause**: Walls inherit ``is_repairable=True`` from buildings, so attack / repair / capture-threshold logic could interact; fog HP sync (``_sync_memory_hp_from_live``) without carrying ``previous_hp`` across perception/memory view swaps caused false life-change feedback.
 - **Fix**: ``world_order.py`` / ``worldcreature.py`` / ``worldworker.py`` — enemy repairable buildings default to ``go``, imperative default to ``attack``; repair paths guarded with ``not is_an_enemy(target)``; ``game_navigation.py`` preserves HP tracking on fog updates (``_take_hp_tracking`` / ``_apply_hp_tracking``).
 - **Tests**: ``test_imperative_attack.py`` (imperative attack on walls).
+
+**Fix: normal go order incorrectly interrupting imperative attack**
+
+- **Symptom**: While a unit is force-attacking a target (e.g. town hall), issuing a normal ``go`` stopped the attack, yet group select (e.g. F) still announced "attacking the town hall, go to \<square\>" — behavior and voice were inconsistent.
+- **Cause**: ``take_order`` with ``forget_previous=True`` called ``cancel_all_orders()``, removing the imperative attack and queuing ``go``, while ``AttackAction`` could remain on the unit.
+- **Fix**: While an imperative order is active, normal commands (except ``stop``) are auto-queued (``forget_previous=False``) without replacing the imperative head; the unit finishes the forced attack before executing the follow-up. Only **one** queued command is allowed after an imperative order; a new normal command **replaces** the existing queued one (same as 1.3.8.1).
+- **Code**: ``worldunit/world_order.py`` ``take_order``.
+- **Tests**: ``test_imperative_attack.py`` (``test_normal_go_queues_behind_imperative_attack``, ``test_only_one_queued_order_behind_imperative_attack``, etc.).
 
 **Improvement: unit behavior voice descriptions**
 
