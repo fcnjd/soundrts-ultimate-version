@@ -9,6 +9,15 @@ Notas de la versión
 
 Corrección de errores y mejoras en la experiencia de usuario de voz/audio:
 
+**Corrección: enfriamiento de ataque cuerpo a cuerpo/a distancia (``mdg_cd`` / ``rdg_cd``) más lento que en rules**
+
+- **Síntoma**: Con 1 s de enfriamiento en rules (p. ej. campesino ``mdg_cd 1``), el intervalo real era notablemente mayor que en 1.3.8.1 (~1,5 s frente a ~1,2 s; lo segundo es solo cuantización del tick de 300 ms).
+- **Causa**: (1) Con ``mdg_ready`` / ``rdg_ready`` en 0, la rama de preparación consumía un tick extra antes de golpear; (2) los impactos instantáneos (``mdg_delay`` / ``rdg_delay`` 0) pasaban por un mínimo de 100 ms en ``_schedule_ballistic_hit``; (3) ``attack_action.aim()`` y ``damage_effects._schedule_ballistic_hit`` establecían ambos el enfriamiento, con una segunda escritura tras el retraso que alargaba ``next_attack_time``.
+- **Corrección**: omitir preparación cuando ``ready=0`` y atacar al instante; sin suelo de 100 ms para impactos instantáneos; el enfriamiento se establece una sola vez en ``attack_action.aim()`` al iniciar el ataque.
+- **Nota**: ``charge_mdg_cd`` / ``charge_rdg_cd`` usan otra ruta (``receive_hit`` inmediato, sin preparación/programación balística) y no se vieron afectados; el ritmo mixto carga + ataque normal mejora indirectamente con la corrección del CD normal.
+- **Código**: ``combat/attack_action.py``, ``combat/damage_effects.py``.
+- **Pruebas**: ``test_attack_cooldown_timing.py``.
+
 **Mejora: rechazo de órdenes go y aviso de voz en terreno intransitable**
 
 - Las unidades terrestres que ordenan ``go`` / ``patrol`` a casillas con ``is_ground 0``, o las aéreas a ``is_air 0``, reciben rechazo al encolar con ``ground_impassable`` / ``air_impassable``.

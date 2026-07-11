@@ -664,8 +664,13 @@ class DamageEffectsMixin(DamageCalculationMixin):
                 # 取较小值作为新延迟
                 damage_delay_ms = min(damage_delay_ms, meet_time)
 
-        # 限制最大和最小延迟
-        damage_delay_ms = min(max(damage_delay_ms, 100), 5000)  # 100ms最小延迟,5000ms最大延迟
+        # 限制最大和最小延迟（即时命中不强制 100ms 最小延迟）
+        if is_projectile or (
+            (is_melee and self.mdg_delay > 0) or (not is_melee and self.rdg_delay > 0)
+        ):
+            damage_delay_ms = min(max(damage_delay_ms, 100), 5000)
+        else:
+            damage_delay_ms = min(max(damage_delay_ms, 0), 5000)
 
         # 攻击序列（诸葛弩式连发：一次攻击内多次命中，间隔由 rules 配置）
         if is_melee:
@@ -1195,10 +1200,7 @@ class DamageEffectsMixin(DamageCalculationMixin):
                 # 加入延迟调度
                 self.world.schedule_after(hit_time - self.world.time, do_hit)
 
-        # 处理冷却时间
-        total_sequence_time = base_delay + int((times - 1) * interval * 1000)
-        self.world.schedule_after(total_sequence_time,
-                                  lambda: self._set_attack_cooldown(is_melee, target))
+        # 冷却由 attack_action.aim() 在发起攻击时设置，此处不再重复调度
 
 # 重命名旧的DamageMixin为DamageMixin (完整功能)
 class DamageMixin(DamageEffectsMixin):

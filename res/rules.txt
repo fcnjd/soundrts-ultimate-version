@@ -117,6 +117,7 @@ def marsh
 class terrain
 is_dynamic 0
 speed .5 1
+cover .5 0
 rmg_terrain 1
 
 ; impassable
@@ -147,11 +148,13 @@ is_dynamic 0
 
 def forest
 class terrain
+cover .5 0
 
 def dense_forest
 class terrain
 is_dynamic 1
 blocks_path 1
+cover .5 0
 
 def parameters
 nb_of_resource_types 3 ; gold, wood, food
@@ -566,7 +569,7 @@ can_use_tech hunting_techniques
 sight_range 6
 mdg_range 0.8
 mdg_cd 1
-mdg 1
+mdg 1.5
 
 def footman
 class soldier

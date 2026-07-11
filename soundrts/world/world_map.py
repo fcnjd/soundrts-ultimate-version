@@ -125,6 +125,7 @@ class WorldMapMixin:
             if square is not None and _valid_cell(cell):
                 from ..lib.square_terrain_rules import (
                     apply_terrain_map_flags,
+                    resolve_terrain_cover,
                     resolve_terrain_speed,
                 )
 
@@ -135,6 +136,11 @@ class WorldMapMixin:
                     cell[1],
                     resolve_terrain_speed(t, self.sub_terrain_speed.get((square_key, cell))),
                 )
+                square.subcells.set_terrain_cover(
+                    cell[0],
+                    cell[1],
+                    resolve_terrain_cover(t, self.sub_terrain_cover.get((square_key, cell))),
+                )
         for (square_key, cell), t in self.sub_terrain_speed.items():
             if (square_key, cell) in self.sub_terrain:
                 continue
@@ -142,6 +148,8 @@ class WorldMapMixin:
             if square is not None and _valid_cell(cell):
                 square.subcells.set_terrain_speed(cell[0], cell[1], t)
         for (square_key, cell), t in self.sub_terrain_cover.items():
+            if (square_key, cell) in self.sub_terrain:
+                continue
             square = self.grid.get(square_key)
             if square is not None and _valid_cell(cell):
                 square.subcells.set_terrain_cover(cell[0], cell[1], t)
@@ -222,6 +230,7 @@ class WorldMapMixin:
     def _create_squares_and_grid(self):
         from ..lib.square_terrain_rules import (
             apply_terrain_map_flags,
+            resolve_terrain_cover,
             resolve_terrain_speed,
             terrain_is_dynamic,
         )
@@ -245,8 +254,10 @@ class WorldMapMixin:
                     terrain_name,
                     self.terrain_speed.get(square.name),
                 )
-                if square.name in self.terrain_cover:
-                    square.terrain_cover = self.terrain_cover[square.name]
+                square.terrain_cover = resolve_terrain_cover(
+                    terrain_name,
+                    self.terrain_cover.get(square.name),
+                )
                 if square.name in self.water_squares:
                     square.is_water = True
                     square.is_ground = square.name in self.ground_squares

@@ -83,10 +83,15 @@ class CreatureMovement(Entity):
                     self._actual_speed = int(terrain_speed)
                     type_name = None
             if type_name and hasattr(place, 'terrain_speed'):
+                from ..lib.square_terrain_rules import terrain_unit_speed_percent
+
                 if hasattr(place, "terrain_speed_at"):
-                    terrain_speed = place.terrain_speed_at(self.x, self.y)
+                    square_speed = place.terrain_speed_at(self.x, self.y)
                 else:
-                    terrain_speed = place.terrain_speed
+                    square_speed = place.terrain_speed
+                terrain_speed = terrain_unit_speed_percent(
+                    type_name, self, square_speed
+                )
                 terrain_type = 0 if getattr(self, 'airground_type', None) == "ground" else 1
                 if terrain_type < len(terrain_speed):
                     self._actual_speed = (self._actual_speed * terrain_speed[terrain_type]) // 100

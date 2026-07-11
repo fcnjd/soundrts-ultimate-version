@@ -134,18 +134,40 @@
      - 封住相邻方格之间的通道（如密林、高山）
    * - ``speed``
      - 可选。``speed <地面倍率> <空中倍率>``（如 ``speed .5 1`` → 地面 50%% 速）。地图 ``terrain <名>`` 时作为默认 ``terrain_speed``；地图 ``speed`` 行可覆盖单格
+   * - ``cover``
+     - 可选。``cover <地面掩护> <空中掩护>``（如 ``cover .5 0`` → 地面单位 50%% 远程掩护）。仅影响**远程**命中（``chance_to_hit`` 乘算）。继承与优先级同 ``speed``
+   * - ``speed_vs``
+     - 可选。按单位类型修正移速，``speed_vs <单位> <倍率> …``（如 ``speed_vs knight .25 archer .5``）。可单独使用，不必写 ``speed``
+   * - ``cover_vs``
+     - 可选。按单位类型修正远程掩护，``cover_vs archer .25`` 等
+   * - ``dodge_vs``
+     - 可选。按单位类型修正闪避，``.1`` = +10%% 闪避点（0~100）
+   * - ``mdg_vs`` / ``rdg_vs``
+     - 可选。按单位类型修正攻击，``.5`` = +50%% 基础伤害，``-.33`` = −33%%
+   * - ``mdg_cd_vs`` / ``rdg_cd_vs``
+     - 可选。按单位类型修正冷却，``.25`` = +25%% 基础冷却
 
 地图 ``terrain <名>`` 时，上述属性**一并写入方格**（可叠加）。例如 ``mountain``：``is_ground 0`` + ``is_air 0`` → 地面与空中均不可通行。
 
 **移动速度**（与单位 ``speed_on_terrain`` 不同）按优先级生效：
 
-1. 地图 ``speed <地面> <空中> <格>`` — 进游戏时的最终配置
-2. ``rules.txt`` 里该 ``class terrain`` 的 ``speed`` — 仅有 ``terrain``、未写地图 ``speed`` 时
-3. 默认 ``(100, 100)`` 全速
+1. 地图 ``speed <地面> <空中> <格>`` — 进游戏时的最终配置（**全体**地面/空中单位）
+2. 地形 ``speed_vs`` 匹配当前单位 — 仅命中单位类型（含 ``is_a`` 继承）
+3. ``rules.txt`` 里该 ``class terrain`` 的 ``speed`` — 仅有 ``terrain``、未写地图 ``speed`` 时
+4. 默认 ``(100, 100)`` 全速
 
-``editor_palette.txt`` 只在**地图编辑器**里决定「画地形时填什么」：未写 ``speed`` 的调色板项从 ``rules.txt`` 继承；保存地图时非默认速度会写成 ``speed`` 行。运行时**不读取**调色板。
+**远程掩护**（``terrain_cover``，与 ``cover_vs``）按优先级生效：
 
-浅滩示例：
+1. 地图 ``cover <地面> <空中> <格>`` — 全体单位
+2. 地形 ``cover_vs`` 匹配**目标**单位类型
+3. ``rules.txt`` 里该 ``class terrain`` 的 ``cover``
+4. 默认 ``(0, 0)``
+
+地图**不支持**按单位写 ``speed_vs`` / ``cover_vs``；单格特例请用地图 ``speed``/``cover`` 行，或 mod 的 ``rules.txt`` 定义地形类型。
+
+``editor_palette.txt`` 只在**地图编辑器**里决定「画地形时填什么」：未写 ``speed`` / ``cover`` 的调色板项从 ``rules.txt`` 继承；保存地图时非默认值会写成 ``speed`` / ``cover`` 行。运行时**不读取**调色板。
+
+浅滩与沼泽示例：
 
 .. code-block:: text
 
@@ -155,22 +177,81 @@
    is_ground 1
    speed .5 1
 
+   def marsh
+   class terrain
+   speed .5 1
+   cover .5 0
+   speed_vs knight .25
+   cover_vs archer .25
+
+仅写 ``terrain marsh h8`` 即可继承移速与掩护；不必再重复写地图 ``speed`` / ``cover`` 行（除非要覆盖单格）。
+
+森林仅对弓箭手提供掩护：
+
+.. code-block:: text
+
+   def forest
+   class terrain
+   cover_vs archer .25
+
 ``is_ground 1`` 且 ``is_water 1`` 的浅滩/大桥与相邻陆地划入**同一地面区域**，分层寻路可正常穿过（例如雷诺传第二章 ``terrain ford a2`` → ``go a3``）。
 
 **玩家逐格铺桥**（``wooden_bridge``、``is_buildable_on_water_only``、``bridge_terrain bridge_deck``）见 `水上铺桥 <water-bridge-building.htm>`_。地图自带 ``big_bridge`` 为固定栈桥；完工后的玩家桥段地形名为 ``bridge_deck``（桥面）。
 
-单位在地形上的战斗修正（自 1.4.5.0 起）
-----------------------------------------
+单位在地形上的战斗修正（自 1.4.5.0 起，1.4.5.1 起支持百分比写法）
+------------------------------------------------------------------
 
-除方格自带的 ``terrain_speed`` 外，可在**单位 def** 上按地形单独修正移动与战斗数值。格式与 ``speed_on_terrain`` 相同：
+除方格自带的 ``terrain_speed`` / ``terrain_cover`` 外，可在 **rules.txt 地形 def** 上用 ``*_vs`` 按单位类型修正，或在**单位 def** 上用 ``*_on_terrain`` 按地形名修正。
 
-.. code-block:: text
+**小数百分比（推荐，自 1.4.5.1）**
 
-   <地形名> <修正值> [<地形名> <修正值> ...]
+``0``~``1`` 的小数表示占**基础值**的百分比（与 ``speed`` / ``cover`` 一致）：
 
-**判定位置：** 攻击者/移动者**当前所在格**的地形名（``type_name``；子格地形时用 ``type_name_at``）。
+.. list-table::
+   :header-rows: 1
 
-**叠加规则：** 修正值为**加值**，与 ``mdg_vs``、``mdg_cd_vs`` 等叠加；负值表示削弱。数值写法与 ``mdg``、``mdg_cd`` 相同（支持小数，内部 ×1000）。
+   * - 写法
+     - 含义
+   * - ``.1`` / ``-.25`` / ``.5``
+     - +10%% / −25%% / +50%%
+   * - ``dodge_vs archer .1``
+     - 弓箭手在该地形 +10 闪避点（0~100 尺度）
+   * - ``mdg_vs knight -.33``
+     - 骑士在该地形近战伤害 −33%%（相对当前 ``mdg``）
+   * - ``mdg_cd_vs knight .5``
+     - 骑士在该地形近战冷却 +50%%（相对 ``mdg_cd``）
+
+一行可写多对：``speed_vs knight .25 archer .5``、``mdg_on_terrain marsh -.25 forest .1``。
+
+**地形侧（``class terrain``）— 按单位类型**
+
+写在 ``rules.txt`` 的 ``class terrain`` 上；凡使用该地形名的格子均生效（地图 ``terrain <名>`` 或对象 ``square_terrain`` 解析出的地貌）。
+
+.. list-table::
+   :header-rows: 1
+
+   * - 属性
+     - 含义
+   * - ``speed_vs``
+     - 仅匹配单位移速倍率（可单独使用，不必写 ``speed``）
+   * - ``cover_vs``
+     - 仅匹配单位作为**远程目标**时的掩护%%
+   * - ``dodge_vs``
+     - 仅匹配单位闪避加值
+   * - ``mdg_vs`` / ``rdg_vs``
+     - 仅匹配单位攻击加值（基础伤害百分比）
+   * - ``mdg_cd_vs`` / ``rdg_cd_vs``
+     - 仅匹配单位冷却加值（基础冷却百分比）
+
+匹配规则：精确 ``type_name`` 优先，否则 ``expanded_is_a`` 继承链。
+
+**单位侧 — 按地形名**
+
+格式：``<地形名> <修正> [<地形名> <修正> …]``
+
+**判定位置：** 攻击者/移动者**当前所在格**的地形名（``type_name``；子格时用 ``type_name_at``）。
+
+自 1.4.5.1 起，``mdg_on_terrain``、``rdg_on_terrain``、``mdg_cd_on_terrain``、``rdg_cd_on_terrain`` 以及 ``charge_*_terrain`` / ``charge_*_cd_on_terrain`` 同样使用**百分比小数**（相对该单位当前 ``mdg`` / ``rdg`` / ``mdg_cd`` / ``charge_mdg`` 等基础值），不再推荐写绝对加值 ``-2``、``0.5``。
 
 .. list-table::
    :header-rows: 1
@@ -178,19 +259,31 @@
    * - 属性
      - 含义
    * - ``speed_on_terrain``
-     - 在该地形上的移动速度（绝对值或替换，见既有规则）
+     - 在该地形上的移动速度（**绝对值**替换，与百分比 ``*_vs`` 不同）
    * - ``mdg_on_terrain`` / ``rdg_on_terrain``
-     - 近战 / 远程攻击力修正（加在 ``mdg``/``rdg`` 与 ``*_vs`` 结果之后）
+     - 近战 / 远程伤害百分比修正（加在 ``mdg``/``rdg`` 与 ``*_vs`` 之后）
    * - ``mdg_cd_on_terrain`` / ``rdg_cd_on_terrain``
-     - 攻击冷却修正（**正值 = 冷却更长、攻速更慢**）
+     - 攻击冷却百分比修正（**正值 = 冷却更长**）
    * - ``charge_mdg_terrain`` / ``charge_rdg_terrain``
-     - 冲锋额外伤害修正（加在 ``charge_mdg``/``charge_rdg`` 与 ``charge_*_vs`` 之后）
+     - 冲锋额外伤害百分比修正
    * - ``charge_mdg_cd_on_terrain`` / ``charge_rdg_cd_on_terrain``
-     - 冲锋冷却修正（正值 = 冲锋更久才能再用）
+     - 冲锋冷却百分比修正
 
-另有命中/闪避地形修正（作用于目标所在地形）：``mdg_cover_on_terrain``、``rdg_cover_on_terrain``、``mdg_dodge_on_terrain``、``rdg_dodge_on_terrain``。
+另有命中/闪避地形修正（作用于目标所在地形，仍为列表加值）：``mdg_cover_on_terrain``、``rdg_cover_on_terrain``、``mdg_dodge_on_terrain``、``rdg_dodge_on_terrain``。
 
-**示例 — 骑士在沼泽中削弱：**
+**示例 — 地形规定沼泽只慢骑士、森林只掩护弓箭手：**
+
+.. code-block:: text
+
+   def marsh
+   class terrain
+   speed_vs knight .25
+
+   def forest
+   class terrain
+   cover_vs archer .25
+
+**示例 — 骑士在沼泽中削弱（单位侧写法）：**
 
 .. code-block:: text
 
@@ -199,10 +292,10 @@
    mdg 6
    mdg_cd 1.5
    speed_on_terrain marsh 1.5 ford 1.5
-   mdg_on_terrain marsh -2
-   mdg_cd_on_terrain marsh 0.5
+   mdg_on_terrain marsh -.33
+   mdg_cd_on_terrain marsh .33
 
-在 ``marsh`` 上：移速 1.5、近战攻击 4、攻击冷却 2.0 秒。
+在 ``marsh`` 上：移速 1.5（``speed_on_terrain`` 绝对值）、近战伤害约 −33%%、攻击冷却约 +33%%。
 
 **示例 — 带冲锋的单位：**
 
@@ -211,12 +304,12 @@
    def raynor
    charge_mdg 4
    charge_mdg_cd 10
-   charge_mdg_terrain marsh -1
-   charge_mdg_cd_on_terrain marsh 2
+   charge_mdg_terrain marsh -.25
+   charge_mdg_cd_on_terrain marsh .2
 
-在 ``marsh`` 上：冲锋额外伤害 −1，冲锋冷却 +2 秒。
+在 ``marsh`` 上：冲锋额外伤害 −25%%，冲锋冷却 +20%%。
 
-实现：``soundrts/combat/damage_calculation.py``、``soundrts/combat/attack_action.py``；测试：``test_combat_terrain_modifiers.py``。
+实现：``soundrts/lib/square_terrain_rules.py``、``soundrts/combat/damage_calculation.py``、``soundrts/combat/attack_action.py``、``soundrts/combat/hit_miss.py``；测试：``test_combat_terrain_modifiers.py``、``test_terrain_cover_defaults.py``、``test_terrain_unit_vs.py``、``test_unit_on_terrain_percent.py``。
 
 已写入 ``res/rules.txt`` 的地形：``plain``、``rocky_plain``、``plateau``、``hill``、``high_rocky_plain``、``mountain_pass``、``basin``、``lake``、``sea``、``ocean``、``river``、``creek``、``ford``、``big_bridge``、``bridge_deck``、``marsh``、``mountain``，以及对象地形 ``town``、``meadows``、``build_sites``、``forest``、``dense_forest``。
 
@@ -650,7 +743,7 @@
    * - 保存地图
      - Ctrl+S
 
-应用逻辑在 ``soundrts/lib/editor_palette.py``（``apply_palette_to_square``），与上文地形规则一致。调色板项若**未写** ``speed``，加载时从 ``rules.txt`` 同名 ``class terrain`` 继承默认速度；保存地图时写入 ``speed`` 行（见上文优先级）。
+应用逻辑在 ``soundrts/lib/editor_palette.py``（``apply_palette_to_square``），与上文地形规则一致。调色板项若**未写** ``speed`` / ``cover``，加载时从 ``rules.txt`` 同名 ``class terrain`` 继承；保存地图时写入 ``speed`` / ``cover`` 行（见上文优先级）。
 
 .. list-table::
    :header-rows: 1
@@ -709,4 +802,4 @@
 
 .. code-block:: bash
 
-   python -m pytest soundrts/tests/test_square_terrain_rules.py soundrts/tests/test_building_land.py soundrts/tests/test_subcell_terrain.py soundrts/tests/test_editor_palette.py soundrts/tests/test_terrain_speed_defaults.py soundrts/tests/test_ground_region_ford.py soundrts/tests/test_water_impassable_order.py -q
+   python -m pytest soundrts/tests/test_square_terrain_rules.py soundrts/tests/test_building_land.py soundrts/tests/test_subcell_terrain.py soundrts/tests/test_editor_palette.py soundrts/tests/test_terrain_speed_defaults.py soundrts/tests/test_terrain_cover_defaults.py soundrts/tests/test_terrain_unit_vs.py soundrts/tests/test_unit_on_terrain_percent.py soundrts/tests/test_combat_terrain_modifiers.py soundrts/tests/test_ground_region_ford.py soundrts/tests/test_water_impassable_order.py -q

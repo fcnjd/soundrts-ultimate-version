@@ -421,6 +421,27 @@ def terrain_speed_line(name: str) -> str | None:
     return f"speed {ground_text} {air_text}"
 
 
+def terrain_cover_line(name: str) -> str | None:
+    from .lib.square_terrain_rules import terrain_default_cover
+
+    cover = terrain_default_cover(name)
+    if cover is None:
+        return None
+    ground = cover[0] / 100
+    air = cover[1] / 100
+    if ground == 0 and air == 0:
+        return None
+    if float(ground).is_integer():
+        ground_text = str(int(ground))
+    else:
+        ground_text = str(ground)
+    if float(air).is_integer():
+        air_text = str(int(air))
+    else:
+        air_text = str(air)
+    return f"cover {ground_text} {air_text}"
+
+
 def terrain_menu_voice(name: str) -> List:
     if name == "random":
         from . import msgparts as mp

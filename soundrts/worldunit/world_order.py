@@ -16,6 +16,18 @@ from ..worlditem import Item
 
 class CreatureOrders(Entity):
     def take_order(self, o, forget_previous=True, imperative=False, order_id=None):
+        imperative_head = (
+            self.orders
+            and self.orders[0].is_imperative
+        )
+        # 强制命令进行中时，普通命令自动排队，不得替换队首强制命令（stop 除外）
+        if (
+            forget_previous
+            and not imperative
+            and imperative_head
+            and o[0] != "stop"
+        ):
+            forget_previous = False
         # an imperative "go" order on a unit is an "attack" order
         # note: this could be done by the user interface
         if imperative and o[0] == "go":
@@ -34,6 +46,15 @@ class CreatureOrders(Entity):
             return
         if forget_previous and not cls.never_forget_previous:
             self.cancel_all_orders()
+        # 强制命令后只允许一个排队命令：新的普通命令替换已有排队项
+        if (
+            not imperative
+            and imperative_head
+            and o[0] != "stop"
+            and len(self.orders) >= 2
+        ):
+            while len(self.orders) > 1:
+                self.orders.pop().cancel()
         order = cls(self, o[1:])
         order.id = order_id
         if imperative:

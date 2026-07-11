@@ -10,6 +10,15 @@ Release notes
 
 Bug fixes and voice/audio UX improvements:
 
+**Fix: melee/ranged attack cooldown (``mdg_cd`` / ``rdg_cd``) slower than rules specify**
+
+- **Symptom**: With 1 second cooldown in rules (e.g. peasant ``mdg_cd 1``), actual attack interval was noticeably longer than in 1.3.8.1 (~1.5 s vs ~1.2 s; the latter is only 300 ms tick quantization).
+- **Cause**: (1) When ``mdg_ready`` / ``rdg_ready`` is 0, the prep branch still consumed an extra tick before striking; (2) instant hits (``mdg_delay`` / ``rdg_delay`` 0) were forced through a 100 ms minimum delay in ``_schedule_ballistic_hit``; (3) ``attack_action.aim()`` and ``damage_effects._schedule_ballistic_hit`` both set cooldown, with the second write after the delay extending ``next_attack_time`` further.
+- **Fix**: Skip prep when ``ready=0`` and attack immediately; no 100 ms floor for instant hits; set cooldown only once in ``attack_action.aim()`` when the attack starts.
+- **Note**: ``charge_mdg_cd`` / ``charge_rdg_cd`` use a separate path (immediate ``receive_hit``, no prep/ballistic scheduling) and were not affected by these three issues; mixed charge + normal-attack pacing improves indirectly via the normal-attack CD fix.
+- **Code**: ``combat/attack_action.py``, ``combat/damage_effects.py``.
+- **Tests**: ``test_attack_cooldown_timing.py``.
+
 **Improvement: go-order rejection and voice feedback on impassable terrain**
 
 - When a ground unit orders ``go`` / ``patrol`` to a square with ``is_ground 0``, or an air unit to ``is_air 0``, the order is rejected at queue time with "ground is impassable" or "air is impassable" (``order_impossible`` + ``ground_impassable`` / ``air_impassable``).

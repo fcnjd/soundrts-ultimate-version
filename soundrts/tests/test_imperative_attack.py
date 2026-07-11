@@ -15,6 +15,7 @@ class _Sq:
         self.objects = []
         self.neighbors = []
         self.exits = []
+        self.is_inside_place = False
 
 
 class _Player:
@@ -279,6 +280,150 @@ def test_resolve_imperative_go_order_on_square():
     unit.player.get_object_by_id = lambda i: {"sq1": square}[i]
 
     assert unit.resolve_imperative_go_order("sq1") == "go"
+
+
+def test_normal_go_queues_behind_imperative_attack():
+    """强制攻击中：普通 go 自动排队，先摧毁目标再执行移动。"""
+    from soundrts.worldunit.world_order import CreatureOrders
+
+    class _Orders(CreatureOrders):
+        basic_skills = ["go", "attack"]
+
+        def __init__(self):
+            self.player = _Player()
+            self.orders = []
+            self.notifications = []
+            self.place = _Sq()
+            self.is_idle = True
+            self.world = types.SimpleNamespace(time=0)
+
+        def notify(self, msg, *_args, **_kwargs):
+            self.notifications.append(msg)
+
+        def stop(self):
+            pass
+
+    unit = _Orders()
+    townhall = _Target("th1", neutral=True, huntable=0)
+    unit.player.get_object_by_id = lambda i: {"th1": townhall, "a1": _Sq("a1")}[i]
+
+    unit.take_order(["attack", "th1"], imperative=True)
+    assert len(unit.orders) == 1
+    assert unit.orders[0].is_imperative
+    assert unit.orders[0].keyword == "attack"
+
+    unit.take_order(["go", "a1"])
+    assert "order_impossible" not in unit.notifications
+    assert len(unit.orders) == 2
+    assert unit.orders[0].keyword == "attack"
+    assert unit.orders[0].is_imperative
+    assert unit.orders[1].keyword == "go"
+    assert not unit.orders[1].is_imperative
+    assert "order_ok" in unit.notifications
+
+
+def test_normal_go_explicit_queue_behind_imperative_attack():
+    """强制攻击中：显式排队 go 同样接在队尾。"""
+    from soundrts.worldunit.world_order import CreatureOrders
+
+    class _Orders(CreatureOrders):
+        basic_skills = ["go", "attack"]
+
+        def __init__(self):
+            self.player = _Player()
+            self.orders = []
+            self.notifications = []
+            self.place = _Sq()
+            self.is_idle = True
+            self.world = types.SimpleNamespace(time=0)
+
+        def notify(self, msg, *_args, **_kwargs):
+            self.notifications.append(msg)
+
+        def stop(self):
+            pass
+
+    unit = _Orders()
+    townhall = _Target("th1", neutral=True, huntable=0)
+    unit.player.get_object_by_id = lambda i: {"th1": townhall, "a1": _Sq("a1")}[i]
+
+    unit.take_order(["attack", "th1"], imperative=True)
+    unit.take_order(["go", "a1"], forget_previous=False)
+    assert "order_impossible" not in unit.notifications
+    assert len(unit.orders) == 2
+    assert unit.orders[0].keyword == "attack"
+    assert unit.orders[1].keyword == "go"
+
+
+def test_only_one_queued_order_behind_imperative_attack():
+    """强制命令后只能排队一个命令；再下普通命令时替换排队项。"""
+    from soundrts.worldunit.world_order import CreatureOrders
+
+    class _Orders(CreatureOrders):
+        basic_skills = ["go", "attack"]
+
+        def __init__(self):
+            self.player = _Player()
+            self.orders = []
+            self.notifications = []
+            self.place = _Sq()
+            self.is_idle = True
+            self.world = types.SimpleNamespace(time=0)
+
+        def notify(self, msg, *_args, **_kwargs):
+            self.notifications.append(msg)
+
+        def stop(self):
+            pass
+
+    unit = _Orders()
+    townhall = _Target("th1", neutral=True, huntable=0)
+    a1 = _Sq("a1")
+    b1 = _Sq("b1")
+    unit.player.get_object_by_id = lambda i: {"th1": townhall, "a1": a1, "b1": b1}[i]
+
+    unit.take_order(["attack", "th1"], imperative=True)
+    unit.take_order(["go", "a1"])
+    assert len(unit.orders) == 2
+    assert unit.orders[1].args == ["a1"]
+
+    unit.take_order(["go", "b1"])
+    assert "order_impossible" not in unit.notifications
+    assert len(unit.orders) == 2
+    assert unit.orders[0].keyword == "attack"
+    assert unit.orders[1].keyword == "go"
+    assert unit.orders[1].args == ["b1"]
+
+
+def test_stop_can_interrupt_imperative_attack():
+    """stop 命令仍可取消强制攻击。"""
+    from soundrts.worldunit.world_order import CreatureOrders
+
+    class _Orders(CreatureOrders):
+        basic_skills = ["go", "attack", "stop"]
+
+        def __init__(self):
+            self.player = _Player()
+            self.orders = []
+            self.notifications = []
+            self.place = _Sq()
+            self.is_idle = True
+            self.world = types.SimpleNamespace(time=0)
+
+        def notify(self, msg, *_args, **_kwargs):
+            self.notifications.append(msg)
+
+        def stop(self):
+            pass
+
+    unit = _Orders()
+    townhall = _Target("th1", neutral=True, huntable=0)
+    unit.player.get_object_by_id = lambda i: {"th1": townhall}[i]
+
+    unit.take_order(["attack", "th1"], imperative=True)
+    unit.take_order(["stop"])
+    assert len(unit.orders) == 0
+    assert "order_ok" in unit.notifications
 
 
 def test_get_resolved_default_order_imperative_go_without_attack_skill():

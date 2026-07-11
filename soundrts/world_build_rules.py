@@ -1353,6 +1353,7 @@ def refresh_bridge_terrain(square):
         from .lib.square_terrain_rules import (
             apply_terrain_map_flags,
             is_terrain_def,
+            resolve_terrain_cover,
             resolve_terrain_speed,
         )
 
@@ -1365,9 +1366,11 @@ def refresh_bridge_terrain(square):
                 "is_water": square.is_water,
                 "type_name": getattr(square, "type_name", "") or "",
                 "terrain_speed": getattr(square, "terrain_speed", None),
+                "terrain_cover": getattr(square, "terrain_cover", None),
             }
         apply_terrain_map_flags(square, terrain_name)
         square.terrain_speed = resolve_terrain_speed(terrain_name)
+        square.terrain_cover = resolve_terrain_cover(terrain_name)
         square._bridge_terrain_voice = terrain_name
     elif saved is not None:
         square.is_ground = saved["is_ground"]
@@ -1376,6 +1379,8 @@ def refresh_bridge_terrain(square):
             square.type_name = saved["type_name"]
         if saved.get("terrain_speed") is not None:
             square.terrain_speed = saved["terrain_speed"]
+        if saved.get("terrain_cover") is not None:
+            square.terrain_cover = saved["terrain_cover"]
         square._bridge_terrain_voice = None
         del square._bridge_terrain_saved
     if terrain_name or saved is not None:

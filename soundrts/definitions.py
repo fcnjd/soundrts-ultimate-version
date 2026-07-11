@@ -1345,6 +1345,13 @@ class Rules(_Definitions):
         "accept_from",         # 仅接收来自这些关系的给予者：self/ally/neutral/enemy（空=不限）
         "accept_givers",       # 仅接收这些单位类型交来的物品（type_name，支持is_a；空=不限）
         "passable_units",      # 地形允许通行的单位类型（type_name，支持 is_a 继承链）
+        "speed_vs",
+        "cover_vs",
+        "dodge_vs",
+        "mdg_vs",
+        "rdg_vs",
+        "mdg_cd_vs",
+        "rdg_cd_vs",
     }
 
     def parse_resource_list(self, resource_list):

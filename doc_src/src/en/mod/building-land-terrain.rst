@@ -108,14 +108,28 @@ See ``mapmaking.htm`` (*Building_land*, *Nb_<type>_by_square*).
      - Blocks exits to neighbors (e.g. dense forest, mountain)
    * - ``speed``
      - Optional. ``speed <ground> <air>`` (e.g. ``speed .5 1`` → 50% ground speed). Applied when the map sets ``terrain <name>``; per-square map ``speed`` lines override
+   * - ``cover``
+     - Optional. ``cover <ground> <air>`` (e.g. ``cover .5 0`` → 50% ranged cover for ground units). Affects **ranged** hit chance only. Same inheritance/priority as ``speed``
+   * - ``speed_vs`` / ``cover_vs`` / ``dodge_vs`` / ``mdg_vs`` / ``rdg_vs`` / ``mdg_cd_vs`` / ``rdg_cd_vs``
+     - Optional per-**unit-type** modifiers on this terrain (e.g. ``speed_vs knight .25 archer .5``). ``*_vs`` alone is enough; default ``speed``/``cover`` is optional
 
-Map ``terrain <name>`` writes these flags onto the square. **Movement speed** on a square (not the same as unit ``speed_on_terrain``) resolves as:
+Map ``terrain <name>`` writes these flags onto the square. **Movement speed** resolves as:
 
-1. Map ``speed <ground> <air> <squares>`` — authoritative at runtime
-2. ``speed`` on the ``class terrain`` in ``rules.txt`` — when the map has ``terrain`` but no ``speed`` for that cell
-3. Default ``(100, 100)``
+1. Map ``speed <ground> <air> <squares>`` — all units on that cell
+2. Matching ``speed_vs`` for the current unit (``is_a`` inheritance)
+3. ``speed`` on ``class terrain`` in ``rules.txt``
+4. Default ``(100, 100)``
 
-``editor_palette.txt`` is editor-only: palette entries without ``speed`` inherit from ``rules.txt`` when the palette is loaded; saving the map writes ``speed`` lines. The game does **not** read the palette at runtime.
+**Ranged cover** resolves as:
+
+1. Map ``cover`` line — all units
+2. Matching ``cover_vs`` for the **target** unit
+3. ``cover`` on ``class terrain``
+4. Default ``(0, 0)``
+
+Maps do **not** support per-unit ``speed_vs``/``cover_vs`` on individual squares; use map ``speed``/``cover`` or terrain defs in ``rules.txt``.
+
+``editor_palette.txt`` is editor-only: entries without ``speed``/``cover`` inherit from ``rules.txt``; saving writes ``speed``/``cover`` lines. The game does **not** read the palette at runtime.
 
 Ford example (shallow water, half ground speed):
 
@@ -131,64 +145,44 @@ When ``is_ground 1`` is set on water terrain (``ford``, ``big_bridge``), pathfin
 
 **Player-built spans** (``wooden_bridge``, ``is_buildable_on_water_only``, ``bridge_terrain bridge_deck``): see `Building bridges on water <water-bridge-building.htm>`_ (`zh <../../zh/mod/water-bridge-building.htm>`_). Map ``big_bridge`` is fixed trestle terrain; finished player spans use ``bridge_deck``.
 
-Unit combat modifiers on terrain (since 1.4.5.0)
-------------------------------------------------
+Unit combat modifiers on terrain (since 1.4.5.0; percent decimals since 1.4.5.1)
+---------------------------------------------------------------------------------
 
-Besides per-square ``terrain_speed``, unit defs can override movement and combat stats **by the terrain the unit stands on**. Syntax matches ``speed_on_terrain``:
+Besides per-square ``terrain_speed`` / ``terrain_cover``, use **terrain** ``*_vs`` (by unit type) in ``rules.txt``, or **unit** ``*_on_terrain`` (by terrain name).
+
+**Percent decimals (recommended since 1.4.5.1):** ``.1`` = ±10%, ``.5`` = ±50%, relative to the unit’s current base stat (``mdg``, ``mdg_cd``, ``charge_mdg``, etc.). Examples: ``mdg_on_terrain marsh -.33``, ``speed_vs knight .25``, ``mdg_cd_vs knight .5``.
+
+**Terrain-side** (``class terrain``): ``speed_vs``, ``cover_vs``, ``dodge_vs``, ``mdg_vs``, ``rdg_vs``, ``mdg_cd_vs``, ``rdg_cd_vs`` — multiple pairs per line allowed.
+
+**Unit-side:** ``mdg_on_terrain``, ``rdg_on_terrain``, ``mdg_cd_on_terrain``, ``rdg_cd_on_terrain``, ``charge_*_terrain`` — same percent rules. ``speed_on_terrain`` remains an **absolute** speed override.
+
+**Which tile counts:** attacker/mover’s current square ``type_name`` (or ``type_name_at`` for sub-cells). ``cover_vs`` applies to the **target** unit when attacked at range.
+
+Maps: ``speed``/``cover`` lines affect **all** units on a cell; per-unit rules belong in ``rules.txt``.
+
+**Example — marsh slows knights only; forest covers archers only:**
 
 .. code-block:: text
 
-   <terrain_name> <modifier> [<terrain_name> <modifier> ...]
+   def marsh
+   class terrain
+   speed_vs knight .25
 
-**Which tile counts:** the **attacker/mover's current square** ``type_name`` (or ``type_name_at`` for sub-cell terrain).
+   def forest
+   class terrain
+   cover_vs archer .25
 
-**Stacking:** modifiers are **additive** (negative = penalty), applied after ``mdg_vs`` / ``mdg_cd_vs`` etc. Values use the same units as ``mdg`` / ``mdg_cd`` (decimals allowed; stored ×1000 internally).
-
-.. list-table::
-   :header-rows: 1
-
-   * - Property
-     - Effect
-   * - ``speed_on_terrain``
-     - Movement speed on that terrain (existing behaviour)
-   * - ``mdg_on_terrain`` / ``rdg_on_terrain``
-     - Melee / ranged damage bonus (after base + ``*_vs``)
-   * - ``mdg_cd_on_terrain`` / ``rdg_cd_on_terrain``
-     - Attack cooldown bonus (**positive = slower attacks**)
-   * - ``charge_mdg_terrain`` / ``charge_rdg_terrain``
-     - Extra charge damage bonus (after ``charge_mdg`` + ``charge_*_vs``)
-   * - ``charge_mdg_cd_on_terrain`` / ``charge_rdg_cd_on_terrain``
-     - Charge cooldown bonus (positive = longer charge cooldown)
-
-Hit/dodge on **target** terrain (existing): ``mdg_cover_on_terrain``, ``rdg_cover_on_terrain``, ``mdg_dodge_on_terrain``, ``rdg_dodge_on_terrain``.
-
-**Example — knight weakened in marsh:**
+**Example — knight weakened in marsh (unit-side):**
 
 .. code-block:: text
 
    def knight
-   speed 2.5
    mdg 6
    mdg_cd 1.5
-   speed_on_terrain marsh 1.5 ford 1.5
-   mdg_on_terrain marsh -2
-   mdg_cd_on_terrain marsh 0.5
+   mdg_on_terrain marsh -.33
+   mdg_cd_on_terrain marsh .33
 
-On ``marsh``: speed 1.5, melee damage 4, attack cooldown 2.0 s.
-
-**Example — unit with charge:**
-
-.. code-block:: text
-
-   def raynor
-   charge_mdg 4
-   charge_mdg_cd 10
-   charge_mdg_terrain marsh -1
-   charge_mdg_cd_on_terrain marsh 2
-
-On ``marsh``: charge bonus −1, charge cooldown +2 s.
-
-Implementation: ``soundrts/combat/damage_calculation.py``, ``soundrts/combat/attack_action.py``; tests: ``test_combat_terrain_modifiers.py``.
+Tests: ``test_combat_terrain_modifiers.py``, ``test_terrain_cover_defaults.py``, ``test_terrain_unit_vs.py``, ``test_unit_on_terrain_percent.py``.
 
 Types in ``res/rules.txt`` include ``plain``, ``lake``, ``marsh``, ``mountain``, ``forest``, ``dense_forest``, ``meadows``, ``build_sites``, ``town``, ``ford``, etc.
 

@@ -433,7 +433,7 @@ Combat system (since 1.4)
 - ``mdg_crit`` / ``rdg_crit``、``mdg_crit_rate`` / ``rdg_crit_rate``、``crit_vs``
 - ``mdg_piercing`` / ``rdg_piercing``\ `` （无视护甲百分比）``、``piercing_vs``
 - ``mdg_explode`` / ``rdg_explode``、``exp_dgf``、``exp_hp_cost``、``mdg_explode_vs``
-- 单位**所在地形**上的修正（自 1.4.5.0）：``mdg_on_terrain`` / ``rdg_on_terrain``、``mdg_cd_on_terrain`` / ``rdg_cd_on_terrain``、``charge_mdg_terrain`` / ``charge_rdg_terrain``、``charge_mdg_cd_on_terrain`` / ``charge_rdg_cd_on_terrain``；与 ``speed_on_terrain`` 写法相同，详见 ``building-land-terrain.rst`` *单位在地形上的战斗修正*
+- 单位**所在地形**上的修正（自 1.4.5.0，1.4.5.1 起百分比）：``mdg_on_terrain`` / ``rdg_on_terrain``、``mdg_cd_on_terrain`` / ``rdg_cd_on_terrain``、``charge_*_terrain`` 等使用小数百分比（``.33`` = ±33%%）；地形 ``class terrain`` 上可用 ``speed_vs`` / ``cover_vs`` / ``dodge_vs`` / ``mdg_vs`` 等按单位类型修正。详见 ``building-land-terrain.rst`` *单位在地形上的战斗修正*
 
 冲锋与反冲锋（自 1.4.0.1 起）
 

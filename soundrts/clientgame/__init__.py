@@ -305,11 +305,12 @@ def load_palette():
                     elif k in ["speed", "cover"]:
                         v = tuple([int(float(x) * 100) for x in v[:2]])
                     t[k] = v
-    from ..lib.square_terrain_rules import palette_speed_default
+    from ..lib.square_terrain_rules import palette_cover_default, palette_speed_default
 
     for _name, entry in p:
         style = entry.get("style") or _name
         entry["speed"] = palette_speed_default(style, entry["speed"])
+        entry["cover"] = palette_cover_default(style, entry["cover"])
     return p
 
 # 导出主要的类

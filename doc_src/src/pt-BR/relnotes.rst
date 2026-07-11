@@ -10,6 +10,15 @@ Notas de lançamento
 
 Correções de bugs e melhorias de UX de voz/áudio:
 
+**Correção: cooldown de ataque corpo a corpo / à distância (``mdg_cd`` / ``rdg_cd``) mais lento que nas rules**
+
+- **Sintoma**: Com 1 s de cooldown nas rules (ex. camponês ``mdg_cd 1``), o intervalo real era visivelmente maior que em 1.3.8.1 (~1,5 s vs ~1,2 s; o segundo é apenas quantização do tick de 300 ms).
+- **Causa**: (1) Com ``mdg_ready`` / ``rdg_ready`` em 0, o ramo de preparação ainda consumia um tick extra antes de atacar; (2) acertos instantâneos (``mdg_delay`` / ``rdg_delay`` 0) eram forçados a um mínimo de 100 ms em ``_schedule_ballistic_hit``; (3) ``attack_action.aim()`` e ``damage_effects._schedule_ballistic_hit`` definiam ambos o cooldown, com uma segunda gravação após o atraso que estendia ``next_attack_time``.
+- **Correção**: pular preparação quando ``ready=0`` e atacar imediatamente; sem piso de 100 ms para acertos instantâneos; cooldown definido apenas uma vez em ``attack_action.aim()`` ao iniciar o ataque.
+- **Nota**: ``charge_mdg_cd`` / ``charge_rdg_cd`` usam caminho separado (``receive_hit`` imediato, sem preparação/agendamento balístico) e não foram afetados; o ritmo misto carga + ataque normal melhora indiretamente com a correção do CD normal.
+- **Código**: ``combat/attack_action.py``, ``combat/damage_effects.py``.
+- **Testes**: ``test_attack_cooldown_timing.py``.
+
 **Melhoria: rejeição de ordens go e aviso de voz em terreno intransitável**
 
 - Unidades terrestres com ``go`` / ``patrol`` para casas ``is_ground 0``, ou aéreas para ``is_air 0``: ordem rejeitada na fila com ``ground_impassable`` / ``air_impassable``.

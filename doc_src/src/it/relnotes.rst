@@ -9,6 +9,15 @@ Note di rilascio
 
 Correzioni di bug e miglioramenti UX voce/audio:
 
+**Correzione: cooldown attacco corpo a corpo/a distanza (``mdg_cd`` / ``rdg_cd``) più lento delle rules**
+
+- **Sintomo**: Con 1 secondo di cooldown nelle rules (es. contadino ``mdg_cd 1``), l'intervallo reale era sensibilmente maggiore che in 1.3.8.1 (~1,5 s vs ~1,2 s; quest'ultimo è solo quantizzazione del tick da 300 ms).
+- **Causa**: (1) Con ``mdg_ready`` / ``rdg_ready`` a 0, il ramo di preparazione consumava un tick extra prima di colpire; (2) i colpi istantanei (``mdg_delay`` / ``rdg_delay`` 0) passavano da un minimo di 100 ms in ``_schedule_ballistic_hit``; (3) ``attack_action.aim()`` e ``damage_effects._schedule_ballistic_hit`` impostavano entrambi il cooldown, con una seconda scrittura dopo il ritardo che allungava ``next_attack_time``.
+- **Correzione**: saltare la preparazione quando ``ready=0`` e attaccare subito; nessun minimo di 100 ms per colpi istantanei; il cooldown si imposta una sola volta in ``attack_action.aim()`` all'avvio dell'attacco.
+- **Nota**: ``charge_mdg_cd`` / ``charge_rdg_cd`` usano un percorso separato (``receive_hit`` immediato, senza preparazione/schedulazione balistica) e non erano interessati; il ritmo misto carica + attacco normale migliora indirettamente con la correzione del CD normale.
+- **Codice**: ``combat/attack_action.py``, ``combat/damage_effects.py``.
+- **Test**: ``test_attack_cooldown_timing.py``.
+
 **Miglioramento: rifiuto ordini go e feedback vocale su terreno non transitabile**
 
 - Unità di terra con ``go`` / ``patrol`` verso caselle ``is_ground 0``, o aeree verso ``is_air 0``: ordine rifiutato in coda con ``ground_impassable`` / ``air_impassable``.

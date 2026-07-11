@@ -18,15 +18,25 @@ class HitMissMixin:
     """
     def _get_dodge_on_terrain(self, is_melee=True) -> int:
         """获取当前地形上的闪避修正（0~100）"""
-        terrain_type = self.place.type_name if self.place else None
+        terrain_type = None
+        if self.place:
+            if hasattr(self.place, "type_name_at"):
+                terrain_type = self.place.type_name_at(self.x, self.y)
+            else:
+                terrain_type = self.place.type_name
         if not terrain_type:
             return 0
 
+        unit_mod = 0
         if is_melee and hasattr(self, 'mdg_dodge_on_terrain') and self.mdg_dodge_on_terrain:
-            return _terrain_modifier_from_list(terrain_type, self.mdg_dodge_on_terrain)
+            unit_mod = _terrain_modifier_from_list(terrain_type, self.mdg_dodge_on_terrain)
         elif not is_melee and hasattr(self, 'rdg_dodge_on_terrain') and self.rdg_dodge_on_terrain:
-            return _terrain_modifier_from_list(terrain_type, self.rdg_dodge_on_terrain)
-        return 0
+            unit_mod = _terrain_modifier_from_list(terrain_type, self.rdg_dodge_on_terrain)
+
+        from ..lib.square_terrain_rules import terrain_unit_dodge_bonus
+
+        terrain_mod = terrain_unit_dodge_bonus(terrain_type, self)
+        return unit_mod + terrain_mod
 
     def _get_melee_cover_vs(self, target) -> int:
         """返回对目标的近战命中修正（0~100）"""
@@ -374,13 +384,25 @@ class HitMissMixin:
 
         # 4. 处理地形掩护修正
         if not is_melee and target.place is not None:
-            if hasattr(target.place, "terrain_cover_at"):
-                terrain_cover = target.place.terrain_cover_at(target.x, target.y)
+            from ..lib.square_terrain_rules import terrain_unit_cover_percent
+
+            terrain_type = None
+            if hasattr(target.place, "type_name_at"):
+                terrain_type = target.place.type_name_at(target.x, target.y)
             else:
-                terrain_cover = target.place.terrain_cover
-            terrain_cover = terrain_cover[
-                0 if target.airground_type != "air" else 1
-            ]
+                terrain_type = target.place.type_name
+            if hasattr(target.place, "terrain_cover_at"):
+                square_cover = target.place.terrain_cover_at(target.x, target.y)
+            else:
+                square_cover = target.place.terrain_cover
+            if terrain_type:
+                terrain_cover = terrain_unit_cover_percent(
+                    terrain_type, target, square_cover
+                )
+            else:
+                terrain_cover = square_cover[
+                    0 if target.airground_type != "air" else 1
+                ]
             base_chance = base_chance * (100 - terrain_cover) // 100
 
         return base_chance

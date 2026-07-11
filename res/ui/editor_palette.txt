@@ -12,7 +12,7 @@
 ; goldmines: 0 150
 ; speed: ground air multipliers — default (100, 100). Omit ``speed`` in a palette
 ; def to inherit from rules.txt ``class terrain`` (see building-land-terrain doc).
-; cover: 0 0
+; cover: ground air cover 0-1 — default (0, 0). Omit ``cover`` to inherit from rules.
 
 def rocky_plain
 style rocky_plain

@@ -44,13 +44,13 @@ class _Attacker(DamageCalculationMixin, AttackActionMixin):
         self.charge_rdg_cd = 0
         self.charge_mdg_dist = 0
         self.charge_rdg_dist = 0
-        self.mdg_on_terrain = ("marsh", "-2")
+        self.mdg_on_terrain = ("marsh", "-.33")
         self.rdg_on_terrain = ()
-        self.mdg_cd_on_terrain = ("marsh", "0.5")
+        self.mdg_cd_on_terrain = ("marsh", ".33")
         self.rdg_cd_on_terrain = ()
-        self.charge_mdg_terrain = ("marsh", "-1")
+        self.charge_mdg_terrain = ("marsh", "-.5")
         self.charge_rdg_terrain = ()
-        self.charge_mdg_cd_on_terrain = ("marsh", "2")
+        self.charge_mdg_cd_on_terrain = ("marsh", ".2")
         self.charge_rdg_cd_on_terrain = ()
         self.place = _MarshPlace() if on_marsh else _PlainPlace()
         self.x = 0
@@ -61,7 +61,8 @@ class _Attacker(DamageCalculationMixin, AttackActionMixin):
 def test_mdg_on_terrain_reduces_damage_on_marsh():
     attacker = _Attacker(on_marsh=True)
     target = _MockTarget()
-    assert attacker._get_melee_damage_vs(target) == 4 * PRECISION
+    base = 6 * PRECISION
+    assert attacker._get_melee_damage_vs(target) == base + base * (-33) // 100
 
 
 def test_mdg_on_terrain_ignored_off_marsh():
@@ -73,14 +74,16 @@ def test_mdg_on_terrain_ignored_off_marsh():
 def test_mdg_cd_on_terrain_increases_cooldown_on_marsh():
     attacker = _Attacker(on_marsh=True)
     target = _MockTarget()
-    assert attacker._get_melee_cd_vs(target) == int(2.0 * PRECISION)
+    base_cd = int(1.5 * PRECISION)
+    assert attacker._get_melee_cd_vs(target) == base_cd + base_cd * 33 // 100
 
 
 def test_charge_mdg_terrain_reduces_charge_damage_on_marsh():
     attacker = _Attacker(on_marsh=True)
     target = _MockTarget()
-    # mdg 4 (terrain) + charge 1 (terrain) = 5
-    assert attacker._get_charge_damage(target, is_melee=True) == 5 * PRECISION
+    base_mdg = 6 * PRECISION + 6 * PRECISION * (-33) // 100
+    charge_bonus = 2 * PRECISION + 2 * PRECISION * (-50) // 100
+    assert attacker._get_charge_damage(target, is_melee=True) == base_mdg + charge_bonus
 
 
 def test_charge_mdg_cd_on_terrain_increases_charge_cooldown():
@@ -104,7 +107,7 @@ is_a forests
 def archer
 class soldier
 mdg 6
-mdg_on_terrain forests -2
+mdg_on_terrain forests -.33
 """,
         base_classes=_get_base_classes(),
     )
@@ -125,4 +128,4 @@ mdg_on_terrain forests -2
     attacker.x = 0
     attacker.y = 0
     target = _MockTarget()
-    assert attacker._get_melee_damage_vs(target) == 4 * PRECISION
+    assert attacker._get_melee_damage_vs(target) == 6 * PRECISION + 6 * PRECISION * (-33) // 100

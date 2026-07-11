@@ -525,14 +525,14 @@ class AttackActionMixin:
         if is_melee:
             base = self._get_melee_damage_vs(target)
             mult = self.charge_mdg + self._get_on_terrain_modifier(
-                getattr(self, "charge_mdg_terrain", ())
+                getattr(self, "charge_mdg_terrain", ()), self.charge_mdg
             )
             vs_dict = self.charge_mdg_vs
             max_dist = self.charge_mdg_dist
         else:
             base = self._get_ranged_damage_vs(target)
             mult = self.charge_rdg + self._get_on_terrain_modifier(
-                getattr(self, "charge_rdg_terrain", ())
+                getattr(self, "charge_rdg_terrain", ()), self.charge_rdg
             )
             vs_dict = self.charge_rdg_vs
             max_dist = self.charge_rdg_dist
@@ -751,24 +751,30 @@ class AttackActionMixin:
         now = self.world.time
         if is_melee:
             cd = self.charge_mdg_cd + self._get_on_terrain_modifier(
-                getattr(self, "charge_mdg_cd_on_terrain", ())
+                getattr(self, "charge_mdg_cd_on_terrain", ()), self.charge_mdg_cd
             )
             self.charge_mdg_next_time = now + max(0, cd)
             # 标记冲锋不可用，直到拉开足够距离
             self.charge_mdg_ready = False
         else:
             cd = self.charge_rdg_cd + self._get_on_terrain_modifier(
-                getattr(self, "charge_rdg_cd_on_terrain", ())
+                getattr(self, "charge_rdg_cd_on_terrain", ()), self.charge_rdg_cd
             )
             self.charge_rdg_next_time = now + max(0, cd)
             # 标记冲锋不可用，直到拉开足够距离
             self.charge_rdg_ready = False
     
     def _get_melee_cd_on_terrain(self) -> int:
-        return self._get_on_terrain_modifier(getattr(self, "mdg_cd_on_terrain", ()))
+        base_cd = getattr(self, "mdg_cd", 0)
+        return self._get_on_terrain_modifier(
+            getattr(self, "mdg_cd_on_terrain", ()), base_cd
+        ) + self._get_terrain_unit_modifier("mdg_cd_vs", base_cd)
 
     def _get_ranged_cd_on_terrain(self) -> int:
-        return self._get_on_terrain_modifier(getattr(self, "rdg_cd_on_terrain", ()))
+        base_cd = getattr(self, "rdg_cd", 0)
+        return self._get_on_terrain_modifier(
+            getattr(self, "rdg_cd_on_terrain", ()), base_cd
+        ) + self._get_terrain_unit_modifier("rdg_cd_vs", base_cd)
 
     def _get_melee_cd_base(self) -> int:
         return max(0, self.mdg_cd + self._get_melee_cd_on_terrain())
@@ -978,14 +984,14 @@ class AttackActionMixin:
             if now < self.rdg_next_attack_time:
                 return
 
-            # 检查前摇
-            if self.rdg_prep_end_time <= 0:  # 如果没有前摇时间，设置新的前摇
+            # 检查前摇（ready=0 时跳过，冷却结束即攻击）
+            if self.rdg_prep_end_time <= 0:
                 ready = self._get_range_ready_vs(target)
-                self.rdg_prep_end_time = now + ready
                 if ready > 0:
+                    self.rdg_prep_end_time = now + ready
                     self.notify("rdg_ready")
-                return
-            elif now < self.rdg_prep_end_time:  # 如果前摇未结束
+                    return
+            elif now < self.rdg_prep_end_time:
                 return
 
             # 前摇结束后发起攻击（连发音效由 _schedule_ballistic_hit 按序列播放）
@@ -1011,10 +1017,10 @@ class AttackActionMixin:
 
             if self.mdg_prep_end_time <= 0:
                 ready = self._get_melee_ready_vs(target)
-                self.mdg_prep_end_time = now + ready
                 if ready > 0:
+                    self.mdg_prep_end_time = now + ready
                     self.notify("mdg_ready")
-                return
+                    return
             elif now < self.mdg_prep_end_time:
                 return
 

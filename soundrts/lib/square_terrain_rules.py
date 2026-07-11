@@ -2,6 +2,7 @@
 
 HIGH_GROUND_VOICE = "_high_ground"
 DEFAULT_TERRAIN_SPEED = (100, 100)
+DEFAULT_TERRAIN_COVER = (0, 0)
 
 
 def _is_int_token(token):
@@ -121,6 +122,164 @@ def palette_speed_default(style_name, palette_speed):
     if palette_speed != DEFAULT_TERRAIN_SPEED:
         return palette_speed
     return terrain_default_speed(style_name) or palette_speed
+
+
+def parse_terrain_cover_pair(raw):
+    """Parse map/rules ``cover <ground> <air>`` into integer percent pair."""
+    return parse_terrain_speed_pair(raw)
+
+
+def terrain_default_cover(terrain_name):
+    """Default ``terrain_cover`` from ``rules.txt`` ``class terrain`` (or None)."""
+    if not is_terrain_def(terrain_name):
+        return None
+    raw = terrain_property(terrain_name, "cover", ())
+    if not raw:
+        return None
+    return parse_terrain_cover_pair(raw)
+
+
+def resolve_terrain_cover(terrain_name, map_cover=None):
+    """Runtime cover: explicit map value wins, else rules default, else 0/0."""
+    if map_cover is not None:
+        return map_cover
+    if terrain_name:
+        default = terrain_default_cover(terrain_name)
+        if default is not None:
+            return default
+    return DEFAULT_TERRAIN_COVER
+
+
+def palette_cover_default(style_name, palette_cover):
+    """Editor palette: keep explicit palette cover, else inherit from rules."""
+    if palette_cover != DEFAULT_TERRAIN_COVER:
+        return palette_cover
+    return terrain_default_cover(style_name) or palette_cover
+
+
+def unit_list_value(unit, unit_list, default=None):
+    """Read paired value from ``[unit_type, value, unit_type, value, ...]``.
+
+    Exact ``type_name`` wins; else first match via ``expanded_is_a``.
+    """
+    if unit is None or not unit_list:
+        return default
+    type_name = getattr(unit, "type_name", None)
+    if not type_name:
+        return default
+    tokens = list(unit_list)
+    inherited = None
+    expanded = getattr(unit, "expanded_is_a", ()) or ()
+    i = 0
+    while i + 1 < len(tokens):
+        name = tokens[i]
+        value = tokens[i + 1]
+        if name == type_name:
+            return value
+        if inherited is None and name in expanded:
+            inherited = value
+        i += 2
+    return inherited if inherited is not None else default
+
+
+def terrain_unit_list_value(terrain_name, unit, prop, default=None):
+    """Read a terrain ``*_vs`` list entry for *unit* on *terrain_name*."""
+    if not terrain_name or not is_terrain_def(terrain_name):
+        return default
+    raw = terrain_property(terrain_name, prop, ())
+    if not raw:
+        return default
+    return unit_list_value(unit, raw, default)
+
+
+def _percent_from_multiplier(value):
+    try:
+        return int(float(value) * 100)
+    except (TypeError, ValueError):
+        return None
+
+
+def terrain_unit_speed_percent(terrain_name, unit, square_speed=None):
+    """Return ``(ground_pct, air_pct)`` for *unit* on *terrain_name*.
+
+    Priority: ``speed_vs`` match > *square_speed* > rules ``speed`` default >
+    ``DEFAULT_TERRAIN_SPEED``.
+    """
+    vs_val = terrain_unit_list_value(terrain_name, unit, "speed_vs")
+    if vs_val is not None:
+        pct = _percent_from_multiplier(vs_val)
+        if pct is not None:
+            return (pct, pct)
+    if square_speed is not None:
+        return square_speed
+    return resolve_terrain_speed(terrain_name)
+
+
+def terrain_unit_cover_percent(terrain_name, unit, square_cover=None):
+    """Return cover percent (0-100) for *unit* on *terrain_name*.
+
+    Priority: ``cover_vs`` match > ground/air component of *square_cover* /
+    rules ``cover`` default > 0.
+    """
+    vs_val = terrain_unit_list_value(terrain_name, unit, "cover_vs")
+    if vs_val is not None:
+        pct = _percent_from_multiplier(vs_val)
+        if pct is not None:
+            return pct
+    if square_cover is None:
+        square_cover = resolve_terrain_cover(terrain_name)
+    terrain_type = 0 if getattr(unit, "airground_type", None) != "air" else 1
+    if terrain_type < len(square_cover):
+        return square_cover[terrain_type]
+    return 0
+
+
+def terrain_unit_percent_points(terrain_name, unit, prop):
+    """Parse terrain ``*_vs`` as a fraction of 100% (``.1`` -> 10, ``-.2`` -> -20)."""
+    value = terrain_unit_list_value(terrain_name, unit, prop)
+    return parse_percent_points(value)
+
+
+def parse_percent_points(value):
+    """Parse a decimal fraction as percent points (``.1`` -> 10, ``-.2`` -> -20)."""
+    if value is None:
+        return None
+    try:
+        return int(float(value) * 100)
+    except (TypeError, ValueError):
+        return None
+
+
+def stat_percent_delta(value, base_value):
+    """Apply percent points from *value* to *base_value*."""
+    pct = parse_percent_points(value)
+    if pct is None or not base_value:
+        return 0
+    return base_value * pct // 100
+
+
+def terrain_list_stat_percent_delta(terrain_type, terrain_list, base_value):
+    """Read unit ``*_on_terrain`` percent modifier for *terrain_type*."""
+    if not terrain_type or not terrain_list or not base_value:
+        return 0
+    value = terrain_list_value(terrain_type, terrain_list)
+    if value is None:
+        return 0
+    return stat_percent_delta(value, base_value)
+
+
+def terrain_unit_dodge_bonus(terrain_name, unit):
+    """Dodge points (0~100 scale) from ``dodge_vs``."""
+    pct = terrain_unit_percent_points(terrain_name, unit, "dodge_vs")
+    return pct if pct is not None else 0
+
+
+def terrain_unit_stat_percent_delta(terrain_name, unit, base_value, prop):
+    """Apply terrain ``*_vs`` percent of *base_value* (``.5`` -> +50% of base)."""
+    value = terrain_unit_list_value(terrain_name, unit, prop)
+    if value is None:
+        return 0
+    return stat_percent_delta(value, base_value)
 
 
 def _filter_spawn_inheritance(spawns):

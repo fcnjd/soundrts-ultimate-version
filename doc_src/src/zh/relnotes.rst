@@ -7,7 +7,27 @@
 1.4.5.1
 --------
 
+**改善：地形掩护、按单位修正与百分比写法**
+
+- ``rules.txt`` 的 ``class terrain`` 现支持 ``cover <地面> <空中>``，与 ``speed`` 相同：地图只写 ``terrain marsh h8`` 即可继承默认掩护；地图 ``cover`` 行可覆盖单格。
+- 地形可按**单位类型**修正：``speed_vs``、``cover_vs``、``dodge_vs``、``mdg_vs``、``rdg_vs``、``mdg_cd_vs``、``rdg_cd_vs``（如 ``speed_vs knight .25 archer .5``）。可只写 ``*_vs``、不必写全体 ``speed``/``cover``。
+- 上述 ``*_vs`` 与单位 ``mdg_on_terrain`` / ``rdg_on_terrain`` / ``mdg_cd_on_terrain`` / ``rdg_cd_on_terrain``（及 ``charge_*_terrain``）统一使用 **0~1 小数百分比**（``.5`` = ±50%%，``.1`` = ±10%%），相对该单位当前基础伤害/冷却计算。
+- ``speed_on_terrain`` 仍为**绝对移速**替换（与百分比 ``speed_vs`` 不同）。
+- 地图 ``speed`` / ``cover`` 仍只作用于格子上**全体**单位；按单位区分请在 ``rules.txt`` 地形或单位 def 中配置。
+- **实现**：``worldterrain.py``、``lib/square_terrain_rules.py``、``world/world_map.py``、``combat/hit_miss.py``、``combat/damage_calculation.py``、``combat/attack_action.py``、``worldunit/world_movement.py``；随机地图输出 ``cover`` 行（``rmg_templates.terrain_cover_line``）。
+- **文档**：``mod/building-land-terrain.rst``；``res/ui/editor_palette.txt`` 注释。
+- **测试**：``test_terrain_cover_defaults.py``、``test_terrain_unit_vs.py``、``test_unit_on_terrain_percent.py``；``test_combat_terrain_modifiers.py`` 已改为百分比用例。
+
 Bug 修复与语音/音频体验改善：
+
+**修复：近战/远程攻击冷却（``mdg_cd`` / ``rdg_cd``）偏慢**
+
+- **现象**：rules 中配置 1 秒冷却（如农民 ``mdg_cd 1``）时，实际攻击间隔明显长于 1.3.8.1（约 1.5 秒对约 1.2 秒；后者仅为 300ms 游戏 tick 取整误差）。
+- **原因**：（1）``mdg_ready`` / ``rdg_ready`` 为 0 时前摇分支仍多占一个 tick 才出手；（2）``mdg_delay`` / ``rdg_delay`` 为 0 的即时命中也被 ``_schedule_ballistic_hit`` 强制 100ms 最小延迟；（3）``attack_action.aim()`` 与 ``damage_effects._schedule_ballistic_hit`` 重复设置冷却，后者在延迟后再写 ``next_attack_time``，额外拉长间隔。
+- **修复**：``ready=0`` 时跳过前摇直接攻击；即时命中不再 clamp 100ms；冷却仅在 ``attack_action.aim()`` 发起攻击时设置一次。
+- **说明**：``charge_mdg_cd`` / ``charge_rdg_cd`` 冲锋冷却走独立路径（即时 ``receive_hit``、无前摇/弹道调度），不受上述三问题影响；普攻 CD 修复后「冲锋 + 普攻」交替节奏一并恢复正常。
+- **实现**：``combat/attack_action.py``、``combat/damage_effects.py``。
+- **测试**：``test_attack_cooldown_timing.py``。
 
 **改善：不可通行地形的 go 命令拦截与语音提示**
 

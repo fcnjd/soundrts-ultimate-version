@@ -28,6 +28,7 @@ from .rmg_templates import (
     template_monster_presets,
     template_title_voice,
     terrain_speed_line,
+    terrain_cover_line,
     terrain_uses_border_style,
 )
 
@@ -1024,6 +1025,9 @@ def _terrain_lines(
     speed_line = terrain_speed_line(mode)
     if speed_line:
         out.append(f"{speed_line} {' '.join(tokens)}")
+    cover_line = terrain_cover_line(mode)
+    if cover_line:
+        out.append(f"{cover_line} {' '.join(tokens)}")
     return out
 
 
@@ -1054,6 +1058,9 @@ def _lane_ford_lines(cols: int, ford_terrain: str) -> List[str]:
     speed_line = terrain_speed_line(ford_terrain)
     if speed_line:
         out.append(f"{speed_line} {' '.join(tokens)}")
+    cover_line = terrain_cover_line(ford_terrain)
+    if cover_line:
+        out.append(f"{cover_line} {' '.join(tokens)}")
     return out
 
 

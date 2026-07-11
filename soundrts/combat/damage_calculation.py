@@ -47,22 +47,25 @@ class DamageCalculationMixin:
             return place.type_name_at(self.x, self.y)
         return getattr(place, "type_name", None)
 
-    def _get_on_terrain_modifier(self, terrain_list) -> int:
-        """从 [地形, 修正, 地形, 修正, ...] 列表读取当前地形修正值。"""
-        if not terrain_list:
+    def _get_on_terrain_modifier(self, terrain_list, base_value: int = 0) -> int:
+        """从 [地形, 修正, ...] 列表按 *base_value* 的百分比读取修正值。"""
+        if not terrain_list or not base_value:
             return 0
         terrain_type = self._get_attacker_terrain_type()
         if not terrain_type:
             return 0
-        from ..lib.square_terrain_rules import terrain_list_value
+        from ..lib.square_terrain_rules import terrain_list_stat_percent_delta
 
-        value = terrain_list_value(terrain_type, terrain_list)
-        if value is None:
+        return terrain_list_stat_percent_delta(terrain_type, terrain_list, base_value)
+
+    def _get_terrain_unit_modifier(self, prop: str, base_value: int) -> int:
+        """从地形 ``*_vs`` 列表按 *base_value* 的百分比读取修正值。"""
+        terrain_type = self._get_attacker_terrain_type()
+        if not terrain_type:
             return 0
-        try:
-            return to_int(value)
-        except (TypeError, ValueError):
-            return 0
+        from ..lib.square_terrain_rules import terrain_unit_stat_percent_delta
+
+        return terrain_unit_stat_percent_delta(terrain_type, self, base_value, prop)
 
     def _get_melee_damage_vs(self, target) -> int:
         """返回对 target 的近战基础伤害（含 vs 修正）.
@@ -78,7 +81,10 @@ class DamageCalculationMixin:
             damage = _cf.compute_damage_vs(self.mdg, self.mdg_vs, target)
         else:
             damage = self._py_get_melee_damage_vs(target)
-        terrain_mod = self._get_on_terrain_modifier(getattr(self, "mdg_on_terrain", ()))
+        terrain_mod = self._get_on_terrain_modifier(
+            getattr(self, "mdg_on_terrain", ()), damage
+        )
+        terrain_mod += self._get_terrain_unit_modifier("mdg_vs", damage)
         return max(0, damage + terrain_mod)
 
     def _py_get_melee_damage_vs(self, target) -> int:
@@ -112,7 +118,10 @@ class DamageCalculationMixin:
             damage = _cf.compute_damage_vs(self.rdg, self.rdg_vs, target)
         else:
             damage = self._py_get_ranged_damage_vs(target)
-        terrain_mod = self._get_on_terrain_modifier(getattr(self, "rdg_on_terrain", ()))
+        terrain_mod = self._get_on_terrain_modifier(
+            getattr(self, "rdg_on_terrain", ()), damage
+        )
+        terrain_mod += self._get_terrain_unit_modifier("rdg_vs", damage)
         return max(0, damage + terrain_mod)
 
     def _py_get_ranged_damage_vs(self, target) -> int:
