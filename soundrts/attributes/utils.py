@@ -280,6 +280,8 @@ def class_attr_for_detail(unit_class, attr):
     """从 rules 类读取详情界面需要的能力属性（避开 Building 上的 @property）。"""
     if attr == "can_train":
         return rules.class_can_train(unit_class)
+    if attr == "can_research":
+        return rules.class_can_research(unit_class)
     if attr in RULES_DETAIL_ATTRS:
         return _raw_class_attr(unit_class, attr, ())
     value = getattr(unit_class, attr, None)

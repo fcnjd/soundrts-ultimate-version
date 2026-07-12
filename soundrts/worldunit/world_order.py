@@ -110,8 +110,10 @@ class CreatureOrders(Entity):
             target is not self
             and getattr(target, "hp", 0) > 0
             and getattr(target, "is_vulnerable", False)
-            and self.is_an_enemy(target)
             and getattr(target, "capture_hp_threshold", 0) == 100
+            and self.player
+            and target.player
+            and self.player.player_is_an_enemy(target.player)
             and "attack" in self.basic_skills
             and self._unit_can_capture(self)
         ):

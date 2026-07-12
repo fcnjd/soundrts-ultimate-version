@@ -170,3 +170,53 @@ def test_capture_order_still_impossible_for_non_capture_friendly_target():
 
     assert order.is_impossible
     assert "order_impossible" in unit.notifications
+
+
+def test_imperative_attack_on_captured_barracks_deals_damage_not_capture():
+    """已占领的夺取阈值 100 建筑：强制攻击应造成伤害，而非再次占领。"""
+    from soundrts.worldaction import AttackAction
+
+    owner = _EnemyPlayer()
+    building = _CaptureTarget(owner)
+    building.id = "b1"
+
+    class _Unit:
+        player = owner
+        orders = []
+        notifications = []
+        can_capture = 1
+        speed = 0
+        place = types.SimpleNamespace(objects=[building])
+        aim_calls = []
+        capture_calls = []
+
+        def is_an_enemy(self, other):
+            if self._player_ordered_attack_on(other):
+                return True
+            return getattr(other, "player", None) is not self.player
+
+        def _player_ordered_attack_on(self, other):
+            return getattr(other, "id", None) == "b1"
+
+        def _near_enough_to_aim(self, _target):
+            return True
+
+        def can_attack(self, _target):
+            return True
+
+        def aim(self, target):
+            self.aim_calls.append(target)
+
+        def _perform_capture(self, target):
+            self.capture_calls.append(target)
+
+        def notify(self, msg, *_args, **_kwargs):
+            self.notifications.append(msg)
+
+    unit = _Unit()
+    action = AttackAction(unit, building)
+    action.update()
+
+    assert unit.aim_calls == [building]
+    assert unit.capture_calls == []
+    assert "captured_success" not in unit.notifications

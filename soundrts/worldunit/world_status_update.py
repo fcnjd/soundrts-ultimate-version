@@ -734,6 +734,15 @@ class CreatureStatusUpdate(Entity):
                 self.xp = 0
             self._unlock_level_skills(self.level, notify=True)
             self.notify(f"level_up,{self.type_name},{self.id},{self.level}")
+        if self.type_name == "rmg_hero" and self.player is not None:
+            self.player.rmg_hero_peak_level = max(
+                int(getattr(self.player, "rmg_hero_peak_level", 1) or 1),
+                int(self.level),
+            )
+            self.player.rmg_hero_peak_xp = max(
+                int(getattr(self.player, "rmg_hero_peak_xp", 0) or 0),
+                int(self.xp),
+            )
     def claim_rewards(self, target):
         if target.xp_reward:
             # 检查攻击者和目标是否属于同一玩家或盟友，如果是则不分配经验值

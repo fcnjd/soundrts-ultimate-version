@@ -102,6 +102,18 @@ from .skills import (
     GiveOrder,
 )
 
+# RMG strategic city orders
+from .strategic import (
+    RmgBuyTileOrder,
+    RmgAssignGoldOrder,
+    RmgAssignWoodOrder,
+    RmgAssignFoodOrder,
+    RmgAssignCultureOrder,
+    RmgSwitchTraditionOrder,
+    RmgSwitchCommerceOrder,
+    RmgSwitchDiplomacyOrder,
+)
+
 # Build a dictionary containing order classes
 # for example: ORDERS_DICT["go"] == GoOrder
 ORDERS_DICT = {}

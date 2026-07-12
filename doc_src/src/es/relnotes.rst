@@ -7,6 +7,44 @@ Notas de la versión
 1.4.5.1
 -------
 
+**Mejora: modos de equipo del mapa aleatorio y «uno contra muchos»**
+
+- **Todos contra todos**: cada jugador empieza en una alianza propia (FFA real); ya no se usa el comportamiento por defecto del entrenamiento en el que todas las IA comparten equipo.
+- **Nuevo «uno contra muchos»**: el jugador 1 solo frente al resto aliado; 3 jugadores: todos contra todos / uno contra muchos; 4 jugadores: todos contra todos / 2v2 / uno contra muchos.
+- **Código de compartir**: abreviatura ``o`` para ``one_vs_many``.
+- **Código**: ``randommap.py``, ``randommap_menu.py``, ``msgparts.py``; TTS 5750.
+- **Documentación**: ``player/random-map-play.rst``, ``mod/randommap.rst`` (todos los idiomas).
+- **Pruebas**: ``test_ffa_assigns_unique_alliances``, ``test_one_vs_many_allies_all_except_player1``, ``test_team_modes_for_players``.
+
+**Nuevo: expansión de la capa estratégica RMG (territorio, ciudadanos, cambio de políticas, IA, héroe entre partidas)**
+
+- **Territorio urbano y compra de casillas**: cada ciudad posee su casilla; ``rmg_buy_tile`` compra casillas principales adyacentes libres (primera 20 oro, luego +10 por casilla).
+- **Ciudadanos y mejoras**: ``rmg_assign_gold/wood/food/culture`` asignan ciudadanos; ``rmg_build_mine/lumber_mill/farm`` construyen mejoras; las casillas trabajadas entran en ``rmg_strategic_tick`` cada 60 s.
+- **Cambio de políticas en la partida**: máximo dos activas; la tercera reemplaza la más antigua; políticas desbloqueadas se cambian gratis con ``rmg_switch_*``.
+- **Combinaciones de políticas de la IA**: agresiva → comercio + tradición; ≥2 enemigos → diplomacia + comercio; resto → tradición + comercio; investiga la cadena tecnológica en orden.
+- **Persistencia del héroe RMG en solitario**: al terminar guarda y al iniciar restaura nivel y XP máximos en ``rmg_heroes/<mod>/<facción>.json``; no en multijugador/repeticiones.
+- **Código**: ``soundrts/rmg_systems.py``, ``soundrts/rmg_progress.py``, ``soundrts/worldorders/strategic.py``, ``soundrts/worldplayercomputer.py``, ``soundrts/game.py``.
+- **Voz**: ``res/ui/tts.txt`` / ``res/ui-zh/tts.txt`` 5718–5728; títulos en ``res/ui/style.txt``.
+- **Documentación**: ``player/rmg-strategic-systems.rst``, ``player/homm-civ5-play.rst``.
+- **Pruebas**: ``test_rmg_systems.py``.
+
+**Corrección: tecnología estratégica RMG visible en mapas normales (ayuntamiento)**
+
+- **Síntoma**: En mapas clásicos o hechos a mano, el menú de investigación del ayuntamiento seguía mostrando planificación urbana, políticas y otras tecnologías ``rmg_*``.
+- **Causa**: ``rules.txt`` listaba ``rmg_*`` en ``can_research`` del ayuntamiento, y esa lista ocultaba la ``@property`` ``Building.can_research``; el menú leía la lista estática en lugar de ``effective_can_research()``.
+- **Corrección**: (1) ``can_research`` del ayuntamiento solo conserva tecnología genérica como ``hunting_techniques``; los mapas RMG inyectan ``STRATEGIC_RESEARCH_TYPES`` vía ``effective_can_research``. (2) Como ``can_train`` → ``_rules_can_train``, ``can_research`` pasa a ``_rules_can_research`` para que la ``@property`` vuelva a funcionar.
+- **Código**: ``definitions.py``, ``world_build_rules.py``, ``world_objects.py``, ``worldplayercomputer.py``, ``attributes/utils.py``, ``res/rules.txt``.
+- **Pruebas**: ``test_townhall_can_research_property_respects_rmg_flag``, ``test_strategic_research_is_only_exposed_on_rmg_cities``.
+
+**Mejora: puntos de cultura y diplomacia consultables**
+
+- En mapas RMG estratégicos: **B** anuncia cultura, **Mayús+B** puntos diplomáticos (en mapas no RMG suena aviso).
+- Con tu ciudad seleccionada (ayuntamiento / fortaleza / castillo), pantalla de propiedades (Alt+V): **U** cultura, **Y** diplomacia.
+- Se mantiene la voz cada 60 s de ``rmg_strategic_tick``; si las alertas de recursos están activas, también se anuncian cambios de cultura/diplomacia.
+- **Código**: ``clientgame/game_resources.py``, ``attributes/basic_attributes.py``, ``res/ui/global_bindings.txt``, ``res/ui/legacy_bindings.txt``, ``res/ui/tts.txt`` / ``res/ui-zh/tts.txt`` (5716–5717), ``hotkey_editor.py``, ``hotkey_catalogs.py``.
+- **Documentación**: ``player/rmg-strategic-systems.rst`` (todos los idiomas).
+- **Pruebas**: ``test_culture_and_diplomacy_status_helpers``, ``test_city_attributes_include_strategic_points``.
+
 **Mejora: cobertura de terreno, modificadores por unidad y notación porcentual**
 
 - ``class terrain`` en ``rules.txt`` admite ``cover <suelo> <aire>``, igual que ``speed``: ``terrain marsh h8`` en el mapa hereda cobertura por defecto; las líneas ``cover`` del mapa siguen anulando casillas concretas.
@@ -28,6 +66,14 @@ Corrección de errores y mejoras en la experiencia de usuario de voz/audio:
 - **Nota**: ``charge_mdg_cd`` / ``charge_rdg_cd`` usan otra ruta (``receive_hit`` inmediato, sin preparación/programación balística) y no se vieron afectados; el ritmo mixto carga + ataque normal mejora indirectamente con la corrección del CD normal.
 - **Código**: ``combat/attack_action.py``, ``combat/damage_effects.py``.
 - **Pruebas**: ``test_attack_cooldown_timing.py``.
+
+**Corrección: bloqueo del jugador Computer durante la actualización de percepción (falta ``_buckets``)**
+
+- **Síntoma**: Durante una partida (sobre todo con IA de mapa ``computer_only``, compañeros IA aliados o tras cargar una partida), el bucle principal podía bloquearse en la fase de percepción con ``AttributeError: 'Computer' object has no attribute '_buckets'``.
+- **Causa**: El índice espacial ``_buckets`` solo se inicializaba en el ``Player.__init__`` envoltorio; guardar/cargar elimina ese campo de caché; la visibilidad masiva de visión aliada (``bulk_visibility_check``) llama a ``_potential_neighbors`` de los aliados y falla si un ``Computer`` aún no tiene ``_buckets``.
+- **Corrección**: preinicializar ``_buckets`` en ``BasePlayer.__init__`` junto con otras cachés de percepción; ``_potential_neighbors`` usa un dict vacío si falta; ``update_alliance`` limpia la caché de instancia ``allied_vision`` para no reutilizar listas de aliados obsoletas tras cambios de alianza.
+- **Código**: ``worldplayerbase/base.py``, ``worldplayerbase/perception.py``, ``worldplayerbase/__init__.py``.
+- **Pruebas**: ``test_meteors_computer_only.py``, ``test_phase3_parity.py``, ``test_neutral_passive_creep.py``.
 
 **Mejora: rechazo de órdenes go y aviso de voz en terreno intransitable**
 
@@ -55,7 +101,23 @@ Corrección de errores y mejoras en la experiencia de usuario de voz/audio:
 - **Causa**: ``take_order`` con ``forget_previous=True`` llamaba a ``cancel_all_orders()``, eliminando el ataque imperativo y encolando ``go``, mientras ``AttackAction`` podía permanecer en la unidad.
 - **Solución**: Con una orden imperativa activa, los comandos normales (excepto ``stop``) se encolan automáticamente (``forget_previous=False``) sin reemplazar la cabeza imperativa; la unidad termina el ataque forzado antes del comando en cola. Tras un imperativo solo se permite **un** comando en cola; un nuevo comando normal **reemplaza** el ya encolado (igual que en 1.3.8.1).
 - **Código**: ``worldunit/world_order.py`` ``take_order``.
-- **Pruebas**: ``test_imperative_attack.py``.
+- **Pruebas**: ``test_imperative_attack.py`` (``test_normal_go_queues_behind_imperative_attack``, ``test_only_one_queued_order_behind_imperative_attack``, etc.).
+
+**Corrección: ataque forzado a edificio ya capturado seguía activando captura**
+
+- **Síntoma**: Tras capturar un edificio enemigo capturable (``capture_hp_threshold`` 100, p. ej. cuartel), un ataque forzado contra ese edificio seguía ejecutando captura en lugar de causar daño, repitiendo los sonidos de captura.
+- **Causa**: La ruta «captura al contacto» usaba ``is_an_enemy()``; en ataque forzado ese método devuelve ``True`` también para edificios capturados aliados (vía ``_player_ordered_attack_on``).
+- **Corrección**: nueva ``should_capture_on_contact()`` con ``player.player_is_an_enemy(target.player)``; la misma guarda en ``_perform_capture()``.
+- **Código**: ``worldaction.py``, ``combat/attack_action.py``, ``worldunit/world_order.py``.
+- **Pruebas**: ``test_capture_default_order.py`` (``test_imperative_attack_on_captured_barracks_deals_damage_not_capture``).
+
+**Corrección: barcos de transporte de la IA aparcan cargados en la orilla enemiga sin descargar**
+
+- **Síntoma**: En mapas acuáticos como ``jl7``, incluso un ordenador nightmare podía llevar un ``boat`` lleno de soldados hasta la orilla del jugador y nunca emitir ``unload`` / ``unload_all``, de modo que las tropas no desembarcaban.
+- **Causa**: ``_try_transport_assaults`` solo programa soldados terrestres ociosos fuera del transporte; la carga con ``is_inside`` se ignora. Tras cargar/navegar, si la descarga faltaba o fallaba, un transporte lleno e inactivo no tenía ruta de recuperación para descargar.
+- **Corrección**: ``_try_amphibious_landings`` ahora llama primero a ``_try_unload_idle_loaded_transports``: los transportes acuáticos/aéreos ociosos con unidades terrestres reciben ``unload_all`` hacia tierra adyacente practicable (priorizando tierra más cercana a objetivos enemigos); si aún no están junto a tierra, ``go`` al agua de descarga y luego descargan.
+- **Código**: ``worldplayercomputer.py`` (``_enemy_land_assault_targets``, ``_choose_unload_land_for_transport``, ``_try_unload_idle_loaded_transports``).
+- **Pruebas**: ``test_ai_jl7_amphibious_unload.py`` (regresión nightmare: barco lleno en la puerta debe emitir ``unload_all``).
 
 **Mejora: descripciones de voz del comportamiento de la unidad**
 
@@ -71,12 +133,14 @@ Corrección de errores y mejoras en la experiencia de usuario de voz/audio:
 - **Documentos**: ``mod/battle-shouts.rst``.
 - **Pruebas**: ``test_battle_shout_audio.py``.
 
-**Mejora: esquema de prioridad de audio P0–P2**
+**Mejora: refactorización del motor de audio P0–P2**
 
-- **Ambiente P0** (de negativo a positivo bajo, por ejemplo, -20, -10): pasos, ambiente en bucle, gritos de fondo; pueden ser reemplazados por capas superiores.
-- **Combate P1** (0–14, ``shout_combat_priority`` escala con el número de efectivos): golpes, heridas, gritos de unidad.
-- **Alertas P2** (10–16): subir de nivel, transformarse, gritos de eventos; se mantiene cuando los canales son escasos.
-- **Código**: ``lib/sound.py`` ``SoundManager.find_a_channel`` se adelanta a las fuentes de menor prioridad; ``audio.py`` pasos en ``priority=-10``; TTS permanece en el canal 0.
+- **Corrección**: borradores anteriores describían P0–P2 como capas de *prioridad* ambiental/combate/alertas; en realidad son **tres fases de refactorización** del motor de audio, distintas de los gritos en capas anteriores y de ``psounds.play(..., priority=…)``. Ver ``mod/audio-management.rst``.
+- **P0 estructura**: ``lib/music_resolver.py``; ``sound_cache.clear_decoded()`` al cambiar mod/mapa; corrección de estado mutable en ``SoundSource`` / ``SoundManager``.
+- **P1 UX**: ``audio/sfx_volume`` separado de ``main_volume``; espera de voz por event pump; fallback de música de menú unificado.
+- **P2 pulido**: LFO de ambiente; ``lib/battle_music.py``; limpieza de ``music_resolver``; SFX en ``ui/`` con ``.ogg`` / ``.wav`` / ``.mp3`` (``.ogg`` preferido) y precarga en caliente (``preload_sounds`` / ``tick_preload``).
+- **Atajos**: Home/End para SFX; Alt+Home/Alt+End para música.
+- **Pruebas**: ``test_music_resolver.py``, ``test_audio_settings.py``, ``test_voice_pump.py``, ``test_ambient_stereo_volume.py``, ``test_battle_music.py``, ``test_sfx_formats.py``.
 
 1.4.5.0
 -------

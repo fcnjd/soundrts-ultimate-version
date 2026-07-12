@@ -1,4 +1,4 @@
-from ..worldaction import Action, AttackAction, MoveAction, MoveXYAction
+from ..worldaction import Action, AttackAction, MoveAction, MoveXYAction, should_capture_on_contact
 from ..lib.nofloat import int_distance as _int_distance, square_of_distance as _square_of_distance
 import random
 
@@ -1225,6 +1225,12 @@ class AttackActionMixin:
             return
         if target is None or target.player is None or target.hp <= 0:
             return
+        unit_player = getattr(self, "player", None)
+        if (
+            unit_player is None
+            or not unit_player.player_is_an_enemy(target.player)
+        ):
+            return
         old_player = target.player
         target.set_player(self.player)
         # 被占领方（人类玩家）播放被占领音效
@@ -1240,11 +1246,7 @@ class AttackActionMixin:
         # 只创建一个 AttackAction（其 update 会路由到直接占领逻辑），并刷新占领声明，
         # 使本单位在占领途中持续持有声明，其他单位据此避免重复下达占领命令。
         # 不切换武器、不播放攻击音效、不进行冲锋/伤害判定。
-        if (
-            getattr(target, "capture_hp_threshold", 0) == 100
-            and self.is_an_enemy(target)
-            and bool(getattr(self, "can_capture", 1))
-        ):
+        if should_capture_on_contact(self, target):
             target._capture_claimer_id = self.id
             target._capture_claim_time = self.world.time
             if not isinstance(self.action, AttackAction) or self.action.target != target:

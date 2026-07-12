@@ -22,6 +22,8 @@ class BasicAttributes:
             # 魔法值/能量
             if hasattr(u, "mana") and hasattr(u, "mana_max") and u.mana_max > 0:
                 attrs.append(("n", mp.MANA, u.mana_status))
+
+        self.add_strategic_player_attributes(u, attrs)
         
         # 单位简介（总是检查）
         unit_type_name = getattr(u, 'type_name', None) or getattr(u.model, 'type_name', None)
@@ -57,6 +59,31 @@ class BasicAttributes:
         if hasattr(u.model, "time_cost") and u.model.time_cost > 0:
             time_text = nb2msg_float(u.model.time_cost / 1000) + mp.SECONDS
             attrs.append(("", mp.TIME, time_text))
+
+    def add_strategic_player_attributes(self, u, attrs):
+        """RMG 战略地图：在城市建筑属性中显示玩家的文化点与外交点。"""
+        interface = getattr(self.main_interface, "interface", None)
+        world = getattr(interface, "world", None) if interface is not None else None
+        if not getattr(world, "rmg_strategic_systems", False):
+            return
+
+        player = getattr(u, "player", None)
+        local_player = getattr(interface, "player", None) if interface is not None else None
+        if player is None or local_player is None or player is not local_player:
+            return
+        if getattr(local_player, "_is_pure_spectator", False):
+            return
+
+        from ..rmg_systems import initialize_player, is_city
+
+        if not is_city(u):
+            return
+
+        initialize_player(player)
+        culture = int(getattr(player, "culture_points", 0) or 0)
+        diplomacy = int(getattr(player, "diplomacy_points", 0) or 0)
+        attrs.append(("u", mp.RMG_CULTURE, nb2msg(culture)))
+        attrs.append(("y", mp.RMG_DIPLOMACY_POINTS, nb2msg(diplomacy)))
     
     def add_healing_attributes(self, u, attrs):
         """添加治疗相关属性"""

@@ -3,6 +3,8 @@ Battle shouts (layered combat audio)
 
 Skirmish-only build (no legion formations). Three layers: **battlefield background**, **unit voice**, **event highlights**. Staggered playback with cooldowns.
 
+**Note**: these three layers are **not** the **P0–P2 audio engine refactor phases**; see :doc:`audio-management`.
+
 Code: ``battle_shout_audio.py``, ``combat.py``, ``formation_sound_queue.py``. Tests: ``test_battle_shout_audio.py``.
 
 Triggers: either side has ≥ **5** fighting units in the square. Cooldowns: 10s global, 6s per square; 4s for charge/crit event shouts.

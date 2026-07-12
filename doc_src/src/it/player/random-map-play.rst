@@ -4,6 +4,9 @@ Generatore di mappe casuali
 
 Da SoundRTS 1.4.3.4, il generatore procedurale di mappe casuali (RMG) costruisce mappe ``.txt`` standard dalle opzioni del menu. Le mappe generate usano la stessa pipeline di caricamento delle mappe fatte a mano e funzionano nello skirmish locale o nella creazione di stanze online.
 
+Progressione eroe, territorio urbano, cultura, punti diplomatici, tecnologie e politiche:
+`Sistemi strategici RMG: eroe e civiltà <rmg-strategic-systems.htm>`_.
+
 
 ----
 
@@ -40,7 +43,7 @@ Il sottomenu procede così ( Esc torna indietro di un livello ):
 1. Modello di mappa (o Importa codice di condivisione — sezione 4)
 2. Dimensione: piccola / media / grande
 3. Giocatori: 2 / 3 / 4
-4. Modalità squadre (solo 4 giocatori): tutti contro tutti o 2v2 fisse
+4. Modalità squadre (3 giocatori: tutti contro tutti / uno contro molti; 4 giocatori: tutti contro tutti / 2v2 / uno contro molti). Tutti contro tutti = tutti indipendenti; uno contro molti = il giocatore 1 da solo contro gli altri alleati
 5. Forza dei mostri: debole / media / forte (guarnigione ostile al centro; attacca i giocatori — debole: 2 fanti / media: 4 fanti + 2 arcieri / forte: 6 fanti + 4 arcieri + 1 cavaliere)
 6. Disposizione delle risorse: bilanciata / raggruppata
 7. Terreno (non per il modello lanes): casuale / erba / palude / montagna
@@ -73,11 +76,12 @@ Dopo la selezione del seed senti un'anteprima vocale delle impostazioni; dopo la
 
 
 
-2.2 Squadre 2v2
-~~~~~~~~~~~~~~~~
+2.2 Modalità squadre
+~~~~~~~~~~~~~~~~~~~~
 
-
-Con 4 giocatori e 2v2, la mappa aggiunge trigger di alleanza: i giocatori 1+2 e 3+4 partono alleati.
+- **Tutti contro tutti**: ogni giocatore inizia in un'alleanza propria.
+- **Uno contro molti**: il giocatore 1 da solo; gli altri iniziano alleati.
+- **2v2** (solo 4 giocatori): giocatori 1+3 contro 2+4.
 
 2.3 Modalità di vittoria
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -128,6 +132,11 @@ Obiettivi d'oro economici (solo ``resource1``):
      - 2500
 
 
+
+Valori predefiniti in ``rules.txt`` (``rmg_economic_goal*``, ``rmg_survival_seconds*``, ecc.).
+Le mod li sovrascrivono in ``def parameters`` o ``cfg/randommap/*.txt``; vittoria
+personalizzata con ``victory_triggers``. Vedi ``mod/randommap.htm`` 6.5 / 8.4 e
+``player/rmg-strategic-systems.htm`` sezione 7.
 
 Perdere tutti gli edifici ``provides_survival`` significa comunque sconfitta. Nelle modalità esplorazione/economica/sopravvivenza, eliminare tutti i nemici non fa vincere automaticamente; puoi comunque attaccare.
 
@@ -199,8 +208,8 @@ Undici parti separate da due punti: prefisso ``RMG1`` + 10 campi:
      - casuale / erba / palude / montagna
      - ``r`` / ``g`` / ``a`` / ``t``
    * - Squadre
-     - ffa / teams_2v2
-     - ``f`` / ``t``
+     - ffa / teams_2v2 / one_vs_many
+     - ``f`` / ``t`` / ``o``
    * - Acqua
      - nessuna / lago / fiume
      - ``n`` / ``l`` / ``v``

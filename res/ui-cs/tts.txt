@@ -928,6 +928,7 @@
 5065	režim týmů
 5066	každý proti každému
 5067	dva týmy
+5750	jeden proti mnoha
 5068	voda
 5069	bez vody
 5070	jezero

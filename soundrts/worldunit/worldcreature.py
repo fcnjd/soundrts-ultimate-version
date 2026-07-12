@@ -1511,6 +1511,9 @@ class _Building(Creature):
     transport_volume = 99
 
     corpse = 0
+    rmg_tile_improvement = 0
+    rmg_improvement_key = ""
+    rmg_tile_yield = ()
 
     def die(self, attacker=None):
         from ..world_build_rules import cleanup_build_rules_on_death

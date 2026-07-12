@@ -22,8 +22,6 @@ class Player(BasePlayer, PerceptionMixin, ResourcesMixin, TriggersMixin, CombatM
     """完整的玩家类，组合了所有功能模块"""
     
     def __init__(self, world, client):
-        # 初始化空间索引
-        self._buckets = {}
         super().__init__(world, client)
 
     def slow_update(self):

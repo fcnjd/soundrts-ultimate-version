@@ -25,8 +25,11 @@ from .worldplayercomputer_sc_build import (
 )
 from .worldplayercomputer_water import (
     find_amphibious_crossing,
+    is_land_shore,
+    is_passable_land,
     movement_target_for_unit,
     path_plane,
+    water_neighbors_of_land,
 )
 from .version import IS_DEV_VERSION
 from .worldupgrade.base import is_an_upgrade
@@ -413,16 +416,32 @@ class Computer(Player):
             if u.orders:
                 continue
             # 普通科技：can_research / research
-            for t in u.can_research:
+            research_candidates = list(u.can_research)
+            if getattr(self.world, "rmg_strategic_systems", False):
+                from .rmg_systems import ai_research_priority, initialize_player
+
+                initialize_player(self)
+                research_candidates = ai_research_priority(self, research_candidates)
+            for t in research_candidates:
                 unit_type = self.unit_class(t)
                 if unit_type is None:  # 跳过无效的研究类型
+                    continue
+                culture_cost = max(
+                    0, int(getattr(unit_type, "culture_cost", 0) or 0)
+                )
+                if (
+                    getattr(unit_type, "rmg_policy", 0)
+                    and t in getattr(self, "rmg_unlocked_policies", ())
+                ):
                     continue
                 if (
                     not self.future_nb([t])
                     and not self.missing_resources(unit_type.cost)
+                    and getattr(self, "culture_points", 0) >= culture_cost
                     and self.potential(unit_type.cost) > 3
                 ):
                     u.take_order(["research", t])
+                    break
             # 时代推进：can_advance / advance（与科技通道完全分离）
             for t in getattr(u, "can_advance", ()) or ():
                 unit_type = self.unit_class(t)
@@ -1214,13 +1233,132 @@ class Computer(Player):
             and self._is_idle_for_ai_orders(u)
         ]
 
-    def _try_transport_assaults(self):
-        """Ferry blocked ground troops by boat or air transport toward enemy bases."""
-        targets = [
+    def _enemy_land_assault_targets(self):
+        return [
             p
             for p in self._naval_patrol_targets()
             if p is not None and not getattr(p, "is_water", False)
         ]
+
+    def _choose_unload_land_for_transport(self, transport, dest_places):
+        """Pick a passable land square to unload onto near the transport / enemy."""
+        place = getattr(transport, "place", None)
+        if place is None:
+            return None
+        ag = getattr(transport, "airground_type", None)
+        adjacent = []
+        if ag == "water":
+            for n in place.strict_neighbors:
+                if is_passable_land(n):
+                    adjacent.append(n)
+        elif ag == "air":
+            if is_passable_land(place):
+                adjacent.append(place)
+            for n in place.strict_neighbors:
+                if is_passable_land(n):
+                    adjacent.append(n)
+        if not adjacent:
+            return None
+
+        def _score(land):
+            best = None
+            for dest in dest_places or ():
+                dest = self._world_place_for_pathfinding(dest)
+                if dest is None:
+                    continue
+                dist = land.shortest_path_distance_to(dest, self, "ground")
+                if dist is None or dist == float("inf"):
+                    continue
+                if best is None or dist < best:
+                    best = dist
+            if best is None:
+                return (1, 0 if is_land_shore(land) else 1)
+            return (0, best)
+
+        return min(adjacent, key=_score)
+
+    def _try_unload_idle_loaded_transports(self):
+        """Unload boats/air transports that already carry troops but sit idle.
+
+        `_try_transport_assaults` only sees idle ground soldiers outside a
+        transport. After load+sail (or a failed unload), a packed boat can
+        park next to an enemy shore forever unless we re-issue unload_all.
+        """
+        targets = self._enemy_land_assault_targets()
+        for transport in self.units:
+            if getattr(transport, "transport_capacity", 0) <= 0:
+                continue
+            if transport.speed <= 0 or getattr(transport, "is_inside", False):
+                continue
+            inside = getattr(transport, "inside", None)
+            if inside is None or not inside.objects:
+                continue
+            if not any(
+                getattr(o, "airground_type", None) == "ground" for o in inside.objects
+            ):
+                continue
+            if transport.orders:
+                keywords = {o.keyword for o in transport.orders}
+                if keywords & {"load", "load_all", "unload", "unload_all"}:
+                    continue
+                if not self._is_idle_for_ai_orders(transport):
+                    continue
+            unload_land = self._choose_unload_land_for_transport(transport, targets)
+            ag = getattr(transport, "airground_type", None)
+            if unload_land is not None:
+                transport.cancel_all_orders()
+                if ag == "water":
+                    transport.take_order(
+                        ["unload_all", unload_land.id], forget_previous=True
+                    )
+                else:
+                    transport.take_order(
+                        ["go", unload_land.id], forget_previous=False
+                    )
+                    transport.take_order(
+                        ["unload_all", unload_land.id], forget_previous=False
+                    )
+                continue
+            if ag != "water" or not targets:
+                continue
+            # Not adjacent to land yet: sail to a shore next to the enemy, then unload.
+            dest = self._world_place_for_pathfinding(targets[0])
+            if dest is None:
+                continue
+            origin = self._world_place_for_unit(transport)
+            route = find_amphibious_crossing(origin, dest, self) if origin else None
+            if route is None:
+                # Fall back: nearest water neighbor of any shore near dest.
+                shores = []
+                if is_land_shore(dest):
+                    shores.append(dest)
+                for n in dest.neighbors:
+                    if is_land_shore(n) and n not in shores:
+                        shores.append(n)
+                best_water = None
+                best_land = None
+                best_dist = None
+                for shore in shores:
+                    for water in water_neighbors_of_land(shore):
+                        dist = self._water_path_distance(transport.place, water)
+                        if best_dist is None or dist < best_dist:
+                            best_dist = dist
+                            best_water = water
+                            best_land = shore
+                if best_water is None or best_land is None:
+                    continue
+                unload_water, unload_land = best_water, best_land
+            else:
+                _load_land, _load_water, unload_water, unload_land = route
+            transport.cancel_all_orders()
+            transport.take_order(["go", unload_water.id], forget_previous=False)
+            transport.take_order(
+                ["unload_all", unload_land.id], forget_previous=False
+            )
+
+    def _try_transport_assaults(self):
+        """Ferry blocked ground troops by boat or air transport toward enemy bases."""
+        targets = self._enemy_land_assault_targets()
         if not targets:
             return
         candidates = self._idle_ground_assault_units()
@@ -1247,6 +1385,7 @@ class Computer(Player):
 
     def _try_amphibious_landings(self):
         """Backward-compatible entry point for boat/air assault scheduling."""
+        self._try_unload_idle_loaded_transports()
         self._try_transport_assaults()
 
     def play(self):
@@ -1708,21 +1847,21 @@ class Computer(Player):
         if self._safe_cnt > 10:
             info("AI has trouble getting: %s %s", nb, types)
             return False
-        for type in types:
-            if isinstance(type, str):
-                unit_class = rules.unit_class(type)
+        for unit_type in types:
+            if isinstance(unit_type, str):
+                unit_class = rules.unit_class(unit_type)
                 if unit_class is None:
-                    warning("无效的单位类型: %s", type)
+                    warning("无效的单位类型: %s", unit_type)
                     continue
-                type = unit_class
-            elif type is None:
+                unit_type = unit_class
+            elif unit_type is None:
                 continue
-            elif not hasattr(type, "__name__"):
-                warning("无效的单位类型: %s", type)
+            elif not hasattr(unit_type, "__name__"):
+                warning("无效的单位类型: %s", unit_type)
                 continue
 
             # 获取制造者类型列表
-            makers = rules.get_makers(type)
+            makers = rules.get_makers(unit_type)
             if not makers:
                 continue
                 
@@ -1734,14 +1873,14 @@ class Computer(Player):
                     target_count = nb - future_count
                     if target_count > 0:
                         self.build_or_train_or_upgradeto_or_summon(
-                            type, target_count
+                            unit_type, target_count
                         )
                     break
                 except Exception as e:
                     warning(
                         "创建单位时出错: %s - %s: %s",
-                        type.__name__ if hasattr(type, "__name__") else type,
-                        type(e).__name__,
+                        unit_type.__name__ if hasattr(unit_type, "__name__") else unit_type,
+                        e.__class__.__name__,
                         e,
                     )
             elif makers:
@@ -1944,7 +2083,7 @@ class Computer(Player):
                             break
                 if not trained:
                     self._try_morph_from_larva(type)
-            elif type in rules.class_rules_attr(maker_cls, "can_research"):
+            elif type in rules.class_can_research(maker_cls):
                 if self.gather(t.cost, t.population_cost):
                     self.order(1, maker, ["research", type])
             elif type in rules.class_rules_attr(maker_cls, "can_advance"):

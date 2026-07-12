@@ -15,6 +15,7 @@ from .randommap import (
     menu_title_for_config,
     refresh_rmg_templates,
     server_create_command,
+    team_modes_for_players,
     terrain_choices_for_template,
 )
 from .rmg_templates import custom_template_names, template_title_voice, terrain_menu_voice
@@ -72,6 +73,13 @@ class RandomMapMenu:
 
     def _set_template(self, template):
         self._config.template = template
+        from .rmg_templates import custom_template_entry
+
+        entry = custom_template_entry(template)
+        if entry is not None and entry.spec.default_victory_mode:
+            mode = entry.spec.default_victory_mode
+            if mode in ("conquest", "economic", "exploration", "survival"):
+                self._config.victory_mode = mode
         self._open_size_menu()
 
     def _open_size_menu(self):
@@ -95,7 +103,8 @@ class RandomMapMenu:
 
     def _set_players(self, n):
         self._config.nb_players = n
-        if n == 4:
+        modes = team_modes_for_players(n)
+        if len(modes) > 1:
             self._open_team_menu()
         else:
             self._config.team_mode = "ffa"
@@ -103,8 +112,13 @@ class RandomMapMenu:
 
     def _open_team_menu(self):
         menu = Menu(mp.RMG_RANDOM_MAP + mp.RMG_TEAM_MODE, menu_type="submenu")
-        menu.append(mp.RMG_FFA, (self._set_team, "ffa"))
-        menu.append(mp.RMG_TEAMS_2V2, (self._set_team, "teams_2v2"))
+        for mode in team_modes_for_players(self._config.nb_players):
+            if mode == "ffa":
+                menu.append(mp.RMG_FFA, (self._set_team, "ffa"))
+            elif mode == "teams_2v2":
+                menu.append(mp.RMG_TEAMS_2V2, (self._set_team, "teams_2v2"))
+            elif mode == "one_vs_many":
+                menu.append(mp.RMG_ONE_VS_MANY, (self._set_team, "one_vs_many"))
         menu.append(mp.CANCEL, CLOSE_MENU)
         menu.run()
 

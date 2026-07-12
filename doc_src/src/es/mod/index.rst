@@ -14,6 +14,7 @@ Reglas del mod
 3. `Manual de modding <modding.htm>`_
 4. `Habilidades / curación / efectos <skills-and-effects.htm>`_
 5. `Gritos de batalla <battle-shouts.htm>`_
+6. `Gestión de audio <audio-management.htm>`_ — refactorización P0–P2, SFX multiformato, volúmenes
 
 Mapas
 

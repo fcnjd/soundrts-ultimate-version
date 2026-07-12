@@ -7,6 +7,44 @@
 1.4.5.1
 --------
 
+**改善：随机地图团队模式语义与「以一敌多」**
+
+- **各自为战**：开局为每位玩家分配独立联盟（全员互不结盟），不再沿用训练对局「所有 AI 同队」的默认行为。
+- **新增「以一敌多」**：玩家 1 独立，其余玩家默认结盟；3 人可选「各自为战 / 以一敌多」，4 人可选「各自为战 / 两组对战 / 以一敌多」。
+- **分享码**：团队字段新增缩写 ``o``（``one_vs_many``）。
+- **实现**：``randommap.py``、``randommap_menu.py``、``msgparts.py``；TTS 5750。
+- **文档**：``player/random-map-play.rst``、``mod/randommap.rst``（各语言）。
+- **测试**：``test_ffa_assigns_unique_alliances``、``test_one_vs_many_allies_all_except_player1``、``test_team_modes_for_players``。
+
+**新增：RMG 战略层扩展（领土、市民、政策切换、AI 策略、英雄跨局成长）**
+
+- **城市领土与买地**：每座城市占主格；命令 ``rmg_buy_tile`` 可购买相邻未占方格（首块 20 金，之后每块 +10 金）。
+- **市民与地块改良**：``rmg_assign_gold/wood/food/culture`` 分配市民；派驻农民用标准 ``build rmg_tile_*`` 施工矿场/伐木场/农场（不再由城市瞬间放置）；工作格产出并入每 60 秒 ``rmg_strategic_tick``。
+- **政策本局切换**：同时最多两张生效；研究第三张时替换最早启用的一张；已解锁政策可用 ``rmg_switch_*`` 免费切换。
+- **AI 政策组合**：进攻型优先商业+传统；多敌人时优先外交+商业；其余优先传统+商业；并按前置科技链顺序研究。
+- **单机 RMG 英雄持久化**：对局结束保存、开局恢复最高等级与经验至 ``rmg_heroes/<mod>/<faction>.json``；联机/回放不使用。
+- **实现**：``soundrts/rmg_systems.py``、``soundrts/rmg_progress.py``、``soundrts/worldorders/strategic.py``、``soundrts/worldplayercomputer.py``、``soundrts/game.py``。
+- **语音**：``res/ui/tts.txt`` / ``res/ui-zh/tts.txt`` 5718–5728；``res/ui/style.txt`` 对应命令标题。
+- **文档**：``player/rmg-strategic-systems.rst``、``player/homm-civ5-play.rst``。
+- **测试**：``test_rmg_systems.py``（领土、改良、政策替换、AI 组合、英雄档案、命令注册）。
+
+**修复：普通地图市政厅误显示 RMG 战略科技**
+
+- **现象**：手工地图或经典对局中，市政厅研究菜单仍出现城市规划、政策卡等 ``rmg_*`` 科技。
+- **原因**：``rules.txt`` 将 ``rmg_*`` 写入 ``townhall`` 的 ``can_research``，且 rules 加载后的列表遮蔽了 ``Building.can_research`` 的 ``@property``，研究菜单读取的是静态列表而非 ``effective_can_research()``。
+- **修复**：（1）市政厅 ``can_research`` 仅保留 ``hunting_techniques`` 等通用科技；RMG 地图由 ``effective_can_research`` 动态注入 ``STRATEGIC_RESEARCH_TYPES``。（2）仿照 ``can_train`` → ``_rules_can_train``，将 ``can_research`` 存入 ``_rules_can_research``，恢复 ``@property`` 生效。
+- **实现**：``definitions.py``、``world_build_rules.py``、``world_objects.py``、``worldplayercomputer.py``、``attributes/utils.py``、``res/rules.txt``。
+- **测试**：``test_townhall_can_research_property_respects_rmg_flag``、``test_strategic_research_is_only_exposed_on_rmg_cities``。
+
+**改善：文化点与外交点可查**
+
+- RMG 战略地图新增全局快捷键：**B** 播报文化点，**Shift+B** 播报外交点（非 RMG 地图播放提示音）。
+- 选中己方城市（市政厅 / 要塞 / 城堡）打开属性界面（Alt+V）时，可按 **U** 查看文化点、**Y** 查看外交点。
+- 每 60 秒 ``rmg_strategic_tick`` 语音与城市数播报仍保留；若已开启资源变动播报，文化 / 外交变化也会语音提示。
+- **实现**：``clientgame/game_resources.py``、``attributes/basic_attributes.py``、``res/ui/global_bindings.txt``、``res/ui/legacy_bindings.txt``、``res/ui/tts.txt`` / ``res/ui-zh/tts.txt``（5716–5717）、``hotkey_editor.py``、``hotkey_catalogs.py``。
+- **文档**：``player/rmg-strategic-systems.rst``（各语言）。
+- **测试**：``test_culture_and_diplomacy_status_helpers``、``test_city_attributes_include_strategic_points``。
+
 **改善：地形掩护、按单位修正与百分比写法**
 
 - ``rules.txt`` 的 ``class terrain`` 现支持 ``cover <地面> <空中>``，与 ``speed`` 相同：地图只写 ``terrain marsh h8`` 即可继承默认掩护；地图 ``cover`` 行可覆盖单格。
@@ -28,6 +66,14 @@ Bug 修复与语音/音频体验改善：
 - **说明**：``charge_mdg_cd`` / ``charge_rdg_cd`` 冲锋冷却走独立路径（即时 ``receive_hit``、无前摇/弹道调度），不受上述三问题影响；普攻 CD 修复后「冲锋 + 普攻」交替节奏一并恢复正常。
 - **实现**：``combat/attack_action.py``、``combat/damage_effects.py``。
 - **测试**：``test_attack_cooldown_timing.py``。
+
+**修复：Computer 玩家感知更新崩溃（``_buckets`` 缺失）**
+
+- **现象**：对局进行中（尤其含 ``computer_only`` 地图 AI、同盟 AI 队友或读档后）可能在主循环感知阶段崩溃，报错 ``AttributeError: 'Computer' object has no attribute '_buckets'``。
+- **原因**：玩家空间网格索引 ``_buckets`` 仅在包装类 ``Player.__init__`` 中初始化；存档读档会剥离该缓存字段；同盟视野批量可见性检查（``bulk_visibility_check``）会调用盟友 ``_potential_neighbors``，若某 ``Computer`` 尚未持有 ``_buckets`` 即触发异常。
+- **修复**：在 ``BasePlayer.__init__`` 中与其它感知缓存一并预初始化 ``_buckets``；``_potential_neighbors`` 增加缺失时的空字典兜底；``update_alliance`` 时清除 ``allied_vision`` 实例缓存，避免联盟变更后仍引用陈旧盟友列表。
+- **实现**：``worldplayerbase/base.py``、``worldplayerbase/perception.py``、``worldplayerbase/__init__.py``。
+- **测试**：``test_meteors_computer_only.py``、``test_phase3_parity.py``、``test_neutral_passive_creep.py``。
 
 **改善：不可通行地形的 go 命令拦截与语音提示**
 
@@ -61,6 +107,22 @@ Bug 修复与语音/音频体验改善：
 - **实现**：``worldunit/world_order.py`` ``take_order``。
 - **测试**：``test_imperative_attack.py``（``test_normal_go_queues_behind_imperative_attack``、``test_only_one_queued_order_behind_imperative_attack`` 等）。
 
+**修复：已占领建筑被强制攻击时仍触发占领命令**
+
+- **现象**：占领敌方可占领建筑（``capture_hp_threshold`` 为 100，如兵营）后，对该建筑下达强制攻击，单位仍执行占领而非造成伤害，反复播放占领音效。
+- **原因**：「接触即占领」路由使用 ``is_an_enemy()``；强制攻击时该方法对己方已占建筑也返回 ``True``（因 ``_player_ordered_attack_on`` 将友方目标视为可攻击对象）。
+- **修复**：新增 ``should_capture_on_contact()``，以 ``player.player_is_an_enemy(target.player)`` 判断目标是否仍为真实敌方；``_perform_capture()`` 增加同样守卫。
+- **实现**：``worldaction.py``、``combat/attack_action.py``、``worldunit/world_order.py``。
+- **测试**：``test_capture_default_order.py``（``test_imperative_attack_on_captured_barracks_deals_damage_not_capture``）。
+
+**修复：电脑运输船装满士兵停在敌方门口却不卸兵**
+
+- **现象**：在 ``jl7`` 等海图上，即使邀请噩梦级电脑，运输船（``boat``）装着士兵停在玩家岸边，却迟迟不下 ``unload`` / ``unload_all``，无法登陆作战。
+- **原因**：``_try_transport_assaults`` 只调度岸上闲置地面兵；士兵已在船内（``is_inside``）时被忽略。装载/航行后若卸兵命令缺失或失败，满载运输船会闲置停靠，却没有补发卸兵的路径。
+- **修复**：在 ``_try_amphibious_landings`` 中先调用 ``_try_unload_idle_loaded_transports``：对闲置且装有地面单位的水上/空中运输工具，选择相邻可通行陆地（优先靠近敌方目标）补发 ``unload_all``；若尚未靠岸则先 ``go`` 至卸兵水域再卸兵。
+- **实现**：``worldplayercomputer.py``（``_enemy_land_assault_targets``、``_choose_unload_land_for_transport``、``_try_unload_idle_loaded_transports``）。
+- **测试**：``test_ai_jl7_amphibious_unload.py``（含噩梦级 AI、满载船停门口须下 ``unload_all`` 的回归用例）。
+
 **改善：单位行为语音描述**
 
 - Tab 选目标后 Ctrl+退格、选择 go 后 Ctrl+回车：对敌方目标播报「攻击某某」而非「移动」。
@@ -75,12 +137,14 @@ Bug 修复与语音/音频体验改善：
 - **文档**：``mod/battle-shouts.rst``。
 - **测试**：``test_battle_shout_audio.py``。
 
-**改善：音频管理 P0–P2 优先级方案**
+**改善：音频管理系统 P0–P2 分阶段重构**
 
-- **P0 环境层**（负值 ~ 低正值，如 -20、-10）：脚步声、循环环境音、背景喊杀；可被更高层打断。
-- **P1 战斗层**（0 ~ 14，``shout_combat_priority`` 按规模计算）：命中、受击、单位喊杀。
-- **P2 提示层**（10 ~ 16）：升级、形态变化、事件喊杀；优先保留。
-- **实现**：``lib/sound.py`` ``SoundManager.find_a_channel`` 按 priority 抢占低优先级声源；``audio.py`` 脚步声 ``priority=-10``；TTS 保留 channel 0。
+- **更正**：此前草稿曾将 P0–P2 误写为「环境层 / 战斗层 / 提示层」的通道优先级方案；实际为**音频引擎重构的三阶段**，与上文「喊杀声分层」及 ``psounds.play(..., priority=…)`` 的数值抢占无关。详见 ``mod/audio-management.rst``。
+- **P0 结构性**：抽出 ``lib/music_resolver.py`` 统一菜单/对局/战斗/胜负音乐查找；``sound_cache.clear_decoded()`` 在切换 mod/地图时回收已解码 SFX；修复 ``SoundSource`` / ``SoundManager`` 类级可变状态。
+- **P1 体验**：独立 ``audio/sfx_volume``（游戏音效与 ``main_volume`` 语音分离）；语音等待改为事件泵（不再 ``time.sleep`` 阻塞主循环）；菜单音乐 fallback 合并。
+- **P2 打磨**：环境音 LFO 平滑（``ambient_stereo_volume``）；战斗音乐状态机 ``lib/battle_music.py``；``music_resolver`` 死代码清理；``ui/`` 游戏音效支持 ``.ogg`` / ``.wav`` / ``.mp3``（同 stem 优先 ogg）及热音效预加载（``preload_sounds`` / ``tick_preload``）。
+- **音量热键**：Home / End 调节游戏音效；Alt+Home / Alt+End 调节背景音乐。
+- **测试**：``test_music_resolver.py``、``test_audio_settings.py``、``test_voice_pump.py``、``test_ambient_stereo_volume.py``、``test_battle_music.py``、``test_sfx_formats.py``。
 
 1.4.5.0
 --------

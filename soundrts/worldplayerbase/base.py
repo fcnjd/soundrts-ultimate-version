@@ -198,6 +198,23 @@ class Player:
         self._ally_requests_from = set()  # 收到的结盟请求：对方玩家id集合
         self._alliance_declined_from = set()  # 已拒绝的结盟申请：对方玩家id集合
         self._ally_relations_one_way = set()  # 我单方面视为盟友的玩家id（未对方确认）
+        # RMG strategic layer (culture, diplomacy and city/tile income).
+        # Kept on every player so save/replay state remains deterministic.
+        self.culture_points = 0
+        self.diplomacy_points = 0
+        self.rmg_city_yield_ticks = 0
+        self.rmg_claimed_tiles = {}
+        self.rmg_worked_tiles = {}
+        self.rmg_tile_workers = {}
+        self.rmg_worker_auto_gather = {}
+        self.rmg_assignment_order = []
+        self.rmg_tile_improvements = {}
+        self.rmg_territory_markers = {}
+        self.rmg_improvement_units = {}
+        self.rmg_unlocked_policies = set()
+        self.rmg_policy_slots = []
+        self.rmg_hero_peak_level = 1
+        self.rmg_hero_peak_xp = 0
         self.detected_units = set()
         self.allied_control = (self,)
         self.allied_control_units_set = set()
@@ -207,6 +224,9 @@ class Player:
         self._enemy_menace_time = {}
         self._subsquare_threat = {}
         self.new_enemy_units = []  # 初始化新发现的敌方单位列表
+        # 空间网格索引；每 tick 由 World._update_buckets 重建，但必须在 __init__
+        # / 读档后立即可用，避免 allied_vision 查询时 AttributeError。
+        self._buckets = {}
         # known_enemies hot path 用到的缓存; 预初始化避免每次 hasattr 检查
         # (实测: known_enemies 17.9M calls, 原版每次 4-5 个 hasattr/getattr)
         self._enemy_units_cache = []
@@ -695,12 +715,41 @@ class Player:
         if not args:
             return
         action = args[0]
-        target_id = args[1] if len(args) > 1 else None
         if self._alliances_locked_now():
             # 提示锁定
             if self.is_local_human():
                 self.send_voice_important(mp.ALLIANCES_LOCKED)
             return
+        if action == 'trade':
+            if len(args) < 3:
+                if self.is_local_human():
+                    self.send_voice_important(mp.DIPLOMACY + mp.NO_CANDIDATE)
+                return
+            trade_kind = args[1]
+            target = self._resolve_player_by_id(args[2])
+            if target is None or target is self:
+                if self.is_local_human():
+                    self.send_voice_important(mp.DIPLOMACY + mp.NO_CANDIDATE)
+                return
+            from ..rmg_systems import execute_rmg_trade
+
+            result = execute_rmg_trade(self, target, trade_kind)
+            if not self.is_local_human():
+                return
+            if result == "success":
+                return
+            if result == "already_allied":
+                self.send_voice_important(mp.RMG_ALREADY_ALLIED)
+            elif result == "not_enough_diplomacy":
+                self.send_voice_important(mp.RMG_NOT_ENOUGH_DIPLOMACY)
+            elif result == "not_enough_gold":
+                self.send_voice_important(mp.BEEP)
+            elif result == "cooldown":
+                self.send_voice_important(mp.TOO_EARLY)
+            elif result in ("declined", "invalid"):
+                self.send_voice_important(mp.RMG_TRADE_DECLINED)
+            return
+        target_id = args[1] if len(args) > 1 else None
         # 针对 accept/decline_or_cancel，允许省略目标，由服务器选择最近的待处理请求
         if action in ('accept', 'decline_or_cancel') and not target_id:
             # 1) 优先选择一个收到的待处理请求
@@ -778,6 +827,17 @@ class Player:
                     except Exception:
                         self.send_voice_important(mp.TOO_EARLY)
                 return
+            if getattr(self.world, "rmg_strategic_systems", False):
+                from ..rmg_systems import (
+                    DIPLOMACY_REQUEST_COST,
+                    cities,
+                    spend_diplomacy,
+                )
+
+                if cities(self) and not spend_diplomacy(self, DIPLOMACY_REQUEST_COST):
+                    if self.is_local_human():
+                        self.send_voice_important(mp.RMG_NOT_ENOUGH_DIPLOMACY)
+                    return
             last_map[target.id] = self.world.time
             # 发送请求给目标
             target._ally_requests_from.add(self.id)
@@ -961,6 +1021,8 @@ class Player:
         except Exception:
             pass
         # 清理联盟相关缓存，确保动态变更即时生效
+        self._cached_allied_vision = None
+        self._allied_vision_cache_time = -1_000_000
         try:
             if hasattr(self, '_clear_allied_vision_cache'):
                 self._clear_allied_vision_cache()

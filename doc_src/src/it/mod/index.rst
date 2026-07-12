@@ -15,6 +15,7 @@ Regole mod
 3. `Manuale di modding <modding.htm>`_ — riferimento completo delle parole chiave
 4. `Abilità / cura / effetti <skills-and-effects.htm>`_
 5. `Urla di battaglia <battle-shouts.htm>`_ — urla a livelli, configurazione ``shouts``
+6. `Gestione audio <audio-management.htm>`_ — refactor P0–P2, SFX multiformato, volumi
 
 Mappe
 

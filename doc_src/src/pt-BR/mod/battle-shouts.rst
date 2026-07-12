@@ -3,6 +3,8 @@ Gritos de batalha (áudio de combate em camadas)
 
 Compilação só de escaramuça (sem formações de legião). Três camadas: **fundo do campo de batalha**, **voz da unidade**, **destaques de eventos**. Reprodução escalonada com cooldowns.
 
+**Nota**: estas «três camadas» não são as **fases P0–P2 de refatoração do motor de áudio**; ver :doc:`audio-management`.
+
 Código: ``battle_shout_audio.py``, ``combat.py``, ``formation_sound_queue.py``. Testes: ``test_battle_shout_audio.py``.
 
 Gatilhos: qualquer lado tem ≥ **5** unidades lutando no quadrado. Cooldowns: 10 s global, 6 s por quadrado; 4 s para gritos de carga/crítico.

@@ -77,6 +77,32 @@ def test_generate_differs_for_different_seeds():
     assert a != b
 
 
+def test_rmg_enables_strategic_systems_and_starting_hero():
+    _reset_base_game_rules()
+    text, _ = generate_definition(RandomMapConfig(size="small", seed=17))
+    assert "rmg_strategic_systems 1" in text
+    assert "starting_units " in text and "1 rmg_hero" in text
+    assert "trigger players (timer 60 60) (rmg_strategic_tick)" in text
+
+
+def test_rmg_hero_has_levels_skills_and_mana():
+    _reset_base_game_rules()
+    from soundrts.definitions import rules
+
+    hero = rules.unit_class("rmg_hero")
+    assert hero is not None
+    assert len(hero.xp_thresholds) == 7
+    assert hero.mana_max > 0
+    assert hero.level_skills == [
+        "2",
+        "rmg_arcane_bolt",
+        "4",
+        "rmg_whirlwind",
+        "6",
+        "rmg_meteor_shower",
+    ]
+
+
 def test_make_map_header():
     m, seed = make_map(RandomMapConfig(size="small", nb_players=2, seed=99))
     assert seed == 99
@@ -140,8 +166,62 @@ def test_teams_2v2_adds_alliance_triggers():
         RandomMapConfig(size="medium", nb_players=4, team_mode="teams_2v2", seed=400)
     )
     assert "trigger player1 (timer 0) (alliance 1)" in text
+    assert "trigger player3 (timer 0) (alliance 1)" in text
+    assert "trigger player2 (timer 0) (alliance 2)" in text
     assert "trigger player4 (timer 0) (alliance 2)" in text
     assert "trigger players (no_enemy_player_left) (victory)" in text
+
+
+def test_ffa_assigns_unique_alliances():
+    text, _ = generate_definition(
+        RandomMapConfig(size="medium", nb_players=4, team_mode="ffa", seed=401)
+    )
+    assert "trigger player1 (timer 0) (alliance 1)" in text
+    assert "trigger player2 (timer 0) (alliance 2)" in text
+    assert "trigger player3 (timer 0) (alliance 3)" in text
+    assert "trigger player4 (timer 0) (alliance 4)" in text
+    assert "trigger player3 (timer 0) (alliance 1)" not in text
+
+
+def test_one_vs_many_allies_all_except_player1():
+    text3, _ = generate_definition(
+        RandomMapConfig(size="medium", nb_players=3, team_mode="one_vs_many", seed=402)
+    )
+    assert "trigger player1 (timer 0) (alliance 1)" in text3
+    assert "trigger player2 (timer 0) (alliance 2)" in text3
+    assert "trigger player3 (timer 0) (alliance 2)" in text3
+    assert "trigger player4" not in text3
+
+    text4, _ = generate_definition(
+        RandomMapConfig(size="medium", nb_players=4, team_mode="one_vs_many", seed=403)
+    )
+    assert "trigger player1 (timer 0) (alliance 1)" in text4
+    assert "trigger player2 (timer 0) (alliance 2)" in text4
+    assert "trigger player3 (timer 0) (alliance 2)" in text4
+    assert "trigger player4 (timer 0) (alliance 2)" in text4
+
+
+def test_team_modes_for_players():
+    from soundrts.randommap import team_modes_for_players
+
+    assert team_modes_for_players(2) == ("ffa",)
+    assert team_modes_for_players(3) == ("ffa", "one_vs_many")
+    assert team_modes_for_players(4) == ("ffa", "teams_2v2", "one_vs_many")
+
+
+def test_normalized_rejects_invalid_team_mode_for_player_count():
+    assert (
+        RandomMapConfig(nb_players=3, team_mode="teams_2v2").normalized().team_mode
+        == "ffa"
+    )
+    assert (
+        RandomMapConfig(nb_players=2, team_mode="one_vs_many").normalized().team_mode
+        == "ffa"
+    )
+    assert (
+        RandomMapConfig(nb_players=3, team_mode="one_vs_many").normalized().team_mode
+        == "one_vs_many"
+    )
 
 
 def test_victory_mode_economic_adds_resource_trigger():
@@ -903,6 +983,100 @@ def test_custom_template_share_code_rmg2(tmp_path):
         from soundrts.randommap import refresh_rmg_templates
 
         refresh_rmg_templates()
+
+
+def test_custom_template_victory_parameters(tmp_path):
+    template_dir = tmp_path / "cfg" / "randommap"
+    template_dir.mkdir(parents=True)
+    (template_dir / "space_survival.txt").write_text(
+        "\n".join(
+            [
+                "random_map_template",
+                "name space_survival",
+                "extends fast",
+                "title space survival",
+                "default_victory_mode survival",
+                "survival_seconds 1200",
+                "exploration_ruin_pairs 1",
+                "economic_goal 8000",
+                "strategic_systems 0",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    old_cwd = os.getcwd()
+    try:
+        os.chdir(tmp_path)
+        from soundrts.randommap import refresh_rmg_templates
+
+        refresh_rmg_templates()
+        text, _ = generate_definition(
+            RandomMapConfig(
+                template="space_survival",
+                victory_mode="survival",
+                size="medium",
+                seed=101,
+            )
+        )
+        assert "rmg_strategic_systems 0" in text
+        assert "trigger players (timer 1200)" in text
+        assert "objective 5436 20" in text
+    finally:
+        os.chdir(old_cwd)
+        from soundrts.randommap import refresh_rmg_templates
+
+        refresh_rmg_templates()
+
+
+def test_custom_template_victory_triggers(tmp_path):
+    template_dir = tmp_path / "cfg" / "randommap"
+    template_dir.mkdir(parents=True)
+    (template_dir / "custom_win.txt").write_text(
+        "\n".join(
+            [
+                "random_map_template",
+                "name custom_win",
+                "extends standard",
+                "title custom win",
+                "victory_triggers",
+                "trigger players (timer 60 60) (if (has_gathered 5000 resource2) (victory))",
+                "end_victory_triggers",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    old_cwd = os.getcwd()
+    try:
+        os.chdir(tmp_path)
+        from soundrts.randommap import refresh_rmg_templates
+
+        refresh_rmg_templates()
+        text, _ = generate_definition(
+            RandomMapConfig(template="custom_win", victory_mode="conquest", seed=202)
+        )
+        assert "has_gathered 5000 resource2" in text
+        assert "trigger players (no_enemy_player_left) (victory)" not in text
+        assert "trigger players (no_building_left) (defeat)" in text
+        assert "objective 5451" not in text
+    finally:
+        os.chdir(old_cwd)
+        from soundrts.randommap import refresh_rmg_templates
+
+        refresh_rmg_templates()
+
+
+def test_rmg_rules_victory_defaults_from_rules_txt():
+    from soundrts import rmg_rules
+    from soundrts.lib.resource import res
+
+    _reset_base_game_rules()
+    res.load_rules_and_ai()
+    assert rmg_rules.economic_goal("standard") == 3000
+    assert rmg_rules.economic_goal("fast") == 2000
+    assert rmg_rules.survival_seconds("fast") == 600
+    assert rmg_rules.survival_seconds("standard") == 900
+    assert rmg_rules.exploration_ruin_pairs("medium", exploration_mode=True) == 3
+    assert rmg_rules.strategic_systems_enabled() is True
 
 
 def test_terrain_choices_include_rules_rmg_terrains():

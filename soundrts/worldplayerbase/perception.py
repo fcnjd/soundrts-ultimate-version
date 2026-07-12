@@ -173,7 +173,10 @@ class PerceptionMixin:
         # 将坐标转为网格坐标
         grid_x = x // A
         grid_y = y // A
-        
+        buckets = getattr(self, "_buckets", None)
+        if buckets is None:
+            buckets = self._buckets = {}
+
         # 如果需要跳过缓存（用于harm_nearby_units等功能）
         if skip_cache:
             # 直接计算结果，不使用缓存
@@ -181,8 +184,8 @@ class PerceptionMixin:
             for dx in [0, 1, -1]:
                 for dy in [0, 1, -1]:
                     k = grid_x + dx, grid_y + dy
-                    if k in self._buckets:
-                        result.extend(self._buckets[k])
+                    if k in buckets:
+                        result.extend(buckets[k])
             return result
         
         # 缓存键必须包含玩家 id：每条 computer_only 行是独立 Computer 玩家，
@@ -235,8 +238,8 @@ class PerceptionMixin:
         for dx in [0, 1, -1]:
             for dy in [0, 1, -1]:
                 k = grid_x + dx, grid_y + dy
-                if k in self._buckets:
-                    result_capacity += len(self._buckets[k])
+                if k in buckets:
+                    result_capacity += len(buckets[k])
         
         # 一次性分配空间
         if result_capacity > 0:
@@ -247,8 +250,8 @@ class PerceptionMixin:
             for dx in [0, 1, -1]:
                 for dy in [0, 1, -1]:
                     k = grid_x + dx, grid_y + dy
-                    if k in self._buckets:
-                        bucket = self._buckets[k]
+                    if k in buckets:
+                        bucket = buckets[k]
                         bucket_len = len(bucket)
                         for i in range(bucket_len):
                             result[idx] = bucket[i]
@@ -759,6 +762,10 @@ class PerceptionMixin:
                     self.__class__._allied_vision_cache = new_cache
                     self.__class__._allied_vision_timestamp = new_timestamps
         
+        from ..rmg_systems import apply_territory_vision
+
+        apply_territory_vision(self)
+
         # 更新历史观察记录
         self.observed_before_squares.update(partially_observed_squares)
         self.strictly_observed_before_squares.update(self.observed_squares)
@@ -1723,6 +1730,10 @@ class PerceptionMixin:
                     self.observed_squares.add(sq)
             for sq in dec:
                 if sq in self._vision_cover_counts:
+                    from ..rmg_systems import is_claimed_square
+
+                    if is_claimed_square(self, sq):
+                        continue
                     self._vision_cover_counts[sq] -= 1
                     if self._vision_cover_counts[sq] <= 0:
                         del self._vision_cover_counts[sq]
@@ -1786,6 +1797,9 @@ class PerceptionMixin:
         for unit in moved_units:
             if getattr(unit, 'player', None) is not None and unit.place is not None and not getattr(unit, 'is_inside', False):
                 self.perception.add(unit)
+        from ..rmg_systems import apply_territory_vision
+
+        apply_territory_vision(self)
         # 结束时不直接在此处递增版本（由调用者控制），避免重复递增
     def force_perception_update(self):
         """强制在下次更新时刷新感知系统"""

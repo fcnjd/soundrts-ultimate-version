@@ -8,6 +8,44 @@ Release notes
 1.4.5.1
 --------
 
+**Improve: random-map team modes and one-vs-many**
+
+- **Free-for-all**: each player starts in a unique alliance (true FFA); no longer keeps the training-game default where all AIs share one team.
+- **New one-vs-many**: player 1 alone vs all other players allied; 3 players get FFA / one-vs-many; 4 players get FFA / 2v2 / one-vs-many.
+- **Share code**: team field abbreviation ``o`` for ``one_vs_many``.
+- **Code**: ``randommap.py``, ``randommap_menu.py``, ``msgparts.py``; TTS 5750.
+- **Docs**: ``player/random-map-play.rst``, ``mod/randommap.rst`` (all languages).
+- **Tests**: ``test_ffa_assigns_unique_alliances``, ``test_one_vs_many_allies_all_except_player1``, ``test_team_modes_for_players``.
+
+**New: RMG strategic layer expansion (territory, citizens, policy switching, AI strategy, cross-match hero growth)**
+
+- **City territory and tile purchase**: each city owns its home square; ``rmg_buy_tile`` buys adjacent unclaimed main squares (first tile 20 gold, then +10 per tile).
+- **Citizens and tile improvements**: ``rmg_assign_gold/wood/food/culture`` assign citizens; ``rmg_build_mine/lumber_mill/farm`` build improvements; worked tiles pay into the 60-second ``rmg_strategic_tick``.
+- **In-match policy switching**: at most two active; researching a third replaces the oldest; unlocked policies switch free via ``rmg_switch_*``.
+- **AI policy combinations**: aggressive → commerce + tradition; ≥2 enemies → diplomacy + commerce; otherwise tradition + commerce; researches prerequisite tech chain in order.
+- **Local single-player RMG hero persistence**: peak level and XP saved at match end and restored at start to ``rmg_heroes/<mod>/<faction>.json``; not used in multiplayer/replays.
+- **Code**: ``soundrts/rmg_systems.py``, ``soundrts/rmg_progress.py``, ``soundrts/worldorders/strategic.py``, ``soundrts/worldplayercomputer.py``, ``soundrts/game.py``.
+- **Voice**: ``res/ui/tts.txt`` / ``res/ui-zh/tts.txt`` 5718–5728; matching command titles in ``res/ui/style.txt``.
+- **Docs**: ``player/rmg-strategic-systems.rst``, ``player/homm-civ5-play.rst``.
+- **Tests**: ``test_rmg_systems.py`` (territory, improvements, policy replacement, AI combos, hero profile, command registration).
+
+**Fix: RMG strategic research appearing on normal maps (town hall)**
+
+- **Symptom**: On hand-made or classic maps, the town hall research menu still listed urban planning, policy cards, and other ``rmg_*`` technologies.
+- **Cause**: ``rules.txt`` listed ``rmg_*`` on ``townhall`` ``can_research``, and the rules-loaded list shadowed ``Building.can_research`` ``@property``; the research menu read the static list instead of ``effective_can_research()``.
+- **Fix**: (1) ``townhall`` ``can_research`` keeps only generic tech such as ``hunting_techniques``; RMG maps inject ``STRATEGIC_RESEARCH_TYPES`` via ``effective_can_research``. (2) Like ``can_train`` → ``_rules_can_train``, store ``can_research`` as ``_rules_can_research`` so the ``@property`` works again.
+- **Code**: ``definitions.py``, ``world_build_rules.py``, ``world_objects.py``, ``worldplayercomputer.py``, ``attributes/utils.py``, ``res/rules.txt``.
+- **Tests**: ``test_townhall_can_research_property_respects_rmg_flag``, ``test_strategic_research_is_only_exposed_on_rmg_cities``.
+
+**Improvement: culture and diplomacy points are viewable**
+
+- On RMG strategic maps: global **B** announces culture points, **Shift+B** diplomacy points (non-RMG maps beep).
+- With your city selected (town hall / keep / castle), open the attributes screen (Alt+V): **U** for culture, **Y** for diplomacy.
+- The 60-second ``rmg_strategic_tick`` voice for city count remains; if resource-change alerts are on, culture/diplomacy changes are announced too.
+- **Code**: ``clientgame/game_resources.py``, ``attributes/basic_attributes.py``, ``res/ui/global_bindings.txt``, ``res/ui/legacy_bindings.txt``, ``res/ui/tts.txt`` / ``res/ui-zh/tts.txt`` (5716–5717), ``hotkey_editor.py``, ``hotkey_catalogs.py``.
+- **Docs**: ``player/rmg-strategic-systems.rst`` (all locales).
+- **Tests**: ``test_culture_and_diplomacy_status_helpers``, ``test_city_attributes_include_strategic_points``.
+
 **Improvement: terrain cover, per-unit modifiers, and percent notation**
 
 - ``rules.txt`` ``class terrain`` now supports ``cover <ground> <air>``, same as ``speed``: a map line ``terrain marsh h8`` inherits default cover; per-square map ``cover`` lines still override.
@@ -29,6 +67,14 @@ Bug fixes and voice/audio UX improvements:
 - **Note**: ``charge_mdg_cd`` / ``charge_rdg_cd`` use a separate path (immediate ``receive_hit``, no prep/ballistic scheduling) and were not affected by these three issues; mixed charge + normal-attack pacing improves indirectly via the normal-attack CD fix.
 - **Code**: ``combat/attack_action.py``, ``combat/damage_effects.py``.
 - **Tests**: ``test_attack_cooldown_timing.py``.
+
+**Fix: Computer player crash during perception update (missing ``_buckets``)**
+
+- **Symptom**: During a match (especially with ``computer_only`` map AIs, allied AI teammates, or after loading a save), the main loop could crash in the perception phase with ``AttributeError: 'Computer' object has no attribute '_buckets'``.
+- **Cause**: The spatial grid index ``_buckets`` was initialized only in the wrapper ``Player.__init__``; save/load strips that cache field; allied-vision bulk visibility (``bulk_visibility_check``) calls allies' ``_potential_neighbors``, which raises if a ``Computer`` has no ``_buckets`` yet.
+- **Fix**: Pre-initialize ``_buckets`` in ``BasePlayer.__init__`` with other perception caches; ``_potential_neighbors`` falls back to an empty dict when missing; ``update_alliance`` clears the ``allied_vision`` instance cache so stale ally lists are not reused after alliance changes.
+- **Code**: ``worldplayerbase/base.py``, ``worldplayerbase/perception.py``, ``worldplayerbase/__init__.py``.
+- **Tests**: ``test_meteors_computer_only.py``, ``test_phase3_parity.py``, ``test_neutral_passive_creep.py``.
 
 **Improvement: go-order rejection and voice feedback on impassable terrain**
 
@@ -62,6 +108,22 @@ Bug fixes and voice/audio UX improvements:
 - **Code**: ``worldunit/world_order.py`` ``take_order``.
 - **Tests**: ``test_imperative_attack.py`` (``test_normal_go_queues_behind_imperative_attack``, ``test_only_one_queued_order_behind_imperative_attack``, etc.).
 
+**Fix: force attack on already-captured building still triggers capture**
+
+- **Symptom**: After capturing an enemy capturable building (``capture_hp_threshold`` 100, e.g. barracks), force-attacking that building still issued capture instead of dealing damage, repeatedly playing capture sounds.
+- **Cause**: "Capture on contact" routing used ``is_an_enemy()``; during force attack that method returns ``True`` for friendly captured buildings too (via ``_player_ordered_attack_on`` treating allied targets as attackable).
+- **Fix**: Added ``should_capture_on_contact()`` using ``player.player_is_an_enemy(target.player)`` for genuine enemy checks; same guard in ``_perform_capture()``.
+- **Code**: ``worldaction.py``, ``combat/attack_action.py``, ``worldunit/world_order.py``.
+- **Tests**: ``test_capture_default_order.py`` (``test_imperative_attack_on_captured_barracks_deals_damage_not_capture``).
+
+**Fix: computer transport boats park loaded at the enemy shore without unloading**
+
+- **Symptom**: On water maps such as ``jl7``, even a nightmare computer could sail a ``boat`` full of soldiers to the player's shore and never issue ``unload`` / ``unload_all``, so troops never landed to fight.
+- **Cause**: ``_try_transport_assaults`` only schedules idle ground soldiers outside transports; cargo with ``is_inside`` is ignored. After load/sail, if unload was missing or failed, a packed idle transport had no recovery path to unload.
+- **Fix**: ``_try_amphibious_landings`` now calls ``_try_unload_idle_loaded_transports`` first: idle water/air transports carrying ground units get ``unload_all`` onto adjacent passable land (preferring land nearer enemy targets); if not yet adjacent, ``go`` to unload water then unload.
+- **Code**: ``worldplayercomputer.py`` (``_enemy_land_assault_targets``, ``_choose_unload_land_for_transport``, ``_try_unload_idle_loaded_transports``).
+- **Tests**: ``test_ai_jl7_amphibious_unload.py`` (nightmare AI regression: packed boat at the door must issue ``unload_all``).
+
 **Improvement: unit behavior voice descriptions**
 
 - After Tab-selecting a target, Ctrl+Backspace or go + Ctrl+Enter confirms "attack \<target\>" instead of "go" for enemy units/buildings.
@@ -76,12 +138,14 @@ Bug fixes and voice/audio UX improvements:
 - **Docs**: ``mod/battle-shouts.rst``.
 - **Tests**: ``test_battle_shout_audio.py``.
 
-**Improvement: P0–P2 audio priority scheme**
+**Improvement: P0–P2 audio engine refactor**
 
-- **P0 ambient** (negative to low positive, e.g. -20, -10): footsteps, looping ambience, background shouts; may be preempted by higher layers.
-- **P1 combat** (0–14, ``shout_combat_priority`` scales with headcount): hits, wounds, unit shouts.
-- **P2 alerts** (10–16): level-up, morph, event shouts; kept when channels are scarce.
-- **Code**: ``lib/sound.py`` ``SoundManager.find_a_channel`` preempts lower-priority sources; ``audio.py`` footsteps at ``priority=-10``; TTS stays on channel 0.
+- **Correction**: early drafts wrongly described P0–P2 as ambient/combat/alert *priority tiers*; they are **three refactor phases** for the audio engine, separate from layered battle shouts above and from ``psounds.play(..., priority=…)`` preemption. See ``mod/audio-management.rst``.
+- **P0 structure**: ``lib/music_resolver.py`` centralizes menu/game/battle/victory/defeat lookup; ``sound_cache.clear_decoded()`` on mod/map switches; instance-state fixes for ``SoundSource`` / ``SoundManager``.
+- **P1 UX**: separate ``audio/sfx_volume`` from voice ``main_volume``; non-blocking voice wait (event pump); unified menu-music fallback.
+- **P2 polish**: ambient LFO smoothing; ``lib/battle_music.py`` state machine; ``music_resolver`` cleanup; game SFX under ``ui/`` supports ``.ogg`` / ``.wav`` / ``.mp3`` (``.ogg`` preferred) plus hot preload (``preload_sounds`` / ``tick_preload``).
+- **Hotkeys**: Home/End for game SFX; Alt+Home/Alt+End for music.
+- **Tests**: ``test_music_resolver.py``, ``test_audio_settings.py``, ``test_voice_pump.py``, ``test_ambient_stereo_volume.py``, ``test_battle_music.py``, ``test_sfx_formats.py``.
 
 1.4.5.0
 --------

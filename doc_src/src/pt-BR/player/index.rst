@@ -38,6 +38,7 @@ Nível 4 · Jogos temáticos de mods
 ---------------------------------
 
 - `Mapas estilo Heroes / Civ 5 <homm-civ5-play.htm>`_
+- `Sistemas estratégicos RMG: herói e civilização <rmg-strategic-systems.htm>`_
 - Mod StarCraft: `recursos <starcraft-resources.htm>`_ · `Terran <starcraft-terran.htm>`_ · `creep <starcraft-zerg-creep.htm>`_
 
 Dicas de história

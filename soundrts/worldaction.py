@@ -1,6 +1,21 @@
 from .lib.nofloat import square_of_distance
 
 
+def should_capture_on_contact(unit, target):
+    """夺取阈值 100 且目标仍为真实敌方（非强制攻击下的伪敌人）。"""
+    if getattr(target, "capture_hp_threshold", 0) != 100:
+        return False
+    if not bool(getattr(unit, "can_capture", 1)):
+        return False
+    target_player = getattr(target, "player", None)
+    unit_player = getattr(unit, "player", None)
+    return (
+        unit_player is not None
+        and target_player is not None
+        and unit_player.player_is_an_enemy(target_player)
+    )
+
+
 class Action:
     def __init__(self, unit, target):
         self.unit = unit
@@ -92,11 +107,7 @@ class AttackAction(Action):
         target = self.target
         # 夺取阈值为 100 的敌方建筑“接触即占领”：直接占领而非攻击。
         # 单位移动到目标处后直接转变其阵营，全程不造成伤害、不播放攻击动作/音效。
-        if (
-            getattr(target, "capture_hp_threshold", 0) == 100
-            and unit.is_an_enemy(target)
-            and bool(getattr(unit, "can_capture", 1))
-        ):
+        if should_capture_on_contact(unit, target):
             if unit.speed and target in unit.place.objects:
                 if unit.action_reach_and_capture(target):
                     self.complete()
